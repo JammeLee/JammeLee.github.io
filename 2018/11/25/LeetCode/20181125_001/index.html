@@ -2,7 +2,7 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,8 +43,8 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
-" data-ishome = "false" >
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
+" data-ishome="false">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -80,7 +80,7 @@
                         
 							
                         <li>
-                            <a href="/About/">About</a>
+                            <a href="/Tags/">Tags</a>
                         </li>
 							
 						
@@ -88,7 +88,7 @@
                         
 							
                         <li>
-                            <a href="/Tags/">Tags</a>
+                            <a href="/About/">About</a>
                         </li>
 							
 						
@@ -162,8 +162,7 @@
                     </span>
                     <div class="tags text-center">
                         
-                        <a class="tag" href="/tags/#LeetCode"
-                           title="LeetCode">LeetCode</a>
+                        <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
                         
                     </div>
                 </div>
@@ -192,8 +191,8 @@
 <p>解答：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//x为负数时，肯定不是回文数。x是10的整数倍时，也不是回文数。</span></span><br><span class="line">        <span class="keyword">if</span>(x &lt; <span class="number">0</span> || (x % <span class="number">10</span> == <span class="number">0</span> &amp;&amp; x != <span class="number">0</span>))</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//通过x除以10取余，加上reverterNum*10来反转数字，并且让x等于自身除以10的商，这样相当于去掉了x的最后一位。</span></span><br><span class="line">        <span class="comment">//获取到的新数字一定不能大于x，所以循环，当x&lt;reverterNum时跳出循环。</span></span><br><span class="line">        <span class="keyword">int</span> reverterNum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(x &gt; reverterNum)</span><br><span class="line">        &#123;</span><br><span class="line">            reverterNum = reverterNum * <span class="number">10</span> + x % <span class="number">10</span>;</span><br><span class="line">            x /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//这里有两种情况：</span></span><br><span class="line">        <span class="comment">//第一种是传进函数的x是偶数位，那么只有当x==reverterNum时，传入的x才是回文数。</span></span><br><span class="line">        <span class="comment">//另一种时传进函数的x是奇数位，那么要想跳出循环，reverterNum一定是比x要多一位的，所以reverterNum需要除以10取商。</span></span><br><span class="line">        <span class="keyword">return</span> x == reverterNum || x == reverterNum / <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p><b>复杂度分析</b><br></p>
 <ul>
-<li>时间复杂度：$$O(log_{10}(n))$$，对于每次迭代，我们会将输入除以10，因此时间复杂度为$$O(log_{10}(n))$$。</li>
-<li>空间复杂度：$$O(1)$$。</li>
+<li>时间复杂度：<script type="math/tex">O(log_{10}(n))</script>，对于每次迭代，我们会将输入除以10，因此时间复杂度为<script type="math/tex">O(log_{10}(n))</script>。</li>
+<li>空间复杂度：<script type="math/tex">O(1)</script>。</li>
 </ul>
 
                 <hr>
@@ -203,8 +202,7 @@
                     
                     
                     <li class="next">
-                        <a href="/2018/11/25/hello-world/" data-toggle="tooltip" data-placement="top"
-                           title="Hello World">Next Post &rarr;</a>
+                        <a href="/2018/09/01/Cocos2d-X/20180901_001/" data-toggle="tooltip" data-placement="top" title="关于Google Play商店中obb文件意外情况下无法下载的处理">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -261,8 +259,7 @@
                     </h5>
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#LeetCode"
-                           title="LeetCode">LeetCode</a>
+                        <a class="tag" href="/tags/#LeetCode" title="LeetCode">LeetCode</a>
                         
                     </div>
                 </section>
@@ -336,7 +333,7 @@
 
                 
                     <li>
-                        <a target="_blank"  href="https://github.com/JammeLee">
+                        <a target="_blank" href="https://github.com/JammeLee">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -425,6 +422,22 @@
 
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head.jpg">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>

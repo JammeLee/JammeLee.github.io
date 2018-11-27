@@ -2,7 +2,7 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,8 +43,8 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
-" data-ishome = "true" >
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="false
+" data-ishome="true">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -80,7 +80,7 @@
                         
 							
                         <li>
-                            <a href="/About/">About</a>
+                            <a href="/Tags/">Tags</a>
                         </li>
 							
 						
@@ -88,7 +88,7 @@
                         
 							
                         <li>
-                            <a href="/Tags/">Tags</a>
+                            <a href="/About/">About</a>
                         </li>
 							
 						
@@ -261,7 +261,7 @@
                 <div class="site-heading text-center">
                     <div class="about-me">
                         <!--移动端头部显示-->
-                        <img src="/head.jpg"/>
+                        <img src="/head.jpg">
                         <h5><a href="/about/">JammeLee</a></h5>
                         <p>一只孤独的程序猿</p>
                     </div>
@@ -279,11 +279,10 @@
 
 
 
-<div class="post-preview  "
-     style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2018/03/31/hello/">
+<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
+    <a href="/2018/03/31/hello-world/">
         <h2 class="post-title">
-            hello
+            Hello World
         </h2>
         <p class="post-meta">
             <i class="fa fa-calendar" aria-hidden="true"></i> 2018-03-31
@@ -295,9 +294,7 @@
         
         <div class="post-content-preview">
             <p>
-                
-
-
+                Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer i..
             </p>
         </div>
     </a>
@@ -336,7 +333,7 @@
                 <div class="short-about">
                     <!--侧边栏头像-->
                     
-                    <img src="/head.jpg"/>
+                    <img src="/head.jpg">
                     
                     <h5><a href="/about/">JammeLee</a></h5>
                     
@@ -402,20 +399,19 @@
                 <div class="tags">
                     
                     
-                    
-                    
-                    <a href="/tags/#Cocos2d" title="Cocos2d"
-                       rel="5">Cocos2d</a>
+                    <a href="/tags/#test" title="test" rel="2">test</a>
                     
                     
                     
-                    <a href="/tags/#LeetCode" title="LeetCode"
-                       rel="2">LeetCode</a>
+                    <a href="/tags/#Cocos2d" title="Cocos2d" rel="5">Cocos2d</a>
                     
                     
                     
-                    <a href="/tags/#Unity3D" title="Unity3D"
-                       rel="2">Unity3D</a>
+                    <a href="/tags/#LeetCode" title="LeetCode" rel="2">LeetCode</a>
+                    
+                    
+                    
+                    <a href="/tags/#Unity3D" title="Unity3D" rel="2">Unity3D</a>
                     
                     
                 </div>
@@ -481,7 +477,7 @@
 
                 
                     <li>
-                        <a target="_blank"  href="https://github.com/JammeLee">
+                        <a target="_blank" href="https://github.com/JammeLee">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -570,6 +566,22 @@
 
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head.jpg">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>
