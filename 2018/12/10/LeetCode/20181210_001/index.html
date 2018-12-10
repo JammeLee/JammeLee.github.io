@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        hello｜JammeLee&#39;s blog
+        回文链表｜JammeLee&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://jammelee.github.io/2018/03/31/hello/">
+    <link rel="canonical" href="http://jammelee.github.io/2018/12/10/LeetCode/20181210_001/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -155,19 +155,17 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>hello</h1>
-                    
-                    <h2 class="subheading">My first test blog.</h2>
+                    <h1>回文链表</h1>
                     
                     <span class="meta">
                          作者 JammeLee
                         <span>
-                          日期 2018-03-31
+                          日期 2018-12-10
                          </span>
                     </span>
                     <div class="tags text-center">
                         
-                        <a class="tag" href="/Tags/#test" title="test">test</a>
+                        <a class="tag" href="/Tags/#LeetCode" title="LeetCode">LeetCode</a>
                         
                     </div>
                 </div>
@@ -176,7 +174,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            hello
+            回文链表
         </span>
     </div>
 </header>
@@ -187,32 +185,27 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <!-- ---
-    layout: post
-    title: "Hola 2016"
-    subtitle: "hi, I'm haojen ma"
-    date: 2016-05-26 06:00
-    author: "Haojen Ma"
-    header-img: "img/post-default.jpg"
-    cdn: 'header-on'
-    tags:
-        - Movies
-        - Life
-    --- -->
-<p><img src="/2018/03/31/hello/wallpaper-2572384.jpg" alt="Hello"></p>
+                <hr>
+<p>请判断一个链表是否为回文链表。</p>
+<hr>
+<p>示例1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：1-&gt;2</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure></p>
+<p>示例2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：1-&gt;2-&gt;2-&gt;1</span><br><span class="line">输出：true</span><br><span class="line">解释：从左向右读，为-121。从右向左读，为121-。因此它不是一个回文数。</span><br></pre></td></tr></table></figure></p>
+<p>进阶：<br>你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？<br>解答：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">NULL</span> || head-&gt;next == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">int</span> lenth = <span class="number">0</span>;</span><br><span class="line">        ListNode *ln1, *ln2, *ln3;</span><br><span class="line">        ln1 = ln2 = head;</span><br><span class="line">        ln3 = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="comment">//求出链表长度</span></span><br><span class="line">        <span class="keyword">while</span>(ln1)</span><br><span class="line">        &#123;</span><br><span class="line">            lenth ++;</span><br><span class="line">            ln1 = ln1-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"lenth: "</span> &lt;&lt; lenth &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//将链表的前一半元素逆序</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lenth / <span class="number">2</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            ln1 = ln2-&gt;next;</span><br><span class="line">            ln2-&gt;next = ln3;</span><br><span class="line">            ln3 = ln2;</span><br><span class="line">            ln2 = ln1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果长度为奇数</span></span><br><span class="line">        <span class="comment">//让ln2指向自己的next</span></span><br><span class="line">        <span class="comment">//也就是指向从中间元素的后一个元素开始的链表</span></span><br><span class="line">        <span class="comment">//ln3是从中间元素的前一个元素开始的逆序链表</span></span><br><span class="line">        <span class="keyword">if</span>(lenth % <span class="number">2</span> == <span class="number">1</span>) ln2 = ln2-&gt;next;</span><br><span class="line">        <span class="comment">//开始比较ln2和ln3的每个元素知否相等，不相等则返回false</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; lenth / <span class="number">2</span>; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(ln2-&gt;val != ln3-&gt;val)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                ln2 = ln2-&gt;next;ln3 = ln3-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><b>复杂度分析</b><br></p>
+<ul>
+<li>时间复杂度：<script type="math/tex">O(n)</script>。</li>
+<li>空间复杂度：<script type="math/tex">O(1)</script>。<br><img src="/2018/12/10/LeetCode/20181210_001/20181210222443.png" alt="images"></li>
+</ul>
 
                 <hr>
                 
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2018/03/31/Cocos2d-X/后缀名/" data-toggle="tooltip" data-placement="top" title="Cocos2d-X2.2.6版本添加图片后缀名">&larr; Previous Post</a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/2018/03/31/hello-world/" data-toggle="tooltip" data-placement="top" title="Hello World">Next Post &rarr;</a>
+                        <a href="/2018/11/25/LeetCode/20181125_001/" data-toggle="tooltip" data-placement="top" title="回文数">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -269,7 +262,7 @@
                     </h5>
                     <div class="tags">
                         
-                        <a class="tag" href="/Tags/#test" title="test">test</a>
+                        <a class="tag" href="/Tags/#LeetCode" title="LeetCode">LeetCode</a>
                         
                     </div>
                 </section>
