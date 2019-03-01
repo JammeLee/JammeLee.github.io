@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        Cocos2d-X2.2.6版本添加图片后缀名｜JammeLee&#39;s blog
+        编译添加云风pbc插件的Tolua.dll｜JammeLee&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://jammelee.github.io/2018/03/31/Cocos2d-X/后缀名/">
+    <link rel="canonical" href="http://jammelee.github.io/2019/03/01/Unity3d/20190301_001/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -155,19 +155,17 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>Cocos2d-X2.2.6版本添加图片后缀名</h1>
-                    
-                    <h2 class="subheading">cocos2d</h2>
+                    <h1>编译添加云风pbc插件的Tolua.dll</h1>
                     
                     <span class="meta">
                          作者 JammeLee
                         <span>
-                          日期 2018-03-31
+                          日期 2019-03-01
                          </span>
                     </span>
                     <div class="tags text-center">
                         
-                        <a class="tag" href="/Tags/#Cocos2d" title="Cocos2d">Cocos2d</a>
+                        <a class="tag" href="/Tags/#Unity3D" title="Unity3D">Unity3D</a>
                         
                     </div>
                 </div>
@@ -176,7 +174,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            Cocos2d-X2.2.6版本添加图片后缀名
+            编译添加云风pbc插件的Tolua.dll
         </span>
     </div>
 </header>
@@ -187,30 +185,50 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <!-- # Cocos2d-X2.2.6版本添加图片后缀名 -->
-<!-- <table>
-    <tr>
-        <td> -->
-<p>&#8194;&#8194;&#8194;&#8194;年前遇到一件特别扯淡的事情，因为项目初期的热更新模式没有设计好。采用的是解压方式，下载的热更新压缩包解压之后就留在手机内存卡里了，导致资源直接漏在外边，结果有些安卓手机的相册会把游戏资源图片检索出来，因为图片是加密过的，所以检索到相册中并不能正常显示，结果被一个傻X手机厂商发现了（因为在该手机厂商的应用商店上架了，具体不点名了）。因为游戏中每个功能模块需要的图片资源都是单独放在一个目录下的，而且游戏上线了两年了，模块比较多，导致文件夹也很多，结果相册是按照文件夹检索的，相册里多出了好几个文件夹，渠道技术客服说会把他们的相册搞崩溃（手机是有多垃圾，多了两个文件夹，相册就会崩溃），其实不然，我专门找了他家的手机试了一下，一点问题都没有。我前去询问，结果他们就改口了，说了一堆反正就是必须改，没商量。后来我问把文件夹隐藏掉可以么，并且还找了一个TX的游戏给他们示例，结果他说那款游戏也有问题，还没来得及下架呢，呵呵了。我就知道是故意找茬了，毕竟年底了么，为了KPI。那我改就是了。于是我把所有图片的PNG后缀名全部改了。啰嗦了这么多，切入正题。<br>&#8194;&#8194;&#8194;&#8194;本以为Cocos是把所有文件转换成二进制数据加载进内存的，所以代码中应该不去管后缀名了，然后我把图片更换png扩展名为metek，加密脚本中添加了新扩展名。CCFileUtils中也添加了新扩展名，用于解密流程中。一切准备就绪，发现安卓设备还是不能识别新扩展名。跟了一下代码，发现CCTextureeCache中computeImageFormatType和addImage方法中，通过eImageFormat变量的赋值为图片类型扩展名的枚举值。然后我在png的if条件中加入了新的扩展名后，发现还是无法解析出图片。于是，我打印了图片文件的头，发现标识头不是PNG格式，这时我开始怀疑是解密流程有问题。但是，因为单独加密的文件替换到iOS包中，是可以解析出图片的。这点可以证明加密流程是没有问题的。应该是android和ios走的读取文件并解密的接口不对。最终发现android走的是CCFileUitlsAndroid文件中的接口，后来在该文件中发现了这个数组。<br> <!--        </td>
-    </tr>
-</table> --></p>
-<hr>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">char</span> decodeSuffix[][<span class="number">50</span>] = &#123; <span class="string">".lua"</span>, <span class="string">".png"</span> &#125;;</span><br></pre></td></tr></table></figure>
-<hr>
-<p>&#8194;&#8194;&#8194;&#8194;于是，在数组中添加新扩展名后，解密流程就可以识别并解析metek文件了。</p>
+                <p>&#8194;&#8194;&#8194;&#8194;好久没有更新过blog了，最近这两天在搞pbc的相关东西。在此总结记录一下。</p>
+<p>&#8194;&#8194;&#8194;&#8194;当初云风写pbc的初衷就是想可以方便的 binding 到动态语言中去用的。这里可以看一下<a href="https://blog.codingnow.com/2011/12/pbc_lua_binding.html" target="_blank" rel="noopener">云风blog</a>中对pbc的介绍。</p>
+<p>&#8194;&#8194;&#8194;&#8194;在开始之前，需要做一些准备工作。</p>
+<ul>
+<li><p>下载tolua_runtime工程：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/topameng/tolua_runtime</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>下载pbc工程：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/cloudwu/pbc</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>tolua_runtime工程目录结构如下：<br><img src="/2019/03/01/Unity3d/20190301_001/20190301223738.png" alt="images"><br>pbc工程目录结构如下：<br><img src="/2019/03/01/Unity3d/20190301_001/20190301223901.png" alt="images"></p>
+<p>&#8194;&#8194;&#8194;&#8194;准备工作完成之后，把pbc整个工程拷贝到tolua_runtime工程中。如果在Windows平台编译，需要先下载<a href="http://msys2.github.io/ " target="_blank" rel="noopener">Msys2</a>（<a href="http://repo.msys2.org/distrib/x86_64/msys2-x86_64-20150916.exe" target="_blank" rel="noopener"> 64位</a>）</p>
+<ul>
+<li>NDK 版本:android-ndk-r10e 默认安装到 D:/android-ndk-r10e<br><a href="https://dl.google.com/android/repository/android-ndk-r10e-windows-x86_64.zip" target="_blank" rel="noopener">https://dl.google.com/android/repository/android-ndk-r10e-windows-x86_64.zip</a></li>
+<li>Msys2配置说明<br><a href="https://github.com/topameng/tolua_runtime/wiki" target="_blank" rel="noopener">https://github.com/topameng/tolua_runtime/wiki</a></li>
+<li>配置好的Msys2下载<br><a href="https://pan.baidu.com/s/1c2JzvDQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1c2JzvDQ</a><br>备用地址：链接: <a href="https://pan.baidu.com/s/1To5Vft2h8TpM-gdD-KuPbw" target="_blank" rel="noopener">https://pan.baidu.com/s/1To5Vft2h8TpM-gdD-KuPbw</a> 提取码: qfzj</li>
+</ul>
+<p>&#8194;&#8194;&#8194;&#8194;直接下载配置好的Msys解压在C盘，根据自己要编译的32或64位版本，配置环境变量，我这里使用64位，所以配置C:\msys64\mingw64\bin。编译32位请运行mingw32_shell.bat，64位运行mingw64_shell.bat。<br><img src="/2019/03/01/Unity3d/20190301_001/20190301231625.png" alt="images"><br>&#8194;&#8194;&#8194;&#8194;修改build_win64.sh脚本。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 64 Bit Version</span></span><br><span class="line">mkdir -p window/x86_64</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> luajit-2.1</span><br><span class="line">mingw32-make clean</span><br><span class="line"></span><br><span class="line">mingw32-make BUILDMODE=static CC=<span class="string">"gcc -m64 -O2"</span> XCFLAGS=-DLUAJIT_ENABLE_GC64</span><br><span class="line">cp src/libluajit.a ../window/x86_64/libluajit.a</span><br><span class="line">mingw32-make clean</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"></span><br><span class="line"><span class="comment">#build protobuf yunfeng ban pbc from https://github.com/cloudwu/pbc</span></span><br><span class="line"><span class="built_in">cd</span> pbc</span><br><span class="line">mingw32-make BUILDMODE=static CC=<span class="string">"gcc -m64 -O2"</span> XCFLAGS=-DLUAJIT_ENABLE_GC64</span><br><span class="line">cp build/libpbc.a ../window/x86_64/libpbc.a</span><br><span class="line">mingw32-make clean</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"></span><br><span class="line">gcc -m64 -O2 -std=gnu99 -shared \</span><br><span class="line"> tolua.c \</span><br><span class="line"> int64.c \</span><br><span class="line"> uint64.c \</span><br><span class="line"> pb.c \</span><br><span class="line"> lpeg.c \</span><br><span class="line"> struct.c \</span><br><span class="line"> cjson/strbuf.c \</span><br><span class="line"> cjson/lua_cjson.c \</span><br><span class="line"> cjson/fpconv.c \</span><br><span class="line"> luasocket/auxiliar.c \</span><br><span class="line"> luasocket/buffer.c \</span><br><span class="line"> luasocket/except.c \</span><br><span class="line"> luasocket/inet.c \</span><br><span class="line"> luasocket/io.c \</span><br><span class="line"> luasocket/luasocket.c \</span><br><span class="line"> luasocket/mime.c \</span><br><span class="line"> luasocket/options.c \</span><br><span class="line"> luasocket/select.c \</span><br><span class="line"> luasocket/tcp.c \</span><br><span class="line"> luasocket/timeout.c \</span><br><span class="line"> luasocket/udp.c \</span><br><span class="line"> luasocket/wsocket.c \</span><br><span class="line"> pbc/binding/lua/pbc-lua.c \</span><br><span class="line"> -o Plugins/x86_64/tolua.dll \</span><br><span class="line"> -I./ \</span><br><span class="line"> -Iluajit-2.1/src \</span><br><span class="line"> -Iluasocket \</span><br><span class="line"> -Ipbc \</span><br><span class="line"> -Ipbc/src \</span><br><span class="line"> -lws2_32 \</span><br><span class="line"> -Wl,--whole-archive window/x86_64/libluajit.a window/x86_64/libpbc.a -Wl,--no-whole-archive -static-libgcc -static-libstdc++</span><br></pre></td></tr></table></figure>
+<p>&#8194;&#8194;&#8194;&#8194;然后执行脚本进行编译，32位同理修改。编译成功后，将Plugins/x86_64文件夹下的tolua.dll拷贝到游戏工程中Plugins文件夹对应的位置。<br><img src="/2019/03/01/Unity3d/20190301_001/20190301233519.png" alt="images"><br>&#8194;&#8194;&#8194;&#8194;如果到这里就以为结束了，那就大错特错了。此时如果直接运行游戏工程，在require “protobuf.lua”时，会出现找不到”protobuf.c”的错误。还有以下两步：</p>
+<ul>
+<li><p>在LuaDLL.cs添加接口</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">luaopen_protobuf_c</span>(<span class="params">IntPtr L</span>)</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在LuaClient.cs中注册pbc</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OpenLibs</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	luaState.OpenLibs(LuaDLL.luaopen_pb);</span><br><span class="line">	luaState.OpenLibs(LuaDLL.luaopen_struct);</span><br><span class="line">	luaState.OpenLibs(LuaDLL.luaopen_lpeg);</span><br><span class="line">	luaState.OpenLibs(LuaDLL.luaopen_protobuf_c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&#8194;&#8194;&#8194;&#8194;到这里，将pbc插件编译进tolua.dll基本就完成了。</p>
+<p>参考文献：</p>
+<ul>
+<li><a href="https://blog.codingnow.com/2011/12/pbc_lua_binding.html" target="_blank" rel="noopener">https://blog.codingnow.com/2011/12/pbc_lua_binding.html</a></li>
+<li><a href="https://my.oschina.net/chaloongjir/blog/755954" target="_blank" rel="noopener">https://my.oschina.net/chaloongjir/blog/755954</a></li>
+</ul>
 
                 <hr>
                 
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2018/04/03/Unity3d/20180403_001/" data-toggle="tooltip" data-placement="top" title="C#中的" ~"符号"="">&larr; Previous Post</a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/2018/03/31/hello/" data-toggle="tooltip" data-placement="top" title="hello">Next Post &rarr;</a>
+                        <a href="/2018/12/10/LeetCode/20181210_001/" data-toggle="tooltip" data-placement="top" title="回文链表">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -267,7 +285,7 @@
                     </h5>
                     <div class="tags">
                         
-                        <a class="tag" href="/Tags/#Cocos2d" title="Cocos2d">Cocos2d</a>
+                        <a class="tag" href="/Tags/#Unity3D" title="Unity3D">Unity3D</a>
                         
                     </div>
                 </section>
