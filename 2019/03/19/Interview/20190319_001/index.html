@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        回文数｜JammeLee&#39;s blog
+        旋转数组的最小数字｜JammeLee&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://jammelee.github.io/2018/11/25/LeetCode/20181125_001/">
+    <link rel="canonical" href="http://jammelee.github.io/2019/03/19/Interview/20190319_001/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -155,17 +155,17 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>回文数</h1>
+                    <h1>旋转数组的最小数字</h1>
                     
                     <span class="meta">
                          作者 JammeLee
                         <span>
-                          日期 2018-11-25
+                          日期 2019-03-19
                          </span>
                     </span>
                     <div class="tags text-center">
                         
-                        <a class="tag" href="/Tags/#LeetCode" title="LeetCode">LeetCode</a>
+                        <a class="tag" href="/Tags/#Interview" title="Interview">Interview</a>
                         
                     </div>
                 </div>
@@ -174,7 +174,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            回文数
+            旋转数组的最小数字
         </span>
     </div>
 </header>
@@ -185,31 +185,31 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <hr>
-<p>判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p>
+                <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><br></p>
 <hr>
-<p>示例1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：121</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure></p>
-<p>示例2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：-121</span><br><span class="line">输出：false</span><br><span class="line">解释：从左向右读，为-121。从右向左读，为121-。因此它不是一个回文数。</span><br></pre></td></tr></table></figure></p>
-<p>示例3:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：10</span><br><span class="line">输出：false</span><br><span class="line">解释：从右向左读，为01。因此它不是一个回文数。</span><br></pre></td></tr></table></figure></p>
-<p>解答：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//x为负数时，肯定不是回文数。x是10的整数倍时，也不是回文数。</span></span><br><span class="line">        <span class="keyword">if</span>(x &lt; <span class="number">0</span> || (x % <span class="number">10</span> == <span class="number">0</span> &amp;&amp; x != <span class="number">0</span>))</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//通过x除以10取余，加上reverterNum*10来反转数字，并且让x等于自身除以10的商，这样相当于去掉了x的最后一位。</span></span><br><span class="line">        <span class="comment">//获取到的新数字一定不能大于x，所以循环，当x&lt;reverterNum时跳出循环。</span></span><br><span class="line">        <span class="keyword">int</span> reverterNum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(x &gt; reverterNum)</span><br><span class="line">        &#123;</span><br><span class="line">            reverterNum = reverterNum * <span class="number">10</span> + x % <span class="number">10</span>;</span><br><span class="line">            x /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//这里有两种情况：</span></span><br><span class="line">        <span class="comment">//第一种是传进函数的x是偶数位，那么只有当x==reverterNum时，传入的x才是回文数。</span></span><br><span class="line">        <span class="comment">//另一种时传进函数的x是奇数位，那么要想跳出循环，reverterNum一定是比x要多一位的，所以reverterNum需要除以10取商。</span></span><br><span class="line">        <span class="keyword">return</span> x == reverterNum || x == reverterNum / <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><b>复杂度分析</b><br></p>
+<p>&#8194;&#8194;&#8194;&#8194;把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。</p>
+<hr>
+<p><br></p>
+<p>&#8194;&#8194;&#8194;&#8194;要做这道题，首先要讲一下非减排序数组是什么意思。起初以为只要不是减排序就可以，比如说{1,3,2,5,4}。但实际上并不是这样，找了很多资料都没有详细描述。（这里就要吐槽一下国内的某sdn和辣鸡某度，随便搜一下，全是千篇一律的文章，连标点符号都一字不差。有时候都怀疑，这些人就那么喜欢吃人家嘴里吐出来的东西么。）最后终于凭着自己的猜测和模糊的资料，得知原来非减序数组就是每个元素都大于等于后一个元素。例如，{1,2,3,4,5}，{0,1,1,1,1,1}等。</p>
+<p>&#8194;&#8194;&#8194;&#8194;主要思路：二分查找</p>
 <ul>
-<li>时间复杂度：<script type="math/tex">O(log_{10}(n))</script>，对于每次迭代，我们会将输入除以10，因此时间复杂度为<script type="math/tex">O(log_{10}(n))</script>。</li>
-<li>空间复杂度：<script type="math/tex">O(1)</script>。</li>
+<li>可以把旋转数组看作是前后两个非减排序的子数组</li>
+<li>用两个指针分别指向数组的第一个元素和最后一个元素</li>
+<li>求mid=(low + high) / 2</li>
+<li>如果mid位于后边数组的话，mid应该小于high，那么最小值应该在mid及自身之前，所以把high提到mid</li>
+<li>如果mid位于前边数组的话，mid应该大于low，那么最小值应该在mid及自身之后，所以把low后移到mid</li>
+<li>依次循环找到最小值</li>
+<li>但是上边讲非减排序数组也可以是{0,1,1,1,1,1}，那么它的旋转数组{1,1,1,1,0,1}的low、mid和high是相等的，就出现了问题，此时不知道最小值是再前边数组还是后边数组，所以就只能使用顺序查找来找出最小值了</li>
 </ul>
-
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minNumberInRotateArray</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; rotateArray)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//可以把旋转数组看作是前后两个非减排序的子数组</span></span><br><span class="line">        <span class="keyword">if</span>(rotateArray.size() == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"rotateArray size is 0"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> mid = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high = rotateArray.size() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(rotateArray[low] &lt; rotateArray[high])&#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"rotateArray is not rotated"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(rotateArray[low] &gt;= rotateArray[high])&#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(high - low == <span class="number">1</span>)&#123;</span><br><span class="line">                mid = high;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            mid = (low + high) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(rotateArray[mid] == rotateArray[high] </span><br><span class="line">               &amp;&amp; rotateArray[mid] == rotateArray[low])&#123;</span><br><span class="line">                <span class="comment">//这里无法确定到底是应该取左边子数组 还是取右边子数组 </span></span><br><span class="line">                <span class="comment">//那么就交给顺序查找来做吧</span></span><br><span class="line">                <span class="keyword">return</span> minOrder(rotateArray, low, high);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(rotateArray[mid] &lt;= rotateArray[high])&#123;</span><br><span class="line">                <span class="comment">//如果mid位于后边数组的话 mid应该小于high</span></span><br><span class="line">                <span class="comment">//最小值应该在mid及之前 因为mid后边的值一定不小于自身的</span></span><br><span class="line">                <span class="comment">//那么把high提前到mid位置</span></span><br><span class="line">                high = mid;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(rotateArray[mid] &gt;= rotateArray[low])&#123;</span><br><span class="line">                <span class="comment">//如果mid位于前边数组的话 mid应该大于low</span></span><br><span class="line">                <span class="comment">//最小值应该在mid及之后</span></span><br><span class="line">                <span class="comment">//所以把low后移到mid位置</span></span><br><span class="line">                low = mid;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> rotateArray[mid];</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minOrder</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;num, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> min = num[low];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = low + <span class="number">1</span>; i &lt; high; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(min &gt; num[i])&#123;</span><br><span class="line">                min = num[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> min;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
                 <hr>
                 
 
                 <ul class="pager">
                     
-                    <li class="previous">
-                        <a href="/2018/12/10/LeetCode/20181210_001/" data-toggle="tooltip" data-placement="top" title="回文链表">&larr; Previous Post</a>
-                    </li>
-                    
                     
                     <li class="next">
-                        <a href="/2018/09/01/Cocos2d-X/20180901_001/" data-toggle="tooltip" data-placement="top" title="关于Google Play商店中obb文件意外情况下无法下载的处理">Next Post &rarr;</a>
+                        <a href="/2019/03/17/Interview/20190317_001/" data-toggle="tooltip" data-placement="top" title="用两个栈实现队列">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -244,7 +244,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li></ol>
                 </div>
             </div>
         </div>
@@ -266,7 +266,7 @@
                     </h5>
                     <div class="tags">
                         
-                        <a class="tag" href="/Tags/#LeetCode" title="LeetCode">LeetCode</a>
+                        <a class="tag" href="/Tags/#Interview" title="Interview">Interview</a>
                         
                     </div>
                 </section>
