@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        回文数｜JammeLee&#39;s blog
+        跳台阶｜JammeLee&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://jammelee.github.io/2018/11/25/LeetCode/20181125_001/">
+    <link rel="canonical" href="http://jammelee.github.io/2019/04/16/Interview/20190416_001/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -155,17 +155,17 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
                 <div class="post-heading">
-                    <h1>回文数</h1>
+                    <h1>跳台阶</h1>
                     
                     <span class="meta">
                          作者 JammeLee
                         <span>
-                          日期 2018-11-25
+                          日期 2019-04-16
                          </span>
                     </span>
                     <div class="tags text-center">
                         
-                        <a class="tag" href="/Tags/#LeetCode" title="LeetCode">LeetCode</a>
+                        <a class="tag" href="/Tags/#Interview" title="Interview">Interview</a>
                         
                     </div>
                 </div>
@@ -174,7 +174,7 @@
     </div>
     <div class="post-title-haojen">
         <span>
-            回文数
+            跳台阶
         </span>
     </div>
 </header>
@@ -185,18 +185,17 @@
         <div class="row">
             <!-- Post Container -->
             <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <hr>
-<p>判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p>
+                <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><br></p>
 <hr>
-<p>示例1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：121</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure></p>
-<p>示例2:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：-121</span><br><span class="line">输出：false</span><br><span class="line">解释：从左向右读，为-121。从右向左读，为121-。因此它不是一个回文数。</span><br></pre></td></tr></table></figure></p>
-<p>示例3:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：10</span><br><span class="line">输出：false</span><br><span class="line">解释：从右向左读，为01。因此它不是一个回文数。</span><br></pre></td></tr></table></figure></p>
-<p>解答：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isPalindrome</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//x为负数时，肯定不是回文数。x是10的整数倍时，也不是回文数。</span></span><br><span class="line">        <span class="keyword">if</span>(x &lt; <span class="number">0</span> || (x % <span class="number">10</span> == <span class="number">0</span> &amp;&amp; x != <span class="number">0</span>))</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//通过x除以10取余，加上reverterNum*10来反转数字，并且让x等于自身除以10的商，这样相当于去掉了x的最后一位。</span></span><br><span class="line">        <span class="comment">//获取到的新数字一定不能大于x，所以循环，当x&lt;reverterNum时跳出循环。</span></span><br><span class="line">        <span class="keyword">int</span> reverterNum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(x &gt; reverterNum)</span><br><span class="line">        &#123;</span><br><span class="line">            reverterNum = reverterNum * <span class="number">10</span> + x % <span class="number">10</span>;</span><br><span class="line">            x /= <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//这里有两种情况：</span></span><br><span class="line">        <span class="comment">//第一种是传进函数的x是偶数位，那么只有当x==reverterNum时，传入的x才是回文数。</span></span><br><span class="line">        <span class="comment">//另一种时传进函数的x是奇数位，那么要想跳出循环，reverterNum一定是比x要多一位的，所以reverterNum需要除以10取商。</span></span><br><span class="line">        <span class="keyword">return</span> x == reverterNum || x == reverterNum / <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><b>复杂度分析</b><br></p>
+<p>&#8194;&#8194;&#8194;&#8194;一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。</p>
+<hr>
+<p><br></p>
+<h3 id="观察分析"><a href="#观察分析" class="headerlink" title="观察分析"></a>观察分析</h3><p>&#8194;&#8194;&#8194;&#8194;小青蛙一次可以跳1级，也可以跳2级。当有n级台阶：</p>
 <ul>
-<li>时间复杂度：<script type="math/tex">O(log_{10}(n))</script>，对于每次迭代，我们会将输入除以10，因此时间复杂度为<script type="math/tex">O(log_{10}(n))</script>。</li>
-<li>空间复杂度：<script type="math/tex">O(1)</script>。</li>
+<li>第一次跳1级时，跳法的数目就等于剩下的n-1级台阶的跳法数目</li>
+<li>第一次跳2级时，跳法数目就等于剩下n-2级台阶的跳法数目。</li>
 </ul>
+<p>&#8194;&#8194;&#8194;&#8194;所以n级台阶的总跳法数目等于第一次跳1级和第一次跳2级的数目的和，即f(n)=f(n-1)+f(n-2)。我们会发现这其实就是斐波那契数列。但是，当n=0时，f(n)=0；当n=1时，f(n)=1；当n=2时，f(n)=2，所以当n&gt;2时，f(n)=f(n-1)+f(n-2)。代码如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jumpFloor</span><span class="params">(<span class="keyword">int</span> number)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(number &lt;= <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> number;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> first = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> second = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= number; i++)&#123;</span><br><span class="line">            res = first + second;</span><br><span class="line">            first = second;</span><br><span class="line">            second = res;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 
                 <hr>
                 
@@ -204,12 +203,12 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2018/12/10/LeetCode/20181210_001/" data-toggle="tooltip" data-placement="top" title="回文链表">&larr; Previous Post</a>
+                        <a href="/2019/04/16/Interview/20190416_002/" data-toggle="tooltip" data-placement="top" title="变态跳台阶">&larr; Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2018/09/01/Cocos2d-X/20180901_001/" data-toggle="tooltip" data-placement="top" title="关于Google Play商店中obb文件意外情况下无法下载的处理">Next Post &rarr;</a>
+                        <a href="/2019/04/14/Interview/20190414_001/" data-toggle="tooltip" data-placement="top" title="斐波那契数列">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -244,7 +243,7 @@
 
             <div class="hidden-xs col-sm-3 toc-col">
                 <div class="toc-wrap">
-                    
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#观察分析"><span class="toc-text">观察分析</span></a></li></ol>
                 </div>
             </div>
         </div>
@@ -266,7 +265,7 @@
                     </h5>
                     <div class="tags">
                         
-                        <a class="tag" href="/Tags/#LeetCode" title="LeetCode">LeetCode</a>
+                        <a class="tag" href="/Tags/#Interview" title="Interview">Interview</a>
                         
                     </div>
                 </section>

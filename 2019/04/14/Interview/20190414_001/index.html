@@ -226,6 +226,10 @@ f(n) & =f(n-1)+f(n-2)\\
 
                 <ul class="pager">
                     
+                    <li class="previous">
+                        <a href="/2019/04/16/Interview/20190416_001/" data-toggle="tooltip" data-placement="top" title="跳台阶">&larr; Previous Post</a>
+                    </li>
+                    
                     
                     <li class="next">
                         <a href="/2019/03/25/Interview/20190325_001/" data-toggle="tooltip" data-placement="top" title="二进制中1的个数">Next Post &rarr;</a>
@@ -448,6 +452,22 @@ f(n) & =f(n-1)+f(n-2)\\
 
 <!--wechat title img-->
 <img class="wechat-title-img" src="/head.jpg">
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 
 </html>
