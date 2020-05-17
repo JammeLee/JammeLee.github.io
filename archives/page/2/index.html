@@ -1,765 +1,388 @@
+
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="JammeLee的博客">
-    <meta name="keyword" content="">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
-    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
-    <link rel="alternate" type="application/atom+xml" title="Jamme" href="/atom.xml">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
-    <title>
-        
-        JammeLee&#39;s blog
-        
-    </title>
-
-    <link rel="canonical" href="http://jammelee.github.io/archives/page/2/">
-
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/blog-style.css">
-
-    <!-- Pygments Github CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
-</head>
-
-<style>
-
-    header.intro-header {
-        background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')
-    }
-</style>
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="" class="animated fadeIn">
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="false
-" data-ishome="false">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand animated pulse" href="/">
-                <span class="brand-logo">
-                    Jamme
-                </span>
-                's Blog
-            </a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <!-- Known Issue, found by Hux:
-            <nav>'s height woule be hold on by its content.
-            so, when navbar scale out, the <nav> will cover tags.
-            also mask any touch event of tags, unfortunately.
-        -->
-        <!-- /.navbar-collapse -->
-        <div id="huxblog_navbar">
-            <div class="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/">Home</a>
-                    </li>
-					
-                    
-                        
-							
-                            <!-- 这里条件根据创建的title写法来定义about或者About -->
-								
-							
-						
-                    
-                        
-							
-                        <li>
-                            <a href="/Tags/">Tags</a>
-                        </li>
-							
-						
-                    
-					
-					
-						<li>
-							<a href="/about">About</a>
-						</li>
-					
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- /.container -->
-</nav>
-<script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-//    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
-
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
-        }
-    }
-</script>
-
-<!-- Main Content -->
-<style>
-    .intro-header .site-heading {
-        margin: 50px;
-    }
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>归档</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Jamme,"> 
     
-    header.intro-header {
-        background-image: url('/2018/03/31/hello/wallpaper-2572384.png')
-    }
+    <meta name="author" content="Jamme"> 
+    <link rel="alternative" href="atom.xml" title="Jamme" type="application/atom+xml"> 
+    <link rel="icon" href="/img/my_favicon.png"> 
     
-</style>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
-<!-- Page Header -->
-<header class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading text-center">
-                    <h1>archives</h1>
-                    <span class="subheading">可以根据归档日期检索所有文件</span>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Jamme</span>
+    <div id="loader"></div>
+    <div id="single" class="page">
+    <div id="top">
+        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div class="main">
+                <div class="content">
+                    <div class="timeline">
+                      <h2 class="timeline-title">归档: 39篇</h2><hr>
+                      
+                      
+                        
+                          <h3 class="timeline-subtitle">2020</h3>
+                        
+                        <div class="timeline-item">
+                          <time>2020-03-20</time>
+                          <a target="_self" href="/2020/03/20/Other/v2ray/">V2ray+ws+tls</a>
+                        </div>
+                      
+                        
+                          <h3 class="timeline-subtitle">2019</h3>
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/12.%E5%A6%82%E4%BD%95%E5%B0%86Git%E4%BB%93%E5%BA%93%E5%A4%87%E4%BB%BD%E5%88%B0%E6%9C%AC%E5%9C%B0/">如何将Git仓库备份到本地</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/11.%E6%8C%87%E5%AE%9A%E4%B8%8D%E9%9C%80%E8%A6%81Git%E7%AE%A1%E7%90%86%E7%9A%84%E6%96%87%E4%BB%B6/">指定不需要Git管理的文件</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/10.%E5%BC%80%E5%8F%91%E4%B8%AD%E4%B8%B4%E6%97%B6%E5%8A%A0%E5%A1%9E%E4%BA%86%E7%B4%A7%E6%80%A5%E4%BB%BB%E5%8A%A1%E5%BA%94%E5%BD%93%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86/">开发中临时加塞了紧急任务应当如何处理</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/9.%E6%AD%A3%E7%A1%AE%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95/">正确删除文件的方法</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/8.%E6%9F%A5%E7%9C%8B%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E4%B8%8D%E5%90%8C%E6%8F%90%E4%BA%A4%E7%9A%84%E5%B7%AE%E5%BC%82/">查看指定文件不同提交的差异</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/7.%E5%A6%82%E4%BD%95%E6%B6%88%E9%99%A4%E6%9C%80%E8%BF%91%E5%87%A0%E6%AC%A1%E7%9A%84%E6%8F%90%E4%BA%A4/">如何消除最近几次的提交</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/6.%E5%A6%82%E4%BD%95%E8%AE%A9%E6%9A%82%E5%AD%98%E5%8C%BA%E7%9A%84%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%88%90%E5%92%8CHEAD%E4%B8%80%E6%A0%B7%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E8%AE%A9%E5%B7%A5%E4%BD%9C%E5%8C%BA%E7%9A%84%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E5%88%B0%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA%E4%B8%80%E6%A0%B7/">如何让暂存区的文件恢复到和HEAD一样以及如何让工作区的文件恢复到和暂存区一样</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/5.%E6%AF%94%E8%BE%83%E5%B7%A5%E4%BD%9C%E5%8C%BA%E3%80%81%E6%9A%82%E5%AD%98%E5%8C%BA%E5%92%8CHEAD%E4%B9%8B%E9%97%B4%E6%89%80%E5%90%AB%E6%96%87%E4%BB%B6%E7%9A%84%E5%B7%AE%E5%BC%82/">比较工作区、暂存区和HEAD之间所含文件的差异</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/4.%E6%8A%8A%E9%97%B4%E9%9A%94%E7%9A%84%E5%87%A0%E4%B8%AAcommit%E6%95%B4%E7%90%86%E6%88%901%E4%B8%AA/">把间隔的几个commit整理成1个</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/3.%E6%8A%8A%E8%BF%9E%E7%BB%AD%E7%9A%84%E5%A4%9A%E4%B8%AAcommit%E6%95%B4%E7%90%86%E6%88%901%E4%B8%AA/">把连续的多个commit整理成1个</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/2.%E4%BF%AE%E6%94%B9commit%E7%9A%84message/">修改commit的message</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/1.%E5%88%A0%E9%99%A4%E4%B8%8D%E9%9C%80%E8%A6%81%E7%9A%84%E5%88%86%E6%94%AF/">删除不需要的分支</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/8.%E5%88%86%E7%A6%BB%E5%A4%B4%E6%8C%87%E9%92%88%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">分离头指针情况下的注意事项</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/7.commit%E3%80%81tree%E3%80%81blob%E4%B8%89%E4%B8%AA%E5%AF%B9%E8%B1%A1%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/">commit、tree、blob三个对象之间的关系</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/6.%E6%8E%A2%E7%A7%98.git%E7%9B%AE%E5%BD%95/">探秘.git目录</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/5.%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E6%BC%94%E5%8F%98%E5%8E%86%E5%8F%B2/">查看版本演变历史</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/4.%E7%BB%99%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D/">给文件重命名的简便方法</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/3.%E8%AE%A4%E8%AF%86Git%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA/">认识Git的工作区和暂存区</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/2.%E5%88%9B%E5%BB%BAGit%E4%BB%93%E5%BA%93/">创建Git仓库</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-10-21</time>
+                          <a target="_self" href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/1.Git%E9%85%8D%E7%BD%AE/">Git配置</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-04-16</time>
+                          <a target="_self" href="/2019/04/16/Interview/20190416_002/">变态跳台阶</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-04-16</time>
+                          <a target="_self" href="/2019/04/16/Interview/20190416_001/">跳台阶</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-04-14</time>
+                          <a target="_self" href="/2019/04/14/Interview/20190414_001/">斐波那契数列</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-03-25</time>
+                          <a target="_self" href="/2019/03/25/Interview/20190325_001/">二进制中1的个数</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-03-19</time>
+                          <a target="_self" href="/2019/03/19/Interview/20190319_001/">旋转数组的最小数字</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-03-17</time>
+                          <a target="_self" href="/2019/03/17/Interview/20190317_001/">用两个栈实现队列</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-03-16</time>
+                          <a target="_self" href="/2019/03/16/Interview/20190316_001/">重建二叉树</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2019-03-01</time>
+                          <a target="_self" href="/2019/03/01/Unity3d/20190301_001/">编译添加云风pbc插件的Tolua.dll</a>
+                        </div>
+                      
+                        
+                          <h3 class="timeline-subtitle">2018</h3>
+                        
+                        <div class="timeline-item">
+                          <time>2018-12-10</time>
+                          <a target="_self" href="/2018/12/10/LeetCode/20181210_001/">回文链表</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2018-11-25</time>
+                          <a target="_self" href="/2018/11/25/LeetCode/20181125_001/">回文数</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2018-09-01</time>
+                          <a target="_self" href="/2018/09/01/Cocos2d-X/20180901_001/">关于Google Play商店中obb文件意外情况下无法下载的处理</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2018-08-31</time>
+                          <a target="_self" href="/2018/08/31/Cocos2d-X/20180831_003/">关于Google Play商店中obb文件的加载</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2018-08-31</time>
+                          <a target="_self" href="/2018/08/31/Cocos2d-X/20180831_002/">Cocos2d-x2.2.6版本安卓工程移植AS</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2018-08-31</time>
+                          <a target="_self" href="/2018/08/31/Cocos2d-X/20180831_001/">提审Google Play遇到的三大问题</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2018-04-14</time>
+                          <a target="_self" href="/2018/04/14/LeetCode/20180718_001/">两数之和</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2018-04-14</time>
+                          <a target="_self" href="/2018/04/14/Unity3d/20180414_001/">向量的运算</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2018-04-03</time>
+                          <a target="_self" href="/2018/04/03/Unity3d/20180403_001/">C#中的&#34;~&#34;符号</a>
+                        </div>
+                      
+                        
+                        <div class="timeline-item">
+                          <time>2018-03-31</time>
+                          <a target="_self" href="/2018/03/31/Cocos2d-X/%E5%90%8E%E7%BC%80%E5%90%8D/">Cocos2d-X2.2.6版本添加图片后缀名</a>
+                        </div>
+                      
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</header>
+</div>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- archive list -->
-            
-				
-				
-				
-					
-					
-					<div class="archive archive-year" data-date="2019">
-						<h2 class="archive-title">
-						<span class="fa fa-archive">
-							<a href="/archives/2019">2019</a>
-						</span>
-						</h2>
-				
-				
-					
-					
-					<div class="archive archive-month" data-date="201904">
-						<h3 class="archive-title">
-							<a href="/archives/2019/04">04</a>
-						</h3>
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2019/04/16/Interview/20190416_002/">
-                        <h4 class="post-title">
-                            变态跳台阶
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2019/04/16/Interview/20190416_001/">
-                        <h4 class="post-title">
-                            跳台阶
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2019/04/14/Interview/20190414_001/">
-                        <h4 class="post-title">
-                            斐波那契数列
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-					
-					</div><!--month-->
-					
-					
-					<div class="archive archive-month" data-date="201903">
-						<h3 class="archive-title">
-							<a href="/archives/2019/03">03</a>
-						</h3>
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2019/03/25/Interview/20190325_001/">
-                        <h4 class="post-title">
-                            二进制中1的个数
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2019/03/19/Interview/20190319_001/">
-                        <h4 class="post-title">
-                            旋转数组的最小数字
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2019/03/17/Interview/20190317_001/">
-                        <h4 class="post-title">
-                            用两个栈实现队列
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2019/03/16/Interview/20190316_001/">
-                        <h4 class="post-title">
-                            重建二叉树
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2019/03/01/Unity3d/20190301_001/">
-                        <h4 class="post-title">
-                            编译添加云风pbc插件的Tolua.dll
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-					
-					</div><!--month-->
-					</div><!--year-->
-					
-					
-					
-					<div class="archive archive-year" data-date="2018">
-						<h2 class="archive-title">
-						<span class="fa fa-archive">
-							<a href="/archives/2018">2018</a>
-						</span>
-						</h2>
-				
-				
-					
-					
-					<div class="archive archive-month" data-date="201812">
-						<h3 class="archive-title">
-							<a href="/archives/2018/12">12</a>
-						</h3>
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/12/10/LeetCode/20181210_001/">
-                        <h4 class="post-title">
-                            回文链表
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-					
-					</div><!--month-->
-					
-					
-					<div class="archive archive-month" data-date="201811">
-						<h3 class="archive-title">
-							<a href="/archives/2018/11">11</a>
-						</h3>
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/11/25/LeetCode/20181125_001/">
-                        <h4 class="post-title">
-                            回文数
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-					
-					</div><!--month-->
-					
-					
-					<div class="archive archive-month" data-date="201809">
-						<h3 class="archive-title">
-							<a href="/archives/2018/09">09</a>
-						</h3>
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/09/01/Cocos2d-X/20180901_001/">
-                        <h4 class="post-title">
-                            关于Google Play商店中obb文件意外情况下无法下载的处理
-                        </h4>
-                        
-                        <h4 class="post-subtitle">
-                            Google Play
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-					
-					</div><!--month-->
-					
-					
-					<div class="archive archive-month" data-date="201808">
-						<h3 class="archive-title">
-							<a href="/archives/2018/08">08</a>
-						</h3>
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/08/31/Cocos2d-X/20180831_003/">
-                        <h4 class="post-title">
-                            关于Google Play商店中obb文件的加载
-                        </h4>
-                        
-                        <h4 class="post-subtitle">
-                            Google Play
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/08/31/Cocos2d-X/20180831_002/">
-                        <h4 class="post-title">
-                            Cocos2d-x2.2.6版本安卓工程移植AS
-                        </h4>
-                        
-                        <h4 class="post-subtitle">
-                            Google Play
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/08/31/Cocos2d-X/20180831_001/">
-                        <h4 class="post-title">
-                            提审Google Play遇到的三大问题
-                        </h4>
-                        
-                        <h4 class="post-subtitle">
-                            Google Play
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-					
-					</div><!--month-->
-					
-					
-					<div class="archive archive-month" data-date="201804">
-						<h3 class="archive-title">
-							<a href="/archives/2018/04">04</a>
-						</h3>
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/04/14/LeetCode/20180718_001/">
-                        <h4 class="post-title">
-                            两数之和
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/04/14/Unity3d/20180414_001/">
-                        <h4 class="post-title">
-                            向量的运算
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/04/03/Unity3d/20180403_001/">
-                        <h4 class="post-title">
-                            C#中的"~"符号
-                        </h4>
-                        
-                        <h4 class="post-subtitle">
-                            一起因为查看Unity官方教程源码引发的血案
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-					
-					</div><!--month-->
-					
-					
-					<div class="archive archive-month" data-date="201803">
-						<h3 class="archive-title">
-							<a href="/archives/2018/03">03</a>
-						</h3>
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/03/31/Cocos2d-X/后缀名/">
-                        <h4 class="post-title">
-                            Cocos2d-X2.2.6版本添加图片后缀名
-                        </h4>
-                        
-                        <h4 class="post-subtitle">
-                            cocos2d
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/03/31/hello-world/">
-                        <h4 class="post-title">
-                            Hello World
-                        </h4>
-                        
-                        <h4 class="post-subtitle">
-                            My first test blog.
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/03/31/hello/">
-                        <h4 class="post-title">
-                            hello
-                        </h4>
-                        
-                        <h4 class="post-subtitle">
-                            My first test blog.
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-        </div>
-    </div>
-</div></div></div>
-<!-- Footer -->
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <br>
-                <ul class="list-inline text-center">
-                
-                
-                    <li>
-                        <a target="_blank" href="https://twitter.com/Jamme">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-                
-                    <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/zzz">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-                    <li>
-                        <a target="_blank" href="http://weibo.com/L-Jamme、">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank" href="https://github.com/JammeLee">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                </ul>
-                <p class="copyright text-muted">
-                    Copyright &copy; Jamme 2019
-                    <br>
-                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
-                    <br>
-                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
-                </p>
-
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="/js/blog.js"></script>
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-
-<!-- jquery.tagcloud.js -->
-<script>
-    // only load tagcloud.js in tag.html
-    if($('#tag_cloud').length !== 0){
-        async("http://jammelee.github.io/js/jquery.tagcloud.js",function(){
-            $.fn.tagcloud.defaults = {
-                //size: {start: 1, end: 1, unit: 'em'},
-                color: {start: '#bbbbee', end: '#0085a1'},
-            };
-            $('#tag_cloud a').tagcloud();
-        })
-    }
-</script>
-
-<!--fastClick.js -->
-<script>
-    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
-        var $nav = document.querySelector("nav");
-        if($nav) FastClick.attach($nav);
-    })
-</script>
-
-<!-- Google Analytics -->
-
-
-
-<!-- Baidu Tongji -->
-
-
-<!-- swiftype -->
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-  _st('install','','2.0.0');
-</script>
-
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<!--wechat title img-->
-<img class="wechat-title-img" src="/head.jpg">
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
 
 </html>

@@ -1,831 +1,351 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Jamme - This is Jamme&#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Jamme,"> 
+    
+    <meta name="author" content="Jamme"> 
+    <link rel="alternative" href="atom.xml" title="Jamme" type="application/atom+xml"> 
+    <link rel="icon" href="/img/my_favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
-<!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="JammeLee的博客">
-    <meta name="keyword" content="">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
-    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
-    <link rel="alternate" type="application/atom+xml" title="Jamme" href="/atom.xml">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
-    <title>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Jamme</span>
+    <div id="loader"></div>
+    <div class="nav">
+    <ul id="menu-menu" class="menu">
         
-        JammeLee&#39;s blog
+        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="//" title="首页" target="_blank" rel="noopener">首页</a>
+        </li>
         
-    </title>
+        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="/categories/" title="分类" target="_blank" rel="noopener">分类</a>
+        </li>
+        
+        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="/tags/" title="标签" target="_blank" rel="noopener">标签</a>
+        </li>
+        
+        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="/archives/" title="归档" target="_blank" rel="noopener">归档</a>
+        </li>
+        
+        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="/about/" title="关于" target="_blank" rel="noopener">关于</a>
+        </li>
+        
+    </ul>
+	<span class="target"></span>
+	<center>
+	<div class="hitokoto">
+		<span class="typed" id="hitokoto" data-st="true"></span>
+	</div>
+	</center>
+	
+	<p class="footerlinks">
+		<a href="#" class="iconfont icon-null"></a>
+		
+            <a href="/" title="facebook" class="iconfont icon-facebook" target="_blank" rel="noopener"> </a>
+        
+            <a href="/" title="twitter" class="iconfont icon-twitter" target="_blank" rel="noopener"> </a>
+        
+            <a href="/" title="github" class="iconfont icon-github" target="_blank" rel="noopener"> </a>
+        
+            <a href="/" title="wechat" class="iconfont icon-wechat" target="_blank" rel="noopener"> </a>
+        
+            <a href="/jamme_lee@outlook.com" title="email" class="iconfont icon-email" target="_blank" rel="noopener"> </a>
+        
+		<a href="#" class="iconfont icon-null"></a>
+	</p>
+	
+    <p id="copyright">
+        &copy; 2020 Jamme.
+        <span> | </span>Powered by <a href="https://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+        <span> | </span>Theme <a href="https://github.com/Fechin/hexo-theme-diaspora" title="Diaspora" target="_blank" rel="noopener">Diaspora</a> by Fechin
+		
+    </p>
+</div>
 
-    <link rel="canonical" href="http://jammelee.github.io/page/2/">
-
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/blog-style.css">
-
-    <!-- Pygments Github CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
-</head>
-
-<style>
-
-    header.intro-header {
-        background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')
-    }
-</style>
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="" class="animated fadeIn">
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="false
-" data-ishome="true">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand animated pulse" href="/">
-                <span class="brand-logo">
-                    Jamme
-                </span>
-                's Blog
-            </a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <!-- Known Issue, found by Hux:
-            <nav>'s height woule be hold on by its content.
-            so, when navbar scale out, the <nav> will cover tags.
-            also mask any touch event of tags, unfortunately.
-        -->
-        <!-- /.navbar-collapse -->
-        <div id="huxblog_navbar">
-            <div class="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/">Home</a>
-                    </li>
-					
-                    
-                        
-							
-                            <!-- 这里条件根据创建的title写法来定义about或者About -->
-								
-							
-						
-                    
-                        
-							
-                        <li>
-                            <a href="/Tags/">Tags</a>
-                        </li>
-							
-						
-                    
-					
-					
-						<li>
-							<a href="/about">About</a>
-						</li>
-					
-                </ul>
-            </div>
+<div id="container">
+    
+<div id="screen">
+    <div id="mark">
+        <div class="layer" data-depth="0.4">
+            <img src="/img/welcome_3.png" id="cover" crossorigin="anonymous" width="1920" height="1080">
         </div>
     </div>
-    <!-- /.container -->
-</nav>
-<script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-//    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
+    <div id="vibrant">
+        <svg viewBox="0 0 2880 1620" height="100%" preserveAspectRatio="xMaxYMax slice">
+            <polygon opacity="0.7" points="2000,1620 0,1620 0,0 600,0 "/>
+        </svg>
+        <div></div>
+    </div>
+    <div id="header">
+        <div>
+            <a class="image-logo" href="/"></a>
+			
+			<div class="iconfont icon-search switchsearch" href="/search/" title="搜索"></div>
+			
+            <div class="iconfont icon-menu switchmenu"></div>
+        </div>
+    </div>
+    
+    <div id="post0">
+        <p>十月 21, 2019</p>
+        <h2><a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/3.%E6%8A%8A%E8%BF%9E%E7%BB%AD%E7%9A%84%E5%A4%9A%E4%B8%AAcommit%E6%95%B4%E7%90%86%E6%88%901%E4%B8%AA/" title="把连续的多个commit整理成1个" class="posttitle">把连续的多个commit整理成1个</a></h2>
+        <p class="summary">把连续的多个commit整理成1个git rebase -i [address]$ git log -6 #查看l...</p>
+    </div>
+    
+</div>
 
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
-        }
-    }
-</script>
-
-<!-- Main Content -->
+    <div id="primary">
+        
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/3.%E6%8A%8A%E8%BF%9E%E7%BB%AD%E7%9A%84%E5%A4%9A%E4%B8%AAcommit%E6%95%B4%E7%90%86%E6%88%901%E4%B8%AA/" title="把连续的多个commit整理成1个">
+        <img src="/img/welcome_4.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/3.%E6%8A%8A%E8%BF%9E%E7%BB%AD%E7%9A%84%E5%A4%9A%E4%B8%AAcommit%E6%95%B4%E7%90%86%E6%88%901%E4%B8%AA/" title="把连续的多个commit整理成1个" class="posttitle">把连续的多个commit整理成1个</a></h3>
+        <p>把连续的多个commit整理成1个git rebase -i [address]$ git log -6 #查看log 合并最近三条commitcommi...</p>
+    </div>
+</div>
 
 
-<style>
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/2.%E4%BF%AE%E6%94%B9commit%E7%9A%84message/" title="修改commit的message">
+        <img src="/img/welcome_3.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/2.%E4%BF%AE%E6%94%B9commit%E7%9A%84message/" title="修改commit的message" class="posttitle">修改commit的message</a></h3>
+        <p>修改commit的message修改最新commit的message
+$ git commit —amend$ git log #先查看log 第一条信息...</p>
+    </div>
+</div>
 
-    .custom-haojen-container .post-preview:nth-of-type(1),
-    .custom-haojen-container .post-preview-poetry:nth-of-type(1) {
-        text-align: center;
-        background-repeat: no-repeat;
-        border-radius: 3px;
-        background-size: cover;
-        padding: 0;
-        height: 300px;
-        display: table;
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.16);
-    }
 
-    /*去掉诗歌的背景图片*/
-    .custom-haojen-container .post-preview-poetry:nth-of-type(1) {
-        background-image: none !important;
-        background-color: rgba(255, 248, 220, 0.5);
-    }
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/1.%E5%88%A0%E9%99%A4%E4%B8%8D%E9%9C%80%E8%A6%81%E7%9A%84%E5%88%86%E6%94%AF/" title="删除不需要的分支">
+        <img src="/img/welcome_5.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/1.%E5%88%A0%E9%99%A4%E4%B8%8D%E9%9C%80%E8%A6%81%E7%9A%84%E5%88%86%E6%94%AF/" title="删除不需要的分支" class="posttitle">删除不需要的分支</a></h3>
+        <p>删除不需要的分支$ git branch -av #查看分支 假设我们不需要temp分支  fix_add  fd98d3d Add add file  ...</p>
+    </div>
+</div>
 
-    .custom-haojen-container .post-preview:nth-child(1) h2,
-    .custom-haojen-container .post-preview:nth-child(1) .post-meta,
-    .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
-        text-shadow: 0 0 40px rgba(0, 0, 0, 1);
-        letter-spacing: 1px;
-        color: #fff;
-        margin-top: 0;
-        padding-left: 60px;
-        padding-right: 60px;
-    }
 
-    .custom-haojen-container .post-preview:nth-child(1) .post-meta {
-        font-size: .9em;
-        font-weight: 300;
-        margin-top: 0;
-    }
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/8.%E5%88%86%E7%A6%BB%E5%A4%B4%E6%8C%87%E9%92%88%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" title="分离头指针情况下的注意事项">
+        <img src="/img/welcome_5.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/8.%E5%88%86%E7%A6%BB%E5%A4%B4%E6%8C%87%E9%92%88%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" title="分离头指针情况下的注意事项" class="posttitle">分离头指针情况下的注意事项</a></h3>
+        <p>分离头指针情况下的注意事项$ git logcommit 4b6999eecb60df46af36c5409e3737e44b877dd7 (HEAD -...</p>
+    </div>
+</div>
 
-    .custom-haojen-container .post-preview-poetry:nth-child(1) .post-subtitle {
-        letter-spacing: 6px;
-        font-size: 18px;
-        font-family: unset;
-        font-weight: 400;
-        color: rgba(0, 0, 0, .75)
-    }
 
-    /*不显示摘要*/
-    .custom-haojen-container .post-preview:nth-child(1) .post-content-preview {
-        display: none
-    }
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/7.commit%E3%80%81tree%E3%80%81blob%E4%B8%89%E4%B8%AA%E5%AF%B9%E8%B1%A1%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/" title="commit、tree、blob三个对象之间的关系">
+        <img src="/img/welcome_3.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/7.commit%E3%80%81tree%E3%80%81blob%E4%B8%89%E4%B8%AA%E5%AF%B9%E8%B1%A1%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/" title="commit、tree、blob三个对象之间的关系" class="posttitle">commit、tree、blob三个对象之间的关系</a></h3>
+        <p>commit、tree、blob三个对象之间的关系$ git logcommit 4b6999eecb60df46af36c5409e3737e44b87...</p>
+    </div>
+</div>
 
-    /*只第一个显示背景图片*/
-    .custom-haojen-container .post-preview:not(:nth-child(1)) {
-        background-image: none !important;
-    }
 
-    /*第一个分界线去掉*/
-    .custom-haojen-container hr:nth-of-type(1) {
-        display: none;
-    }
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/6.%E6%8E%A2%E7%A7%98.git%E7%9B%AE%E5%BD%95/" title="探秘.git目录">
+        <img src="/img/welcome_2.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/6.%E6%8E%A2%E7%A7%98.git%E7%9B%AE%E5%BD%95/" title="探秘.git目录" class="posttitle">探秘.git目录</a></h3>
+        <p>探秘.git目录在此之前，提一下gitk命令，gitk会调出一个git图形界面工具，不具体赘述，可以自己查看。
+HEAD文件首先打开.git目录$ cd ...</p>
+    </div>
+</div>
 
-    /*主题*/
-    .custom-haojen-container .post-preview:nth-of-type(1) > a {
-        display: table-cell;
-        vertical-align: middle;
-    }
 
-    /*诗词标题*/
-    .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
-        font-size: 35px;
-        font-family: STKaiti;
-        color: rgba(0, 0, 0, .8);
-    }
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/5.%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E6%BC%94%E5%8F%98%E5%8E%86%E5%8F%B2/" title="查看版本演变历史">
+        <img src="/img/welcome_3.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/5.%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E6%BC%94%E5%8F%98%E5%8E%86%E5%8F%B2/" title="查看版本演变历史" class="posttitle">查看版本演变历史</a></h3>
+        <p>查看版本演变历史git log$ git log #查看版本历史$ git log --oneline #简洁的查看版本历史4d2bddd (HEAD -...</p>
+    </div>
+</div>
 
-    .custom-haojen-container .post-preview-poetry:nth-of-type(1) .post-meta {
-        color: #0e2231;
-    }
 
-    @media (max-width: 768px) {
-        .custom-haojen-container .post-preview:nth-child(1) {
-            height: 240px;
-        }
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/4.%E7%BB%99%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D/" title="给文件重命名的简便方法">
+        <img src="/img/welcome_2.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/4.%E7%BB%99%E6%96%87%E4%BB%B6%E9%87%8D%E5%91%BD%E5%90%8D/" title="给文件重命名的简便方法" class="posttitle">给文件重命名的简便方法</a></h3>
+        <p>给文件重命名的简便方法通过修改工作区并添加至暂存区的方法重命名$ mv readme readme.md #通过mv命令修改文件名$ git status...</p>
+    </div>
+</div>
 
-        .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
-            font-size: 28px !important;
-            margin-top: 0;
-        }
 
-        .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
-            font-size: 18px;
-            font-weight: 400;
-            padding-left: 0;
-            padding-right: 0;
-        }
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/3.%E8%AE%A4%E8%AF%86Git%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA/" title="认识Git的工作区和暂存区">
+        <img src="/img/welcome_2.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/3.%E8%AE%A4%E8%AF%86Git%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA/" title="认识Git的工作区和暂存区" class="posttitle">认识Git的工作区和暂存区</a></h3>
+        <p>认识Git的工作区和暂存区工作区，顾名思义，工作的目录下称作工作区。在工作区中，创建或修改的文件可以通过git add files命令添加至暂存区。$ v...</p>
+    </div>
+</div>
 
-        .custom-haojen-container .post-preview:nth-of-type(1) > a {
-            padding: 20px
-        }
-    }
 
-    /*手机屏幕*/
-    @media (max-width: 400px) {
-        .custom-haojen-container .post-preview:nth-child(1) {
-            height: 195px;
-        }
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/2.%E5%88%9B%E5%BB%BAGit%E4%BB%93%E5%BA%93/" title="创建Git仓库">
+        <img src="/img/welcome_2.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/2.%E5%88%9B%E5%BB%BAGit%E4%BB%93%E5%BA%93/" title="创建Git仓库" class="posttitle">创建Git仓库</a></h3>
+        <p>创建Git仓库两种场景：1.把已有的项目代码纳入Git管理
+$ cd 项目代码所在的文件夹$ git init
+2.新建的项目直接用Git管理$ cd 某...</p>
+    </div>
+</div>
 
-        .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
-            font-size: 20px !important;
-        }
 
-        .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
-            font-size: 16px;
-        }
+    </div>
+    
+    <div id="pager"><a href="/page/3/" class="more">加载更多</a></div>
+    
+</div>
+<div id="preview"></div>
 
-        .custom-haojen-container .post-preview:nth-child(1) a {
-            padding: 30px 20px;
-        }
-    }
-</style>
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="/head.jpg">
-                        <h5><a href="/about/">JammeLee</a></h5>
-                        <p>一只孤独的程序猿</p>
+
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
                     </div>
                 </div>
             </div>
-        </header>
-    </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2018/09/01/Cocos2d-X/20180901_001/">
-        <h2 class="post-title">
-            关于Google Play商店中obb文件意外情况下无法下载的处理
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-09-01
-        </p>
-        
-        <h3 class="post-subtitle">
-            Google Play
-        </h3>
-        
-        <div class="post-content-preview">
-            <p>
-                &#8194;&#8194;&#8194;&#8194;上面讲了如何加载obb文件，相信大家应该也大致知道obb是什么了。&#8194;&#8194;&#8194;&#8194;在Google Play后台上传apk的时候，apk大小有一个限制，不能够超过100M（应用我不太清楚，但最起码游戏是..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2018/08/31/Cocos2d-X/20180831_003/">
-        <h2 class="post-title">
-            关于Google Play商店中obb文件的加载
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-08-31
-        </p>
-        
-        <h3 class="post-subtitle">
-            Google Play
-        </h3>
-        
-        <div class="post-content-preview">
-            <p>
-                &#8194;&#8194;&#8194;&#8194;最近搞Google Play的这件事情，真的是焦头烂额。项目太老了。。。根本不支持AS工程，也就别想支持obb文件解析了。&#8194;&#8194;&#8194;&#8194;实质上obb文件就是一个ZIP文件。有两种方式可以生成：&#8..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2018/08/31/Cocos2d-X/20180831_002/">
-        <h2 class="post-title">
-            Cocos2d-x2.2.6版本安卓工程移植AS
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-08-31
-        </p>
-        
-        <h3 class="post-subtitle">
-            Google Play
-        </h3>
-        
-        <div class="post-content-preview">
-            <p>
-                &#8194;&#8194;&#8194;&#8194;首先，引擎这么老的版本，为什么要搞Android Studio移植呢？呵~还不是因为要发Google Play惹的祸&#8194;&#8194;&#8194;&#8194;本来天真的以为还像往常一样，创建一个插件工程，抽离主工程，就可以完事..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2018/08/31/Cocos2d-X/20180831_001/">
-        <h2 class="post-title">
-            提审Google Play遇到的三大问题
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-08-31
-        </p>
-        
-        <h3 class="post-subtitle">
-            Google Play
-        </h3>
-        
-        <div class="post-content-preview">
-            <p>
-                &#8194;&#8194;&#8194;&#8194;最近在搞Google Play相关的工作，中间遇到很多问题，也学习到了很多。总结下来，发布一个Google系列。首先先说一说首次提审的时候，遇到的三大问题吧。&#8194;&#8194;&#8194;&#8194;在后台提交之后，没多久我收..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2018/04/14/LeetCode/20180718_001/">
-        <h2 class="post-title">
-            两数之和
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-14
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                
-给定一个整数数组和一个目标值，找出数组中和为目标值的两个数。
-你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。
-
-示例:1234给定 nums = [2, 7, 11, 15], target = 9因为 nums[0] + nums[1] = 2 + 7 = 9所以返回 [0,..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2018/04/14/Unity3d/20180414_001/">
-        <h2 class="post-title">
-            向量的运算
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-14
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                &#8194;&#8194;&#8194;&#8194;今天来总结一下Unity中的向量运算。
-&#8194;&#8194;&#8194;&#8194;向量运算分为四种：加减、数乘、点乘和叉乘。下面依次介绍。
-
-加减：向量的加法（减法）为各分量分别相加（相减）。在物理上可以用来计算两个力的合力，..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2018/04/03/Unity3d/20180403_001/">
-        <h2 class="post-title">
-            C#中的"~"符号
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-04-03
-        </p>
-        
-        <h3 class="post-subtitle">
-            一起因为查看Unity官方教程源码引发的血案
-        </h3>
-        
-        <div class="post-content-preview">
-            <p>
-                &#8194;&#8194;&#8194;&#8194;今天突然觉得大学好像白上了，就像同学说我的那样，“恩，你学费没白交，最起码还有个毕业证。”哈哈哈，真的是应该自嘲一下。虽说引出这个问题的原因是查看了Unity官方教程自动寻路源码，但这也恰恰证明了我的大学基础是多么的不牢固。还是需要花些时间..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2018/03/31/Cocos2d-X/后缀名/">
-        <h2 class="post-title">
-            Cocos2d-X2.2.6版本添加图片后缀名
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-03-31
-        </p>
-        
-        <h3 class="post-subtitle">
-            cocos2d
-        </h3>
-        
-        <div class="post-content-preview">
-            <p>
-                
-
-&#8194;&#8194;&#8194;&#8194;年前遇到一件特别扯淡的事情，因为项目初期的热更新模式没有设计好。采用的是解压方式，下载的热更新压缩包解压之后就留在手机内存卡里了，导致资源直接漏在外边，结果有些安卓手机的相册会把游戏资源图片检索出来，因为图片是加密过的，所以检索到相册中..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2018/03/31/hello-world/">
-        <h2 class="post-title">
-            Hello World
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-03-31
-        </p>
-        
-        <h3 class="post-subtitle">
-            My first test blog.
-        </h3>
-        
-        <div class="post-content-preview">
-            <p>
-                Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer i..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2018/03/31/hello/">
-        <h2 class="post-title">
-            hello
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-03-31
-        </p>
-        
-        <h3 class="post-subtitle">
-            My first test blog.
-        </h3>
-        
-        <div class="post-content-preview">
-            <p>
-                
-
-
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    <li class="previous">
-        <a href="/">&larr; Newer Posts</a>
-    </li>
-    
-    
-</ul>
-
-
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
-                    
-                    <img src="/head.jpg">
-                    
-                    <h5><a href="/about/">JammeLee</a></h5>
-                    
-                    <p>一只孤独的程序猿</p>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://twitter.com/Jamme">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://www.zhihu.com/people/zzz">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-
-                        
-                        <li>
-                            <a target="_blank" href="http://weibo.com/L-Jamme、">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-
-                        
-
-                        
-                        <li>
-                            <a target="_blank" href="https://github.com/JammeLee">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-
-                        
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-            <section>
-                <div class="tags">
-                    
-                    
-                    <a href="/tags/#test" title="test" rel="2">test</a>
-                    
-                    
-                    
-                    <a href="/tags/#Cocos2d" title="Cocos2d" rel="5">Cocos2d</a>
-                    
-                    
-                    
-                    <a href="/tags/#Interview" title="Interview" rel="7">Interview</a>
-                    
-                    
-                    
-                    <a href="/tags/#LeetCode" title="LeetCode" rel="3">LeetCode</a>
-                    
-                    
-                    
-                    <a href="/tags/#Unity3D" title="Unity3D" rel="3">Unity3D</a>
-                    
-                    
-                </div>
-            </section>
-            
-
-            
-            <hr>
-            <h5 style="text-align: center;">Friends</h5>
-            <ul class="list-inline" style="text-align: center;">
-                
-                <li><a href="https://JammeLee.github.io" target="_blank">Home</a></li>
-                
-            </ul>
-            
-
-        </div>
-    </div>
-</div>
-
-<!-- Footer -->
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <br>
-                <ul class="list-inline text-center">
-                
-                
-                    <li>
-                        <a target="_blank" href="https://twitter.com/Jamme">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-                
-                    <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/zzz">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-                    <li>
-                        <a target="_blank" href="http://weibo.com/L-Jamme、">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank" href="https://github.com/JammeLee">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                </ul>
-                <p class="copyright text-muted">
-                    Copyright &copy; Jamme 2019
-                    <br>
-                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
-                    <br>
-                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
-                </p>
-
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
             </div>
         </div>
     </div>
-</footer>
-
-<!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="/js/blog.js"></script>
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-
-<!-- jquery.tagcloud.js -->
-<script>
-    // only load tagcloud.js in tag.html
-    if($('#tag_cloud').length !== 0){
-        async("http://jammelee.github.io/js/jquery.tagcloud.js",function(){
-            $.fn.tagcloud.defaults = {
-                //size: {start: 1, end: 1, unit: 'em'},
-                color: {start: '#bbbbee', end: '#0085a1'},
-            };
-            $('#tag_cloud a').tagcloud();
-        })
-    }
-</script>
-
-<!--fastClick.js -->
-<script>
-    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
-        var $nav = document.querySelector("nav");
-        if($nav) FastClick.attach($nav);
-    })
-</script>
-
-<!-- Google Analytics -->
+</div>
 
 
 
-<!-- Baidu Tongji -->
-
-
-<!-- swiftype -->
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-  _st('install','','2.0.0');
-</script>
-
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<!--wechat title img-->
-<img class="wechat-title-img" src="/head.jpg">
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
         }
     });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
 </script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-</body>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
 
 </html>

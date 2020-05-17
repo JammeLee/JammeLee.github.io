@@ -1,516 +1,261 @@
+
 <!DOCTYPE html>
-<html lang="en">
-
-<!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="JammeLee的博客">
-    <meta name="keyword" content="">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
-    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
-    <link rel="alternate" type="application/atom+xml" title="Jamme" href="/atom.xml">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
-    <title>
-        
-        Cocos2d-x2.2.6版本安卓工程移植AS｜JammeLee&#39;s blog
-        
-    </title>
-
-    <link rel="canonical" href="http://jammelee.github.io/2018/08/31/Cocos2d-X/20180831_002/">
-
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/blog-style.css">
-
-    <!-- Pygments Github CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
-</head>
-
-<style>
-
-    header.intro-header {
-        background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')
-    }
-</style>
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="" class="animated fadeIn">
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="true" data-istags="false
-" data-ishome="false">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand animated pulse" href="/">
-                <span class="brand-logo">
-                    Jamme
-                </span>
-                's Blog
-            </a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <!-- Known Issue, found by Hux:
-            <nav>'s height woule be hold on by its content.
-            so, when navbar scale out, the <nav> will cover tags.
-            also mask any touch event of tags, unfortunately.
-        -->
-        <!-- /.navbar-collapse -->
-        <div id="huxblog_navbar">
-            <div class="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/">Home</a>
-                    </li>
-					
-                    
-                        
-							
-                            <!-- 这里条件根据创建的title写法来定义about或者About -->
-								
-							
-						
-                    
-                        
-							
-                        <li>
-                            <a href="/Tags/">Tags</a>
-                        </li>
-							
-						
-                    
-					
-					
-						<li>
-							<a href="/about">About</a>
-						</li>
-					
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- /.container -->
-</nav>
-<script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-//    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
-
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
-        }
-    }
-</script>
-
-<!-- Main Content -->
-
-<!--only post-->
-
-
-<img class="wechat-title-img" src="/2018/03/31/hello/wallpaper-2572384.jpg">
-
-
-<style>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cocos2d-x2.2.6版本安卓工程移植AS - Jamme</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Jamme,"> 
+    <meta name="description" content="&amp;#8194;&amp;#8194;&amp;#8194;&amp;#8194;首先，引擎这么老的版本，为什么要搞Android Studio移植呢？呵~还不是因为要发Google Play惹的祸&amp;#8194;&amp;#8194,"> 
+    <meta name="author" content="Jamme"> 
+    <link rel="alternative" href="atom.xml" title="Jamme" type="application/atom+xml"> 
+    <link rel="icon" href="/img/my_favicon.png"> 
     
-    header.intro-header {
-        background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg');
-    }
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
     
-</style>
+<link rel="stylesheet" href="/css/diaspora.css">
 
-<header class="intro-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <div class="post-heading">
-                    <h1>Cocos2d-x2.2.6版本安卓工程移植AS</h1>
-                    
-                    <h2 class="subheading">Google Play</h2>
-                    
-                    <span class="meta">
-                         作者 JammeLee
-                        <span>
-                          日期 2018-08-31
-                         </span>
-                    </span>
-                    <div class="tags text-center">
-                        
-                        <a class="tag" href="/Tags/#Cocos2d" title="Cocos2d">Cocos2d</a>
-                        
-                    </div>
-                </div>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Jamme</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="http://blog.jammelee.top"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Cocos2d-x2.2.6版本安卓工程移植AS</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
             </div>
+            <div id="qr"></div>
         </div>
     </div>
-    <div class="post-title-haojen">
-        <span>
-            Cocos2d-x2.2.6版本安卓工程移植AS
-        </span>
-    </div>
-</header>
+    <div class="scrollbar"></div>
+</div>
 
-<!-- Post Content -->
-<article>
-    <div class="container">
-        <div class="row">
-            <!-- Post Container -->
-            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
-                <p>&#8194;&#8194;&#8194;&#8194;首先，引擎这么老的版本，为什么要搞Android Studio移植呢？呵~还不是因为要发Google Play惹的祸<br><br>&#8194;&#8194;&#8194;&#8194;本来天真的以为还像往常一样，创建一个插件工程，抽离主工程，就可以完事大吉了。后来发现自家SDK的res文件夹下的xml文件无法解析，仔细问了一下SDK开发工程师，他居然告诉我，因为集成了Google服务相关内容，所以必须用Android Studio做开发。这是什么屁规定，不过仔细一想，毕竟都是人家Google自家的东西，就是喂给你个屁，你也要吃下去，并且大喊一声，真香。<br><br><img src="/2018/08/31/Cocos2d-X/20180831_002/20180831231020.gif" alt="images"></p>
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Cocos2d-x2.2.6版本安卓工程移植AS</h1>
+        <div class="stuff">
+            <span>八月 31, 2018</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Cocos2d/" rel="tag">Cocos2d</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <p>&#8194;&#8194;&#8194;&#8194;首先，引擎这么老的版本，为什么要搞Android Studio移植呢？呵~还不是因为要发Google Play惹的祸<br><br>&#8194;&#8194;&#8194;&#8194;本来天真的以为还像往常一样，创建一个插件工程，抽离主工程，就可以完事大吉了。后来发现自家SDK的res文件夹下的xml文件无法解析，仔细问了一下SDK开发工程师，他居然告诉我，因为集成了Google服务相关内容，所以必须用Android Studio做开发。这是什么屁规定，不过仔细一想，毕竟都是人家Google自家的东西，就是喂给你个屁，你也要吃下去，并且大喊一声，真香。<br><br><img src="/.top//20180831231020.gif" alt="images"></p>
 <p>&#8194;&#8194;&#8194;&#8194;言归正传，先用eclipse导出gradle，这上网百度就能找得到。</p>
 <ol>
-<li><p>根目录下的<b>local.properties</b>文件中，修改好ndk.dir和sdk.dir</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">## This file must *NOT* be checked into Version Control Systems,</span><br><span class="line"># as it contains information specific to your local configuration.</span><br><span class="line">#</span><br><span class="line"># Location of the SDK. This is only used by Gradle.</span><br><span class="line"># For customization when using a Version Control System, please read the</span><br><span class="line"># header note.</span><br><span class="line">#Thu Aug 16 18:48:03 CST 2018</span><br><span class="line">ndk.dir=H\:\\tools\\android-ndk-r9d</span><br><span class="line">sdk.dir=C\:\\Users\\2069\\AppData\\Local\\Android\\Sdk</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>根目录下的<b>gradle.properties</b>（没有的话自行创建）文件中添加如下代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">org.gradle.daemon=true</span><br><span class="line">org.gradle.parallel=true</span><br><span class="line">#org.gradle.jvmargs=-Xmx4096m -XX:MaxPermSize=4096m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8</span><br><span class="line">#这里设置java虚拟机内存</span><br><span class="line">org.gradle.jvmargs=-Xms8192m -Xmx8192m</span><br><span class="line">#这里打开NDK编译</span><br><span class="line">android.useDeprecatedNDK = true</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>根目录下的<b>build.gradle</b>文件中，做如下修改</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Top-level build file where you can add configuration options common to all sub-projects/modules.</span></span><br><span class="line"><span class="keyword">buildscript</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        <span class="comment">//这里使用的是国内阿里云提供的库，不会使用科学上网的玩家可以选择使用这个地址来下载，不过可能更新比Google有些延迟，而且有些库可能会找不到。</span></span><br><span class="line">        <span class="comment">//maven&#123; url 'http://maven.aliyun.com/nexus/content/groups/public/' &#125;</span></span><br><span class="line">        <span class="comment">//maven&#123; url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'&#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//那么这里使用的就是Google提供的库，需要科学上网才可以访问下载得到。</span></span><br><span class="line">        maven&#123; url <span class="string">'https://dl.google.com/dl/android/maven2/'</span>&#125;</span><br><span class="line">        jcenter()</span><br><span class="line">        google()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">dependencies</span> &#123;</span><br><span class="line">        <span class="comment">//这里我选用和SDK相同的gradle的Android插件版本，每个插件版本都对应着必需的Gradle版本。这里附上官网传送门：https://developer.android.google.cn/studio/releases/gradle-plugin#updating-plugin</span></span><br><span class="line">        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:3.1.4'</span></span><br><span class="line">        <span class="comment">//这里可能是因为使用的Google的统计服务，所以应SDK文档的要求，添加了此配置。</span></span><br><span class="line">        <span class="keyword">classpath</span> <span class="string">'com.google.gms:google-services:3.1.0'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">allprojects</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        <span class="comment">//这里同上</span></span><br><span class="line">        <span class="comment">//maven &#123; url 'http://maven.aliyun.com/nexus/content/groups/public/' &#125;</span></span><br><span class="line">        <span class="comment">//maven&#123; url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'&#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//这里同上</span></span><br><span class="line">        maven&#123; url <span class="string">'https://dl.google.com/dl/android/maven2/'</span>&#125;</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这里根据SDK Demo粘贴</span></span><br><span class="line"><span class="keyword">task</span> clean(type: <span class="keyword">Delete</span>) &#123;</span><br><span class="line">    <span class="keyword">delete</span> rootProject.buildDir</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>根目录下的<b>local.properties</b>文件中，修改好ndk.dir和sdk.dir<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">## This file must *NOT* be checked into Version Control Systems,</span><br><span class="line"># as it contains information specific to your local configuration.</span><br><span class="line">#</span><br><span class="line"># Location of the SDK. This is only used by Gradle.</span><br><span class="line"># For customization when using a Version Control System, please read the</span><br><span class="line"># header note.</span><br><span class="line">#Thu Aug 16 18:48:03 CST 2018</span><br><span class="line">ndk.dir&#x3D;H\:\\tools\\android-ndk-r9d</span><br><span class="line">sdk.dir&#x3D;C\:\\Users\\2069\\AppData\\Local\\Android\\Sdk</span><br></pre></td></tr></table></figure></li>
+<li>根目录下的<b>gradle.properties</b>（没有的话自行创建）文件中添加如下代码<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="meta">org.gradle.daemon</span>=<span class="string">true</span></span><br><span class="line"><span class="meta">org.gradle.parallel</span>=<span class="string">true</span></span><br><span class="line"><span class="comment">#org.gradle.jvmargs=-Xmx4096m -XX:MaxPermSize=4096m -XX:+HeapDumpOnOutOfMemoryError -Dfile.encoding=UTF-8</span></span><br><span class="line"><span class="comment">#这里设置java虚拟机内存</span></span><br><span class="line"><span class="meta">org.gradle.jvmargs</span>=<span class="string">-Xms8192m -Xmx8192m</span></span><br><span class="line"><span class="comment">#这里打开NDK编译</span></span><br><span class="line"><span class="meta">android.useDeprecatedNDK</span> = <span class="string">true</span></span><br></pre></td></tr></table></figure></li>
+<li>根目录下的<b>build.gradle</b>文件中，做如下修改<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Top-level build file where you can add configuration options common to all sub-projects/modules.</span></span><br><span class="line"><span class="keyword">buildscript</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        <span class="comment">//这里使用的是国内阿里云提供的库，不会使用科学上网的玩家可以选择使用这个地址来下载，不过可能更新比Google有些延迟，而且有些库可能会找不到。</span></span><br><span class="line">        <span class="comment">//maven&#123; url 'http://maven.aliyun.com/nexus/content/groups/public/' &#125;</span></span><br><span class="line">        <span class="comment">//maven&#123; url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'&#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//那么这里使用的就是Google提供的库，需要科学上网才可以访问下载得到。</span></span><br><span class="line">        maven&#123; url <span class="string">'https://dl.google.com/dl/android/maven2/'</span>&#125;</span><br><span class="line">        jcenter()</span><br><span class="line">        google()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">dependencies</span> &#123;</span><br><span class="line">        <span class="comment">//这里我选用和SDK相同的gradle的Android插件版本，每个插件版本都对应着必需的Gradle版本。这里附上官网传送门：https://developer.android.google.cn/studio/releases/gradle-plugin#updating-plugin</span></span><br><span class="line">        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:3.1.4'</span></span><br><span class="line">        <span class="comment">//这里可能是因为使用的Google的统计服务，所以应SDK文档的要求，添加了此配置。</span></span><br><span class="line">        <span class="keyword">classpath</span> <span class="string">'com.google.gms:google-services:3.1.0'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">allprojects</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        <span class="comment">//这里同上</span></span><br><span class="line">        <span class="comment">//maven &#123; url 'http://maven.aliyun.com/nexus/content/groups/public/' &#125;</span></span><br><span class="line">        <span class="comment">//maven&#123; url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'&#125;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//这里同上</span></span><br><span class="line">        maven&#123; url <span class="string">'https://dl.google.com/dl/android/maven2/'</span>&#125;</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这里根据SDK Demo粘贴</span></span><br><span class="line"><span class="keyword">task</span> clean(type: <span class="keyword">Delete</span>) &#123;</span><br><span class="line">    <span class="keyword">delete</span> rootProject.buildDir</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li><p>根目录下的<b>gradle\wrapper\gradle-wrapper.properties</b>修改如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#Tue Aug 14 21:16:23 CST 2018</span><br><span class="line">distributionBase=GRADLE_USER_HOME</span><br><span class="line">distributionPath=wrapper/dists</span><br><span class="line">zipStoreBase=GRADLE_USER_HOME</span><br><span class="line">zipStorePath=wrapper/dists</span><br><span class="line">#这里同样是根据SDK的配置来修改的，具体使用哪个版本，需要根据前边提到的gradle的Android插件版本以及官网地址查询具体应使用的版本。</span><br><span class="line">distributionUrl=https\://services.gradle.org/distributions/gradle-4.4-all.zip</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#Tue Aug 14 21:16:23 CST 2018</span><br><span class="line">distributionBase&#x3D;GRADLE_USER_HOME</span><br><span class="line">distributionPath&#x3D;wrapper&#x2F;dists</span><br><span class="line">zipStoreBase&#x3D;GRADLE_USER_HOME</span><br><span class="line">zipStorePath&#x3D;wrapper&#x2F;dists</span><br><span class="line">#这里同样是根据SDK的配置来修改的，具体使用哪个版本，需要根据前边提到的gradle的Android插件版本以及官网地址查询具体应使用的版本。</span><br><span class="line">distributionUrl&#x3D;https\:&#x2F;&#x2F;services.gradle.org&#x2F;distributions&#x2F;gradle-4.4-all.zip</span><br></pre></td></tr></table></figure>
+<p>Plugin version | Required Gradle version<br>—-|—-<br>1.0.0 - 1.1.3 | 2.2.1 - 2.3<br>1.2.0 - 1.3.1 | 2.2.1 - 2.9<br>1.5.0 | 2.2.1 - 2.13<br>2.0.0 - 2.1.2 | 2.10 - 2.13<br>2.1.3 - 2.2.3 | 2.14.1+<br>2.3.0+ | 3.3+<br>3.0.0+ | 4.1+<br>3.1.0+ | 4.4+<br>摘自官网（侵删）：<a href="https://developer.android.google.cn/studio/releases/gradle-plugin#updating-plugin" target="_blank" rel="noopener">https://developer.android.google.cn/studio/releases/gradle-plugin#updating-plugin</a></p>
 </li>
-</ol>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Plugin version</th>
-<th>Required Gradle version</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1.0.0 - 1.1.3</td>
-<td>2.2.1 - 2.3</td>
-</tr>
-<tr>
-<td>1.2.0 - 1.3.1</td>
-<td>2.2.1 - 2.9</td>
-</tr>
-<tr>
-<td>1.5.0</td>
-<td>2.2.1 - 2.13</td>
-</tr>
-<tr>
-<td>2.0.0 - 2.1.2</td>
-<td>2.10 - 2.13</td>
-</tr>
-<tr>
-<td>2.1.3 - 2.2.3</td>
-<td>2.14.1+</td>
-</tr>
-<tr>
-<td>2.3.0+</td>
-<td>3.3+</td>
-</tr>
-<tr>
-<td>3.0.0+</td>
-<td>4.1+</td>
-</tr>
-<tr>
-<td>3.1.0+</td>
-<td>4.4+</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>摘自官网（侵删）：<a href="https://developer.android.google.cn/studio/releases/gradle-plugin#updating-plugin" target="_blank" rel="noopener">https://developer.android.google.cn/studio/releases/gradle-plugin#updating-plugin</a></p>
-<ol>
-<li>主工程目录下的<b>local.properties</b>、<b>gradle.properties</b>（没有的话自行创建）文件我也做了相关配置，和根目录下相同。这里说一下什么是主工程目录，什么是跟目录，我的工程是这样的，再接入SDK之前，我会把SDK部分单独抽出来，作为一个插件工程，然后游戏部分的相关内容是一个主工程，在eclipse中主工程依赖这个插件工程就OK了。那跟目录顾名思义就是包含Cocos2d相关、SDK相关和游戏资源等的最外层目录，当你使用eclipse导出gradle的时候，你的根目录下会产生一个gradle文件夹。</li>
-<li><p>主工程目录下的<b>build.gradle</b>导入需要引用的相关jar，<b>compile</b>关键字好像过时了，所以换用了<b>implementation</b>。具体修改及注释如下</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'android'</span></span><br><span class="line">apply plugin: <span class="string">'com.google.gms.google-services'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">dependencies</span> &#123;</span><br><span class="line">    <span class="keyword">compile</span> <span class="keyword">fileTree</span>(<span class="keyword">include</span>: <span class="string">'*.jar'</span>, dir: <span class="string">'libs'</span>)</span><br><span class="line">    <span class="keyword">compile</span> <span class="keyword">project</span>(<span class="string">':plugin:protocols:proj.android'</span>)</span><br><span class="line">    <span class="keyword">compile</span> <span class="keyword">project</span>(<span class="string">':plugin:plugins:umeng:proj.android'</span>)</span><br><span class="line">    <span class="keyword">compile</span> <span class="keyword">project</span>(<span class="string">':plugin:plugins:ZQGameSEA:proj.android'</span>)</span><br><span class="line">    <span class="comment">//compile project(':plugin:plugins:umeng:proj.android')</span></span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/UMSocial/proj.android/sdk/umeng_social_sdk.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/UMSocial/proj.android/sdk/httpmime-4.1.3.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/UMSocial/proj.android/sdk/SocialSDK_QQZone_1.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/UMSocial/proj.android/sdk/SocialSDK_QQZone_2.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/UMSocial/proj.android/sdk/SocialSDK_QQZone_3.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/UMSocial/proj.android/sdk/SocialSDK_Sina.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../plugin/plugins/umeng/proj.android/libs/umeng_sdk.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/xg/proj.android/jg_filter_sdk_1.1.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/xg/proj.android/wup-1.0.0.E-SNAPSHOT.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/xg/proj.android/Xg_sdk_v2.41_20150915_1121.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/bugly/proj.android/bugly_1.2.9_release.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/bugly/proj.android/bugly_cocos2dx_1.2.9_release.jar'</span>)</span><br><span class="line">    <span class="comment">//    implementation files('../../../external/sdk/baiduLocation/proj.android/BaiduLBS_Android.jar')</span></span><br><span class="line">    <span class="comment">//    implementation files('libs/android-support-v4.jar')</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    <span class="comment">//编译工具版本号不能大于下边的构建版本号</span></span><br><span class="line">    compileSdkVersion <span class="number">21</span></span><br><span class="line">    buildToolsVersion <span class="string">'28.0.2'</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//这里给Java堆分配最大内存8g</span></span><br><span class="line">    dexOptions &#123;</span><br><span class="line">        incremental <span class="keyword">true</span></span><br><span class="line">        javaMaxHeapSize <span class="string">"8g"</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        <span class="comment">//包名</span></span><br><span class="line">        applicationId <span class="string">"com.game.ultramansol_sea"</span></span><br><span class="line">        <span class="comment">//支持最小的Android SDK API版本</span></span><br><span class="line">        minSdkVersion <span class="number">17</span></span><br><span class="line">        <span class="comment">//目标版本</span></span><br><span class="line">        targetSdkVersion <span class="number">21</span></span><br><span class="line">        <span class="comment">//这里和版本号相关的内容同以前在eclipse中的清单文件相同</span></span><br><span class="line">        versionCode <span class="number">1</span></span><br><span class="line">        versionName <span class="string">"1.2.22"</span></span><br><span class="line">        <span class="comment">//添加NDK相关配置，moduleName为jni文件夹下的Android.mk的LOCAL_MODULE_FILENAME参数，abiFilters支持的架构。</span></span><br><span class="line">        ndk &#123;</span><br><span class="line">            moduleName <span class="string">"libultraman"</span></span><br><span class="line">            ldLibs <span class="string">"log"</span>, <span class="string">"z"</span>, <span class="string">"m"</span></span><br><span class="line">            abiFilters <span class="string">"armeabi-v7a"</span>, <span class="string">"armeabi"</span></span><br><span class="line">        &#125;</span><br><span class="line">        multiDexEnabled <span class="keyword">true</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    externalNativeBuild &#123;</span></span><br><span class="line"><span class="comment">//        ndkBuild &#123;</span></span><br><span class="line"><span class="comment">//            path file("jni/Android.mk")</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">sourceSets</span> &#123;</span><br><span class="line">        main &#123;</span><br><span class="line">            manifest.srcFile <span class="string">'AndroidManifest.xml'</span></span><br><span class="line">            java.srcDirs = [<span class="string">'src'</span>]</span><br><span class="line">            resources.srcDirs = [<span class="string">'src'</span>]</span><br><span class="line">            aidl.srcDirs = [<span class="string">'src'</span>]</span><br><span class="line">            renderscript.srcDirs = [<span class="string">'src'</span>]</span><br><span class="line">            res.srcDirs = [<span class="string">'res'</span>]</span><br><span class="line">            assets.srcDirs = [<span class="string">'assets'</span>]</span><br><span class="line">            jni.srcDirs = []<span class="comment">//设置禁止gradle生成Android.mk</span></span><br><span class="line">            jniLibs.srcDirs = [<span class="string">'libs'</span>]<span class="comment">//设置目标的so存放,也就是组装到apk中的so路径</span></span><br><span class="line">            jniLibs.srcDir <span class="string">'../../../;../../../cocos2dx/platform/third_party/android/prebuilt;../../../projects/ultraman/Classes'</span></span><br><span class="line"><span class="comment">//            jni.srcDirs 'jni/hellolua'</span></span><br><span class="line">        <span class="comment">//NDK_PROJECT_PATH =</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Move the tests to tests/java, tests/res, etc...</span></span><br><span class="line">        androidTest.setRoot(<span class="string">'tests'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Move the build types to build-types/&lt;type&gt;</span></span><br><span class="line">        <span class="comment">// For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...</span></span><br><span class="line">        <span class="comment">// This moves them out of them default location under src/&lt;type&gt;/... which would</span></span><br><span class="line">        <span class="comment">// conflict with src/ being used by the main source set.</span></span><br><span class="line">        <span class="comment">// Adding new build types or product flavors should be accompanied</span></span><br><span class="line">        <span class="comment">// by a similar customization.</span></span><br><span class="line">        debug.setRoot(<span class="string">'build-types/debug'</span>)</span><br><span class="line">        release.setRoot(<span class="string">'build-types/release'</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    tasks.withType(JavaCompile) &#123;</span></span><br><span class="line"><span class="comment">//        compileTask -&gt; compileTask.dependsOn 'ndkBuild','copyThirdso', 'copyJniLibs'</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//    task ndkBuild(type: Exec) &#123;</span></span><br><span class="line"><span class="comment">//        def ndkBuildingDir = project.android.ndkDirectory//project.plugins.findPlugin('com.android.application').sdkHandler.getNdkFolder().absolutePath</span></span><br><span class="line"><span class="comment">//        println ndkBuildingDir</span></span><br><span class="line"><span class="comment">//        println 111</span></span><br><span class="line"><span class="comment">//        commandLine "$ndkBuildingDir/ndk-build.cmd", '-C', file('jni').absolutePath,</span></span><br><span class="line"><span class="comment">//                '-j', Runtime.runtime.availableProcessors(),</span></span><br><span class="line"><span class="comment">//                "NDK_OUT=$buildDir/intermediates/ndk/obj",</span></span><br><span class="line"><span class="comment">//                "NDK_APP_DST_DIR=$buildDir/intermediates/ndk/libs/\$(TARGET_ARCH_ABI)"</span></span><br><span class="line"><span class="comment">//    &#125; //设置新的so的生成目录</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//    task copyJniLibs(type: Copy) &#123;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//        from fileTree(dir: file(buildDir.absolutePath + '/intermediates/ndk/libs'), include: '**/*.so')</span></span><br><span class="line"><span class="comment">//        into file('libs')</span></span><br><span class="line"><span class="comment">//    &#125;       //将新生成的so拷贝到jniLibs目录</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//    task copyThirdso(type: Copy) &#123;</span></span><br><span class="line"><span class="comment">//        from file('jni/prebuilt')</span></span><br><span class="line"><span class="comment">//        into file('libs')</span></span><br><span class="line"><span class="comment">//    &#125;               //将第三方的so拷贝到jniLibs目录</span></span><br><span class="line"></span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            minifyEnabled <span class="keyword">false</span></span><br><span class="line">            proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.txt'</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p>主工程目录下的<b>local.properties</b>、<b>gradle.properties</b>（没有的话自行创建）文件我也做了相关配置，和根目录下相同。这里说一下什么是主工程目录，什么是跟目录，我的工程是这样的，再接入SDK之前，我会把SDK部分单独抽出来，作为一个插件工程，然后游戏部分的相关内容是一个主工程，在eclipse中主工程依赖这个插件工程就OK了。那跟目录顾名思义就是包含Cocos2d相关、SDK相关和游戏资源等的最外层目录，当你使用eclipse导出gradle的时候，你的根目录下会产生一个gradle文件夹。</p>
 </li>
-<li><p>设置AS的内存大小，点击<b>Help -&gt; Edit Custom VM Options</b>，弹出studio64.exe.vmoptions文件，在其中插入如下代码，AS右下角的allocated heap size会变成8G。如果没有请尝试重启AS。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># custom Android Studio VM options, see https://developer.android.com/studio/intro/studio-config.html</span><br><span class="line">-Xms8192m</span><br><span class="line">-Xmx8192m</span><br><span class="line">-XX:MaxPermSize=8192m</span><br><span class="line">-XX:ReservedCodeCacheSize=200m</span><br><span class="line">-XX:+UseCompressedOops</span><br><span class="line">-XX:ReservedCodeCacheSize=240m</span><br><span class="line">-XX:+UseConcMarkSweepGC</span><br><span class="line">-XX:SoftRefLRUPolicyMSPerMB=50</span><br><span class="line">-Dsun.io.useCanonCaches=false</span><br><span class="line">-Djava.net.preferIPv4Stack=true</span><br><span class="line">-Djna.nosys=true</span><br><span class="line">-Djna.boot.library.path=</span><br><span class="line"></span><br><span class="line">-da</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在目录列表选择<b>Project</b>视图，找到主工程，右键jni文件夹（可能别的文件夹也行），选择<b>Link C++ Project With Gradle</b>，<b>Build System</b>选择<b>ndk-build</b>选项，在<b>Project Path</b>中设置“主工程/jni/Android.mk”路径，选择<b>OK</b>。<br><br><img src="/2018/08/31/Cocos2d-X/20180831_002/20180831231729.png" alt="images"></p>
-</li>
-<li>设置NDK编译工具，<b>File -&gt; Settings -&gt; Tools -&gt; External Tools</b>，点击“+”。<b>Name</b>自己取名，<b>Program</b>为ndk-build.cmd的路径，<b>Arguments</b>为编译时需要的参数“NDK_MODULE_PATH=（自己的NDK_MODULE_PATH）”，<b>Working directory</b>为主工程路径，点击<b>OK</b>。<br><br><img src="/2018/08/31/Cocos2d-X/20180831_002/20180831232144.png" alt="images"></li>
+<li>主工程目录下的<b>build.gradle</b>导入需要引用的相关jar，<b>compile</b>关键字好像过时了，所以换用了<b>implementation</b>。具体修改及注释如下<figure class="highlight gradle"><table><tr><td class="code"><pre><span class="line">apply plugin: <span class="string">'android'</span></span><br><span class="line">apply plugin: <span class="string">'com.google.gms.google-services'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">dependencies</span> &#123;</span><br><span class="line">    <span class="keyword">compile</span> <span class="keyword">fileTree</span>(<span class="keyword">include</span>: <span class="string">'*.jar'</span>, dir: <span class="string">'libs'</span>)</span><br><span class="line">    <span class="keyword">compile</span> <span class="keyword">project</span>(<span class="string">':plugin:protocols:proj.android'</span>)</span><br><span class="line">    <span class="keyword">compile</span> <span class="keyword">project</span>(<span class="string">':plugin:plugins:umeng:proj.android'</span>)</span><br><span class="line">    <span class="keyword">compile</span> <span class="keyword">project</span>(<span class="string">':plugin:plugins:ZQGameSEA:proj.android'</span>)</span><br><span class="line">    <span class="comment">//compile project(':plugin:plugins:umeng:proj.android')</span></span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/UMSocial/proj.android/sdk/umeng_social_sdk.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/UMSocial/proj.android/sdk/httpmime-4.1.3.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/UMSocial/proj.android/sdk/SocialSDK_QQZone_1.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/UMSocial/proj.android/sdk/SocialSDK_QQZone_2.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/UMSocial/proj.android/sdk/SocialSDK_QQZone_3.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/UMSocial/proj.android/sdk/SocialSDK_Sina.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../plugin/plugins/umeng/proj.android/libs/umeng_sdk.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/xg/proj.android/jg_filter_sdk_1.1.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/xg/proj.android/wup-1.0.0.E-SNAPSHOT.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/xg/proj.android/Xg_sdk_v2.41_20150915_1121.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/bugly/proj.android/bugly_1.2.9_release.jar'</span>)</span><br><span class="line">    implementation files(<span class="string">'../../../external/sdk/bugly/proj.android/bugly_cocos2dx_1.2.9_release.jar'</span>)</span><br><span class="line">    <span class="comment">//    implementation files('../../../external/sdk/baiduLocation/proj.android/BaiduLBS_Android.jar')</span></span><br><span class="line">    <span class="comment">//    implementation files('libs/android-support-v4.jar')</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    <span class="comment">//编译工具版本号不能大于下边的构建版本号</span></span><br><span class="line">    compileSdkVersion <span class="number">21</span></span><br><span class="line">    buildToolsVersion <span class="string">'28.0.2'</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//这里给Java堆分配最大内存8g</span></span><br><span class="line">    dexOptions &#123;</span><br><span class="line">        incremental <span class="keyword">true</span></span><br><span class="line">        javaMaxHeapSize <span class="string">"8g"</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        <span class="comment">//包名</span></span><br><span class="line">        applicationId <span class="string">"com.game.ultramansol_sea"</span></span><br><span class="line">        <span class="comment">//支持最小的Android SDK API版本</span></span><br><span class="line">        minSdkVersion <span class="number">17</span></span><br><span class="line">        <span class="comment">//目标版本</span></span><br><span class="line">        targetSdkVersion <span class="number">21</span></span><br><span class="line">        <span class="comment">//这里和版本号相关的内容同以前在eclipse中的清单文件相同</span></span><br><span class="line">        versionCode <span class="number">1</span></span><br><span class="line">        versionName <span class="string">"1.2.22"</span></span><br><span class="line">        <span class="comment">//添加NDK相关配置，moduleName为jni文件夹下的Android.mk的LOCAL_MODULE_FILENAME参数，abiFilters支持的架构。</span></span><br><span class="line">        ndk &#123;</span><br><span class="line">            moduleName <span class="string">"libultraman"</span></span><br><span class="line">            ldLibs <span class="string">"log"</span>, <span class="string">"z"</span>, <span class="string">"m"</span></span><br><span class="line">            abiFilters <span class="string">"armeabi-v7a"</span>, <span class="string">"armeabi"</span></span><br><span class="line">        &#125;</span><br><span class="line">        multiDexEnabled <span class="keyword">true</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    externalNativeBuild &#123;</span></span><br><span class="line"><span class="comment">//        ndkBuild &#123;</span></span><br><span class="line"><span class="comment">//            path file("jni/Android.mk")</span></span><br><span class="line"><span class="comment">//        &#125;</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">sourceSets</span> &#123;</span><br><span class="line">        main &#123;</span><br><span class="line">            manifest.srcFile <span class="string">'AndroidManifest.xml'</span></span><br><span class="line">            java.srcDirs = [<span class="string">'src'</span>]</span><br><span class="line">            resources.srcDirs = [<span class="string">'src'</span>]</span><br><span class="line">            aidl.srcDirs = [<span class="string">'src'</span>]</span><br><span class="line">            renderscript.srcDirs = [<span class="string">'src'</span>]</span><br><span class="line">            res.srcDirs = [<span class="string">'res'</span>]</span><br><span class="line">            assets.srcDirs = [<span class="string">'assets'</span>]</span><br><span class="line">            jni.srcDirs = []<span class="comment">//设置禁止gradle生成Android.mk</span></span><br><span class="line">            jniLibs.srcDirs = [<span class="string">'libs'</span>]<span class="comment">//设置目标的so存放,也就是组装到apk中的so路径</span></span><br><span class="line">            jniLibs.srcDir <span class="string">'../../../;../../../cocos2dx/platform/third_party/android/prebuilt;../../../projects/ultraman/Classes'</span></span><br><span class="line"><span class="comment">//            jni.srcDirs 'jni/hellolua'</span></span><br><span class="line">        <span class="comment">//NDK_PROJECT_PATH =</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Move the tests to tests/java, tests/res, etc...</span></span><br><span class="line">        androidTest.setRoot(<span class="string">'tests'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Move the build types to build-types/&lt;type&gt;</span></span><br><span class="line">        <span class="comment">// For instance, build-types/debug/java, build-types/debug/AndroidManifest.xml, ...</span></span><br><span class="line">        <span class="comment">// This moves them out of them default location under src/&lt;type&gt;/... which would</span></span><br><span class="line">        <span class="comment">// conflict with src/ being used by the main source set.</span></span><br><span class="line">        <span class="comment">// Adding new build types or product flavors should be accompanied</span></span><br><span class="line">        <span class="comment">// by a similar customization.</span></span><br><span class="line">        debug.setRoot(<span class="string">'build-types/debug'</span>)</span><br><span class="line">        release.setRoot(<span class="string">'build-types/release'</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//    tasks.withType(JavaCompile) &#123;</span></span><br><span class="line"><span class="comment">//        compileTask -&gt; compileTask.dependsOn 'ndkBuild','copyThirdso', 'copyJniLibs'</span></span><br><span class="line"><span class="comment">//    &#125;</span></span><br><span class="line"><span class="comment">//    task ndkBuild(type: Exec) &#123;</span></span><br><span class="line"><span class="comment">//        def ndkBuildingDir = project.android.ndkDirectory//project.plugins.findPlugin('com.android.application').sdkHandler.getNdkFolder().absolutePath</span></span><br><span class="line"><span class="comment">//        println ndkBuildingDir</span></span><br><span class="line"><span class="comment">//        println 111</span></span><br><span class="line"><span class="comment">//        commandLine "$ndkBuildingDir/ndk-build.cmd", '-C', file('jni').absolutePath,</span></span><br><span class="line"><span class="comment">//                '-j', Runtime.runtime.availableProcessors(),</span></span><br><span class="line"><span class="comment">//                "NDK_OUT=$buildDir/intermediates/ndk/obj",</span></span><br><span class="line"><span class="comment">//                "NDK_APP_DST_DIR=$buildDir/intermediates/ndk/libs/\$(TARGET_ARCH_ABI)"</span></span><br><span class="line"><span class="comment">//    &#125; //设置新的so的生成目录</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//    task copyJniLibs(type: Copy) &#123;</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//        from fileTree(dir: file(buildDir.absolutePath + '/intermediates/ndk/libs'), include: '**/*.so')</span></span><br><span class="line"><span class="comment">//        into file('libs')</span></span><br><span class="line"><span class="comment">//    &#125;       //将新生成的so拷贝到jniLibs目录</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//    task copyThirdso(type: Copy) &#123;</span></span><br><span class="line"><span class="comment">//        from file('jni/prebuilt')</span></span><br><span class="line"><span class="comment">//        into file('libs')</span></span><br><span class="line"><span class="comment">//    &#125;               //将第三方的so拷贝到jniLibs目录</span></span><br><span class="line"></span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            minifyEnabled <span class="keyword">false</span></span><br><span class="line">            proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.txt'</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>设置AS的内存大小，点击<b>Help -&gt; Edit Custom VM Options</b>，弹出studio64.exe.vmoptions文件，在其中插入如下代码，AS右下角的allocated heap size会变成8G。如果没有请尝试重启AS。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># custom Android Studio VM options, see https:&#x2F;&#x2F;developer.android.com&#x2F;studio&#x2F;intro&#x2F;studio-config.html</span><br><span class="line">-Xms8192m</span><br><span class="line">-Xmx8192m</span><br><span class="line">-XX:MaxPermSize&#x3D;8192m</span><br><span class="line">-XX:ReservedCodeCacheSize&#x3D;200m</span><br><span class="line">-XX:+UseCompressedOops</span><br><span class="line">-XX:ReservedCodeCacheSize&#x3D;240m</span><br><span class="line">-XX:+UseConcMarkSweepGC</span><br><span class="line">-XX:SoftRefLRUPolicyMSPerMB&#x3D;50</span><br><span class="line">-Dsun.io.useCanonCaches&#x3D;false</span><br><span class="line">-Djava.net.preferIPv4Stack&#x3D;true</span><br><span class="line">-Djna.nosys&#x3D;true</span><br><span class="line">-Djna.boot.library.path&#x3D;</span><br><span class="line"></span><br><span class="line">-da</span><br></pre></td></tr></table></figure></li>
+<li>在目录列表选择<b>Project</b>视图，找到主工程，右键jni文件夹（可能别的文件夹也行），选择<b>Link C++ Project With Gradle</b>，<b>Build System</b>选择<b>ndk-build</b>选项，在<b>Project Path</b>中设置“主工程/jni/Android.mk”路径，选择<b>OK</b>。<br><br><img src="/.top//20180831231729.png" alt="images"></li>
+<li>设置NDK编译工具，<b>File -&gt; Settings -&gt; Tools -&gt; External Tools</b>，点击“+”。<b>Name</b>自己取名，<b>Program</b>为ndk-build.cmd的路径，<b>Arguments</b>为编译时需要的参数“NDK_MODULE_PATH=（自己的NDK_MODULE_PATH）”，<b>Working directory</b>为主工程路径，点击<b>OK</b>。<br><br><img src="/.top//20180831232144.png" alt="images"></li>
 <li><b>Run/Debug Configurations</b>，在下边点击“<b>+</b>”，添加<b>Run External tool</b>，选择刚刚添加的“ndk”工具。如果不打算烧在真机上，想直接打包的话。在打包之前，请记得<b>右键-&gt;External Tools-&gt;ndk</b>，进行NDK编译。</li>
 </ol>
 <p>&#8194;&#8194;&#8194;&#8194;到此为止，基本结束了配置，可能还会有些小问题，自行百度或者Google应该就可以解决了。还有就是插件工程中以前有引用jar的，别忘记在对应工程下的<b>build.gradle</b>文件中引用。还有就是清单文件的坑，AS中检查可能比较严格，所有插件工程的<b>minSdkVersion</b>和<b>targetSdkVersion</b>必须一致，不然会报错。还有，如果出现多个分包APK并且找不到编译生成的so错误时，可以尝试把<b>Instant Run</b>关掉。</p>
 <p>NDK编译相关的官网地址：<a href="https://developer.android.google.cn/studio/projects/add-native-code#ndkCompile" target="_blank" rel="noopener">https://developer.android.google.cn/studio/projects/add-native-code#ndkCompile</a></p>
 
-                <hr>
-                
-
-                <ul class="pager">
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
                     
-                    <li class="previous">
-                        <a href="/2018/08/31/Cocos2d-X/20180831_003/" data-toggle="tooltip" data-placement="top" title="关于Google Play商店中obb文件的加载">&larr; Previous Post</a>
-                    </li>
+                        
+                            <li title='0' data-url='http://music.163.com/song/media/outer/url?id=33255251.mp3'></li>
+                        
                     
+                        
+                            <li title='1' data-url='http://music.163.com/song/media/outer/url?id=27571001.mp3'></li>
+                        
                     
-                    <li class="next">
-                        <a href="/2018/08/31/Cocos2d-X/20180831_001/" data-toggle="tooltip" data-placement="top" title="提审Google Play遇到的三大问题">Next Post &rarr;</a>
-                    </li>
+                        
+                            <li title='2' data-url='http://music.163.com/song/media/outer/url?id=33211947.mp3'></li>
+                        
+                    
+                        
+                            <li title='3' data-url='http://music.163.com/song/media/outer/url?id=22705492.mp3'></li>
+                        
+                    
+                        
+                            <li title='4' data-url='http://music.163.com/song/media/outer/url?id=27602839.mp3'></li>
+                        
+                    
+                        
+                            <li title='5' data-url='http://music.163.com/song/media/outer/url?id=857606.mp3'></li>
+                        
+                    
+                        
+                            <li title='6' data-url='http://music.163.com/song/media/outer/url?id=33911781.mp3'></li>
+                        
+                    
+                        
+                            <li title='7' data-url='http://music.163.com/song/media/outer/url?id=32465542.mp3'></li>
+                        
+                    
+                        
+                            <li title='8' data-url='http://music.163.com/song/media/outer/url?id=29829683.mp3'></li>
+                        
+                    
+                        
+                            <li title='9' data-url='http://music.163.com/song/media/outer/url?id=1322517422.mp3'></li>
+                        
+                    
+                        
+                            <li title='10' data-url='http://music.163.com/song/media/outer/url?id=424262056.mp3'></li>
+                        
+                    
+                        
+                            <li title='11' data-url='http://music.163.com/song/media/outer/url?id=428350227.mp3'></li>
+                        
                     
                 </ul>
-
-                
-
-                
-
-
-                <!--加入新的评论系统-->
-                
-                <!-- 来必力City版安装代码 -->
-                <div id="lv-container" data-id="city" data-uid="MTAyMC8zNTM2NS8xMTkwMQ==">
-                    <script type="text/javascript">
-                        (function(d, s) {
-                            var j, e = d.getElementsByTagName(s)[0];
-
-                            if (typeof LivereTower === 'function') { return; }
-
-                            j = d.createElement(s);
-                            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-                            j.async = true;
-
-                            e.parentNode.insertBefore(j, e);
-                        })(document, 'script');
-                    </script>
-                    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
-                </div>
-                <!-- City版安装代码已完成 -->
-                
-            </div>
-
-            <div class="hidden-xs col-sm-3 toc-col">
-                <div class="toc-wrap">
-                    
-                </div>
-            </div>
+            
         </div>
+        
+    <div id='gitalk-container' class="comment link"
+		data-enable='true'
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
 
-        <div class="row">
-            <!-- Sidebar Container -->
 
-            <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
-                sidebar-container">
+    </div>
+    
+        <div class='side'>
+				
+        </div>
+    
+</div>
 
-                <!-- Featured Tags -->
-                
-                <section>
-                    <!-- no hr -->
-                    <h5 class="text-center">
-                        <a href="/tags/">FEATURED TAGS</a>
-                    </h5>
-                    <div class="tags">
-                        
-                        <a class="tag" href="/Tags/#Cocos2d" title="Cocos2d">Cocos2d</a>
-                        
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
                     </div>
-                </section>
-                
-
-                <!-- Friends Blog -->
-                
-                <div style="margin-top: 20px;">
-                    <h5 class="text-center">FRIENDS</h5>
-                    <ul class="list-inline text-center">
-                        
-                        <li><a href="https://JammeLee.github.io">Home</a></li>
-                        
-                    </ul>
                 </div>
-                
             </div>
-        </div>
-
-    </div>
-</article>
-
-
-
-
-
-
-
-<!-- Footer -->
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <br>
-                <ul class="list-inline text-center">
-                
-                
-                    <li>
-                        <a target="_blank" href="https://twitter.com/Jamme">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-                
-                    <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/zzz">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-                    <li>
-                        <a target="_blank" href="http://weibo.com/L-Jamme、">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank" href="https://github.com/JammeLee">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                </ul>
-                <p class="copyright text-muted">
-                    Copyright &copy; Jamme 2019
-                    <br>
-                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
-                    <br>
-                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
-                </p>
-
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
             </div>
         </div>
     </div>
-</footer>
-
-<!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="/js/blog.js"></script>
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-
-<!-- jquery.tagcloud.js -->
-<script>
-    // only load tagcloud.js in tag.html
-    if($('#tag_cloud').length !== 0){
-        async("http://jammelee.github.io/js/jquery.tagcloud.js",function(){
-            $.fn.tagcloud.defaults = {
-                //size: {start: 1, end: 1, unit: 'em'},
-                color: {start: '#bbbbee', end: '#0085a1'},
-            };
-            $('#tag_cloud a').tagcloud();
-        })
-    }
-</script>
-
-<!--fastClick.js -->
-<script>
-    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
-        var $nav = document.querySelector("nav");
-        if($nav) FastClick.attach($nav);
-    })
-</script>
-
-<!-- Google Analytics -->
+</div>
 
 
 
-<!-- Baidu Tongji -->
-
-
-<!-- swiftype -->
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-  _st('install','','2.0.0');
-</script>
-
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<!--wechat title img-->
-<img class="wechat-title-img" src="/head.jpg">
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
         }
     });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
 </script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-</body>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
 
 </html>

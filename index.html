@@ -1,828 +1,379 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Jamme - This is Jamme&#39;s blog</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Jamme,"> 
+    
+    <meta name="author" content="Jamme"> 
+    <link rel="alternative" href="atom.xml" title="Jamme" type="application/atom+xml"> 
+    <link rel="icon" href="/img/my_favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
-<!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="JammeLee的博客">
-    <meta name="keyword" content="">
-    <meta name="theme-color" content="#600090">
-    <meta name="msapplication-navbutton-color" content="#600090">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#600090">
-    <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-128.png">
-    <link rel="alternate" type="application/atom+xml" title="Jamme" href="/atom.xml">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
-    <title>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({
+              google_ad_client: "ca-pub-8691406134231910",
+              enable_page_level_ads: true
+         });
+    </script>
+    <script async custom-element="amp-auto-ads"
+        src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
+    </script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">Jamme</span>
+    <div id="loader"></div>
+    <div class="nav">
+    <ul id="menu-menu" class="menu">
         
-        JammeLee&#39;s blog
+        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="//" title="首页" target="_blank" rel="noopener">首页</a>
+        </li>
         
-    </title>
+        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="/categories/" title="分类" target="_blank" rel="noopener">分类</a>
+        </li>
+        
+        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="/tags/" title="标签" target="_blank" rel="noopener">标签</a>
+        </li>
+        
+        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="/archives/" title="归档" target="_blank" rel="noopener">归档</a>
+        </li>
+        
+        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
+            <a href="/about/" title="关于" target="_blank" rel="noopener">关于</a>
+        </li>
+        
+    </ul>
+	<span class="target"></span>
+	<center>
+	<div class="hitokoto">
+		<span class="typed" id="hitokoto" data-st="true"></span>
+	</div>
+	</center>
+	
+	<p class="footerlinks">
+		<a href="#" class="iconfont icon-null"></a>
+		
+            <a href="/" title="facebook" class="iconfont icon-facebook" target="_blank" rel="noopener"> </a>
+        
+            <a href="/" title="twitter" class="iconfont icon-twitter" target="_blank" rel="noopener"> </a>
+        
+            <a href="/" title="github" class="iconfont icon-github" target="_blank" rel="noopener"> </a>
+        
+            <a href="/" title="wechat" class="iconfont icon-wechat" target="_blank" rel="noopener"> </a>
+        
+            <a href="/jamme_lee@outlook.com" title="email" class="iconfont icon-email" target="_blank" rel="noopener"> </a>
+        
+		<a href="#" class="iconfont icon-null"></a>
+	</p>
+	
+    <p id="copyright">
+        &copy; 2020 Jamme.
+        <span> | </span>Powered by <a href="https://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+        <span> | </span>Theme <a href="https://github.com/Fechin/hexo-theme-diaspora" title="Diaspora" target="_blank" rel="noopener">Diaspora</a> by Fechin
+		
+    </p>
+</div>
 
-    <link rel="canonical" href="http://jammelee.github.io/">
-
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/blog-style.css">
-
-    <!-- Pygments Github CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
-</head>
-
-<style>
-
-    header.intro-header {
-        background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')
-    }
-</style>
-<!-- hack iOS CSS :active style -->
-<body ontouchstart="" class="animated fadeIn">
-<!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost="false" data-istags="false
-" data-ishome="true">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand animated pulse" href="/">
-                <span class="brand-logo">
-                    Jamme
-                </span>
-                's Blog
-            </a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <!-- Known Issue, found by Hux:
-            <nav>'s height woule be hold on by its content.
-            so, when navbar scale out, the <nav> will cover tags.
-            also mask any touch event of tags, unfortunately.
-        -->
-        <!-- /.navbar-collapse -->
-        <div id="huxblog_navbar">
-            <div class="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/">Home</a>
-                    </li>
-					
-                    
-                        
-							
-                            <!-- 这里条件根据创建的title写法来定义about或者About -->
-								
-							
-						
-                    
-                        
-							
-                        <li>
-                            <a href="/Tags/">Tags</a>
-                        </li>
-							
-						
-                    
-					
-					
-						<li>
-							<a href="/about">About</a>
-						</li>
-					
-                </ul>
-            </div>
+<div id="container">
+    
+<div id="screen">
+    <div id="mark">
+        <div class="layer" data-depth="0.4">
+            <img src="/img/welcome_3.png" id="cover" crossorigin="anonymous" width="1920" height="1080">
         </div>
     </div>
-    <!-- /.container -->
-</nav>
-<script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-//    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
+    <div id="vibrant">
+        <svg viewBox="0 0 2880 1620" height="100%" preserveAspectRatio="xMaxYMax slice">
+            <polygon opacity="0.7" points="2000,1620 0,1620 0,0 600,0 "/>
+        </svg>
+        <div></div>
+    </div>
+    <div id="header">
+        <div>
+            <a class="image-logo" href="/"></a>
+			
+			<div class="iconfont icon-search switchsearch" href="/search/" title="搜索"></div>
+			
+            <div class="iconfont icon-menu switchmenu"></div>
+        </div>
+    </div>
+    
+    <div id="post0">
+        <p>三月 20, 2020</p>
+        <h2><a href="/2020/03/20/Other/v2ray/" title="V2ray+ws+tls" class="posttitle">V2ray+ws+tls</a></h2>
+        <p class="summary">安装V2Ray装机系统版本：CentOs7
+首先，安装V2ray：bash &lt;(curl -L -s htt...</p>
+    </div>
+    
+</div>
 
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
-        }
-    }
-</script>
-
-<!-- Main Content -->
+    <div id="primary">
+        
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/12.%E5%A6%82%E4%BD%95%E5%B0%86Git%E4%BB%93%E5%BA%93%E5%A4%87%E4%BB%BD%E5%88%B0%E6%9C%AC%E5%9C%B0/" title="如何将Git仓库备份到本地">
+        <img src="/img/welcome_5.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/12.%E5%A6%82%E4%BD%95%E5%B0%86Git%E4%BB%93%E5%BA%93%E5%A4%87%E4%BB%BD%E5%88%B0%E6%9C%AC%E5%9C%B0/" title="如何将Git仓库备份到本地" class="posttitle">如何将Git仓库备份到本地</a></h3>
+        <p>
+如何将Git仓库备份到本地常用的传输协议
 
 
-<style>
 
-    .custom-haojen-container .post-preview:nth-of-type(1),
-    .custom-haojen-container .post-preview-poetry:nth-of-type(1) {
-        text-align: center;
-        background-repeat: no-repeat;
-        border-radius: 3px;
-        background-size: cover;
-        padding: 0;
-        height: 300px;
-        display: table;
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.16);
-    }
+常用协议
+语法格式
+说明
 
-    /*去掉诗歌的背景图片*/
-    .custom-haojen-container .post-preview-poetry:nth-of-type(1) {
-        background-image: none !important;
-        background-color: rgba(255, 248, 220, 0.5);
-    }
 
-    .custom-haojen-container .post-preview:nth-child(1) h2,
-    .custom-haojen-container .post-preview:nth-child(1) .post-meta,
-    .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
-        text-shadow: 0 0 40px rgba(0, 0, 0, 1);
-        letter-spacing: 1px;
-        color: #fff;
-        margin-top: 0;
-        padding-left: 60px;
-        padding-right: 60px;
-    }
 
-    .custom-haojen-container .post-preview:nth-child(1) .post-meta {
-        font-size: .9em;
-        font-weight: 300;
-        margin-top: 0;
-    }
 
-    .custom-haojen-container .post-preview-poetry:nth-child(1) .post-subtitle {
-        letter-spacing: 6px;
-        font-size: 18px;
-        font-family: unset;
-        font-weight: 400;
-        color: rgba(0, 0, 0, .75)
-    }
+本地协议（1）
+/path/to/repo.git
+哑协议
 
-    /*不显示摘要*/
-    .custom-haojen-container .post-preview:nth-child(1) .post-content-preview {
-        display: none
-    }
 
-    /*只第一个显示背景图片*/
-    .custom-haojen-container .post-preview:not(:nth-child(1)) {
-        background-image: none !important;
-    }
+本地协...</p>
+    </div>
+</div>
 
-    /*第一个分界线去掉*/
-    .custom-haojen-container hr:nth-of-type(1) {
-        display: none;
-    }
 
-    /*主题*/
-    .custom-haojen-container .post-preview:nth-of-type(1) > a {
-        display: table-cell;
-        vertical-align: middle;
-    }
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/11.%E6%8C%87%E5%AE%9A%E4%B8%8D%E9%9C%80%E8%A6%81Git%E7%AE%A1%E7%90%86%E7%9A%84%E6%96%87%E4%BB%B6/" title="指定不需要Git管理的文件">
+        <img src="/img/welcome_3.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/11.%E6%8C%87%E5%AE%9A%E4%B8%8D%E9%9C%80%E8%A6%81Git%E7%AE%A1%E7%90%86%E7%9A%84%E6%96%87%E4%BB%B6/" title="指定不需要Git管理的文件" class="posttitle">指定不需要Git管理的文件</a></h3>
+        <p>指定不需要Git管理的文件
+.gitignore文件
 
-    /*诗词标题*/
-    .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
-        font-size: 35px;
-        font-family: STKaiti;
-        color: rgba(0, 0, 0, .8);
-    }
+$ mkdir doc #创建一个doc文件夹$ echo &#39;hi&#39; &gt; d...</p>
+    </div>
+</div>
 
-    .custom-haojen-container .post-preview-poetry:nth-of-type(1) .post-meta {
-        color: #0e2231;
-    }
 
-    @media (max-width: 768px) {
-        .custom-haojen-container .post-preview:nth-child(1) {
-            height: 240px;
-        }
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/10.%E5%BC%80%E5%8F%91%E4%B8%AD%E4%B8%B4%E6%97%B6%E5%8A%A0%E5%A1%9E%E4%BA%86%E7%B4%A7%E6%80%A5%E4%BB%BB%E5%8A%A1%E5%BA%94%E5%BD%93%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86/" title="开发中临时加塞了紧急任务应当如何处理">
+        <img src="/2018/03/31/hello/wallpaper-2572384.jpg" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/10.%E5%BC%80%E5%8F%91%E4%B8%AD%E4%B8%B4%E6%97%B6%E5%8A%A0%E5%A1%9E%E4%BA%86%E7%B4%A7%E6%80%A5%E4%BB%BB%E5%8A%A1%E5%BA%94%E5%BD%93%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86/" title="开发中临时加塞了紧急任务应当如何处理" class="posttitle">开发中临时加塞了紧急任务应当如何处理</a></h3>
+        <p>开发中临时加塞了紧急任务应当如何处理
+git stash
 
-        .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
-            font-size: 28px !important;
-            margin-top: 0;
-        }
+将工作区修改的文件放入不影响下步工作的环境中
+$ git status #假设工作区中修改了c...</p>
+    </div>
+</div>
 
-        .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
-            font-size: 18px;
-            font-weight: 400;
-            padding-left: 0;
-            padding-right: 0;
-        }
 
-        .custom-haojen-container .post-preview:nth-of-type(1) > a {
-            padding: 20px
-        }
-    }
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/9.%E6%AD%A3%E7%A1%AE%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95/" title="正确删除文件的方法">
+        <img src="/img/welcome_2.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/9.%E6%AD%A3%E7%A1%AE%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95/" title="正确删除文件的方法" class="posttitle">正确删除文件的方法</a></h3>
+        <p>正确删除文件的方法
+git rm [filename]
 
-    /*手机屏幕*/
-    @media (max-width: 400px) {
-        .custom-haojen-container .post-preview:nth-child(1) {
-            height: 195px;
-        }
+$ rm readme.md #删除工作区的readme.md文件$ git statusOn ...</p>
+    </div>
+</div>
 
-        .custom-haojen-container .post-preview-poetry:nth-child(1) h2 {
-            font-size: 20px !important;
-        }
 
-        .custom-haojen-container .post-preview:nth-child(1) .post-subtitle {
-            font-size: 16px;
-        }
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/8.%E6%9F%A5%E7%9C%8B%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E4%B8%8D%E5%90%8C%E6%8F%90%E4%BA%A4%E7%9A%84%E5%B7%AE%E5%BC%82/" title="查看指定文件不同提交的差异">
+        <img src="/img/welcome_5.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/8.%E6%9F%A5%E7%9C%8B%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E4%B8%8D%E5%90%8C%E6%8F%90%E4%BA%A4%E7%9A%84%E5%B7%AE%E5%BC%82/" title="查看指定文件不同提交的差异" class="posttitle">查看指定文件不同提交的差异</a></h3>
+        <p>查看指定文件不同提交的差异
+git diff address address — [filename]
 
-        .custom-haojen-container .post-preview:nth-child(1) a {
-            padding: 30px 20px;
-        }
-    }
-</style>
+$ git diff temp master #...</p>
+    </div>
+</div>
 
-<!-- Page Header -->
-<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 visible-xs-block visible-sm-block">
-    <div class="row">
-        <header class="intro-header">
-            <div class="container">
-                <div class="site-heading text-center">
-                    <div class="about-me">
-                        <!--移动端头部显示-->
-                        <img src="/head.jpg">
-                        <h5><a href="/about/">JammeLee</a></h5>
-                        <p>一只孤独的程序猿</p>
+
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/7.%E5%A6%82%E4%BD%95%E6%B6%88%E9%99%A4%E6%9C%80%E8%BF%91%E5%87%A0%E6%AC%A1%E7%9A%84%E6%8F%90%E4%BA%A4/" title="如何消除最近几次的提交">
+        <img src="/img/welcome_4.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/7.%E5%A6%82%E4%BD%95%E6%B6%88%E9%99%A4%E6%9C%80%E8%BF%91%E5%87%A0%E6%AC%A1%E7%9A%84%E6%8F%90%E4%BA%A4/" title="如何消除最近几次的提交" class="posttitle">如何消除最近几次的提交</a></h3>
+        <p>如何消除最近几次的提交
+git reset —hard [commit address]
+
+ 此命令执行后，缓存区和工作区都会清空，所以一定要确定不需要这...</p>
+    </div>
+</div>
+
+
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/6.%E5%A6%82%E4%BD%95%E8%AE%A9%E6%9A%82%E5%AD%98%E5%8C%BA%E7%9A%84%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%88%90%E5%92%8CHEAD%E4%B8%80%E6%A0%B7%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E8%AE%A9%E5%B7%A5%E4%BD%9C%E5%8C%BA%E7%9A%84%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E5%88%B0%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA%E4%B8%80%E6%A0%B7/" title="如何让暂存区的文件恢复到和HEAD一样以及如何让工作区的文件恢复到和暂存区一样">
+        <img src="/img/welcome_5.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/6.%E5%A6%82%E4%BD%95%E8%AE%A9%E6%9A%82%E5%AD%98%E5%8C%BA%E7%9A%84%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E6%88%90%E5%92%8CHEAD%E4%B8%80%E6%A0%B7%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E8%AE%A9%E5%B7%A5%E4%BD%9C%E5%8C%BA%E7%9A%84%E6%96%87%E4%BB%B6%E6%81%A2%E5%A4%8D%E5%88%B0%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA%E4%B8%80%E6%A0%B7/" title="如何让暂存区的文件恢复到和HEAD一样以及如何让工作区的文件恢复到和暂存区一样" class="posttitle">如何让暂存区的文件恢复到和HEAD一样以及如何让工作区的文件恢复到和暂存区一样</a></h3>
+        <p>如何让暂存区的文件恢复到和HEAD一样以及如何让工作区的文件恢复到和暂存区一样如何让暂存区的文件恢复到和HEAD一样
+git reset HEAD
+
+$ ...</p>
+    </div>
+</div>
+
+
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/5.%E6%AF%94%E8%BE%83%E5%B7%A5%E4%BD%9C%E5%8C%BA%E3%80%81%E6%9A%82%E5%AD%98%E5%8C%BA%E5%92%8CHEAD%E4%B9%8B%E9%97%B4%E6%89%80%E5%90%AB%E6%96%87%E4%BB%B6%E7%9A%84%E5%B7%AE%E5%BC%82/" title="比较工作区、暂存区和HEAD之间所含文件的差异">
+        <img src="/img/welcome_5.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/5.%E6%AF%94%E8%BE%83%E5%B7%A5%E4%BD%9C%E5%8C%BA%E3%80%81%E6%9A%82%E5%AD%98%E5%8C%BA%E5%92%8CHEAD%E4%B9%8B%E9%97%B4%E6%89%80%E5%90%AB%E6%96%87%E4%BB%B6%E7%9A%84%E5%B7%AE%E5%BC%82/" title="比较工作区、暂存区和HEAD之间所含文件的差异" class="posttitle">比较工作区、暂存区和HEAD之间所含文件的差异</a></h3>
+        <p>比较工作区、暂存区和HEAD之间所含文件的差异比较暂存区和HEAD所含文件的差异
+git diff —cached
+
+$ vi abc #修改abc文件内...</p>
+    </div>
+</div>
+
+
+<div class="post">
+    <a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/4.%E6%8A%8A%E9%97%B4%E9%9A%94%E7%9A%84%E5%87%A0%E4%B8%AAcommit%E6%95%B4%E7%90%86%E6%88%901%E4%B8%AA/" title="把间隔的几个commit整理成1个">
+        <img src="/img/welcome_2.png" class="cover" width="680" height="440">
+    </a>
+    <div class="else">
+        <p>十月 21, 2019</p>
+        <h3><a href="/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/4.%E6%8A%8A%E9%97%B4%E9%9A%94%E7%9A%84%E5%87%A0%E4%B8%AAcommit%E6%95%B4%E7%90%86%E6%88%901%E4%B8%AA/" title="把间隔的几个commit整理成1个" class="posttitle">把间隔的几个commit整理成1个</a></h3>
+        <p>把间隔的几个commit整理成1个
+git rebase -i [address]
+
+再次用到这个命令
+$ git log --graph #查看日志 把...</p>
+    </div>
+</div>
+
+
+    </div>
+    
+    <div id="pager"><a href="/page/2/" class="more">加载更多</a></div>
+    
+</div>
+<div id="preview"></div>
+
+
+
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
                     </div>
                 </div>
             </div>
-        </header>
-    </div>
-</div>
-<!-- Main Content -->
-<div class="container custom-haojen-container">
-    <!-- Post Container -->
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-1 col-md-8 col-md-offset-1 col-sm-12 col-xs-12 post-container">
-            <!-- Main Content -->
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2019/04/16/Interview/20190416_002/">
-        <h2 class="post-title">
-            变态跳台阶
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-16
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                题目描述
-
-&#8194;&#8194;&#8194;&#8194;一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
-
-
-观察分析&#8194;&#8194;&#8194;&#8194;本题目牵扯到一次跳n级的问题，当有n级台阶，分析..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2019/04/16/Interview/20190416_001/">
-        <h2 class="post-title">
-            跳台阶
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-16
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                题目描述
-
-&#8194;&#8194;&#8194;&#8194;一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。
-
-
-观察分析&#8194;&#8194;&#8194;&#8194;小青蛙一次可以跳1级，也可以跳2级。当有..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2019/04/14/Interview/20190414_001/">
-        <h2 class="post-title">
-            斐波那契数列
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-04-14
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                题目描述
-
-&#8194;&#8194;&#8194;&#8194;大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。
-
-
-通过递归&#8194;&#8194;&#8194;&#8194;首先，很容易就想到了递推公式f(n)=f(n-1)+f(..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2019/03/25/Interview/20190325_001/">
-        <h2 class="post-title">
-            二进制中1的个数
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-03-25
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                题目描述
-
-&#8194;&#8194;&#8194;&#8194;输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。
-
-
-通过移位测试每一位&#8194;&#8194;&#8194;&#8194;首先，很容易能想到的就是通过移位的方法，挨个判断每一位。12345678910111..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2019/03/19/Interview/20190319_001/">
-        <h2 class="post-title">
-            旋转数组的最小数字
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-03-19
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                题目描述
-
-&#8194;&#8194;&#8194;&#8194;把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2019/03/17/Interview/20190317_001/">
-        <h2 class="post-title">
-            用两个栈实现队列
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-03-17
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                题目描述
-
-&#8194;&#8194;&#8194;&#8194;用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。
-
-
-主要思路：最初思路&#8194;&#8194;&#8194;&#8194;因为栈和队列最明显的区别就是，栈是先进后出，而队列是先进先出。所..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2019/03/16/Interview/20190316_001/">
-        <h2 class="post-title">
-            重建二叉树
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-03-16
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                题目描述
-
-&#8194;&#8194;&#8194;&#8194;输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2019/03/01/Unity3d/20190301_001/">
-        <h2 class="post-title">
-            编译添加云风pbc插件的Tolua.dll
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2019-03-01
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                &#8194;&#8194;&#8194;&#8194;好久没有更新过blog了，最近这两天在搞pbc的相关东西。在此总结记录一下。
-&#8194;&#8194;&#8194;&#8194;当初云风写pbc的初衷就是想可以方便的 binding 到动态语言中去用的。这里可以看一下云风blog中对..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2018/12/10/LeetCode/20181210_001/">
-        <h2 class="post-title">
-            回文链表
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-12-10
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                
-请判断一个链表是否为回文链表。
-
-示例1:12输入：1-&gt;2输出：false
-示例2:123输入：1-&gt;2-&gt;2-&gt;1输出：true解释：从左向右读，为-121。从右向左读，为121-。因此它不是一个回文数。
-进阶：你能否用 O(n) 时间复杂度和 O(1) 空间复杂度..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-<div class="post-preview  " style="background-image: url('/2018/03/31/hello/wallpaper-2572384.jpg')">
-    <a href="/2018/11/25/LeetCode/20181125_001/">
-        <h2 class="post-title">
-            回文数
-        </h2>
-        <p class="post-meta">
-            <i class="fa fa-calendar" aria-hidden="true"></i> 2018-11-25
-        </p>
-        
-        <div class="post-content-preview">
-            <p>
-                
-判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
-
-示例1:12输入：121输出：true
-示例2:123输入：-121输出：false解释：从左向右读，为-121。从右向左读，为121-。因此它不是一个回文数。
-示例3:123输入：10输出：false..
-            </p>
-        </div>
-    </a>
-
-</div>
-
-<hr>
-
-
-
-
-<!-- 翻页 pager -->
-
-<ul class="pager">
-    
-    
-    <li class="next">
-        <a href="/page/2/">Older Posts &rarr;</a>
-    </li>
-    
-</ul>
-
-
-        </div>
-        <!-- Sidebar Container -->
-        <div class="
-                col-lg-3 col-lg-offset-0
-                col-md-3 col-md-offset-0
-                col-sm-12
-                col-xs-12
-                sidebar-container
-            ">
-
-            <!-- About Me -->
-            <section class="visible-md visible-lg" style="padding: 0 18px">
-                <div class="short-about">
-                    <!--侧边栏头像-->
-                    
-                    <img src="/head.jpg">
-                    
-                    <h5><a href="/about/">JammeLee</a></h5>
-                    
-                    <p>一只孤独的程序猿</p>
-                    
-                    <hr>
-                    <!-- SNS Link 社交 -->
-                    <ul class="list-inline">
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://twitter.com/Jamme">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-                        
-                        <li>
-                            <a target="_blank" href="https://www.zhihu.com/people/zzz">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa  fa-stack-1x fa-inverse">知</i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-
-                        
-                        <li>
-                            <a target="_blank" href="http://weibo.com/L-Jamme、">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-
-                        
-
-                        
-                        <li>
-                            <a target="_blank" href="https://github.com/JammeLee">
-                                        <span class="fa-stack fa-lg">
-                                            <i class="fa fa-circle fa-stack-2x"></i>
-                                            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                        </span>
-                            </a>
-                        </li>
-                        
-
-                        
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Featured Tags  标签 -->
-            
-            <section>
-                <div class="tags">
-                    
-                    
-                    <a href="/tags/#test" title="test" rel="2">test</a>
-                    
-                    
-                    
-                    <a href="/tags/#Cocos2d" title="Cocos2d" rel="5">Cocos2d</a>
-                    
-                    
-                    
-                    <a href="/tags/#Interview" title="Interview" rel="7">Interview</a>
-                    
-                    
-                    
-                    <a href="/tags/#LeetCode" title="LeetCode" rel="3">LeetCode</a>
-                    
-                    
-                    
-                    <a href="/tags/#Unity3D" title="Unity3D" rel="3">Unity3D</a>
-                    
-                    
-                </div>
-            </section>
-            
-
-            
-            <hr>
-            <h5 style="text-align: center;">Friends</h5>
-            <ul class="list-inline" style="text-align: center;">
-                
-                <li><a href="https://JammeLee.github.io" target="_blank">Home</a></li>
-                
-            </ul>
-            
-
-        </div>
-    </div>
-</div>
-
-<!-- Footer -->
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
-                <br>
-                <ul class="list-inline text-center">
-                
-                
-                    <li>
-                        <a target="_blank" href="https://twitter.com/Jamme">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-                
-                    <li>
-                        <a target="_blank" href="https://www.zhihu.com/people/zzz">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa  fa-stack-1x fa-inverse">知</i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-                    <li>
-                        <a target="_blank" href="http://weibo.com/L-Jamme、">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                
-                    <li>
-                        <a target="_blank" href="https://github.com/JammeLee">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                
-
-                
-
-                </ul>
-                <p class="copyright text-muted">
-                    Copyright &copy; Jamme 2019
-                    <br>
-                    <span id="busuanzi_container_site_pv" style="font-size: 12px;">PV: <span id="busuanzi_value_site_pv"></span> Times</span>
-                    <br>
-                    Theme by <a href="https://haojen.github.io/">Haojen Ma</a>
-                </p>
-
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
             </div>
         </div>
     </div>
-</footer>
-
-<!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="/js/blog.js"></script>
-
-<!-- async load function -->
-<script>
-    function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
-    }
-</script>
-
-<!-- jquery.tagcloud.js -->
-<script>
-    // only load tagcloud.js in tag.html
-    if($('#tag_cloud').length !== 0){
-        async("http://jammelee.github.io/js/jquery.tagcloud.js",function(){
-            $.fn.tagcloud.defaults = {
-                //size: {start: 1, end: 1, unit: 'em'},
-                color: {start: '#bbbbee', end: '#0085a1'},
-            };
-            $('#tag_cloud a').tagcloud();
-        })
-    }
-</script>
-
-<!--fastClick.js -->
-<script>
-    async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
-        var $nav = document.querySelector("nav");
-        if($nav) FastClick.attach($nav);
-    })
-</script>
-
-<!-- Google Analytics -->
+</div>
 
 
 
-<!-- Baidu Tongji -->
-
-
-<!-- swiftype -->
-<script type="text/javascript">
-  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
-  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
-  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
-  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
-
-  _st('install','','2.0.0');
-</script>
-
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<!--wechat title img-->
-<img class="wechat-title-img" src="/head.jpg">
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
         }
     });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
 </script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-</body>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
 
 </html>
