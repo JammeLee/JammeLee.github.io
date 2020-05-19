@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.jammelee.top/"/>
-  <updated>2020-04-20T17:55:44.412Z</updated>
+  <updated>2020-05-19T18:10:36.242Z</updated>
   <id>http://blog.jammelee.top/</id>
   
   <author>
@@ -17,11 +17,64 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Hexo使用命令生成文章</title>
+    <link href="http://blog.jammelee.top/2020/05/20/Other/Hexo%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E7%94%9F%E6%88%90%E6%96%87%E7%AB%A0/"/>
+    <id>http://blog.jammelee.top/2020/05/20/Other/Hexo%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E7%94%9F%E6%88%90%E6%96%87%E7%AB%A0/</id>
+    <published>2020-05-19T18:01:12.000Z</published>
+    <updated>2020-05-19T18:10:36.242Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Hexo使用命令生成文章"><a href="#Hexo使用命令生成文章" class="headerlink" title="Hexo使用命令生成文章"></a>Hexo使用命令生成文章</h3><ul><li>hexo new &lt;文章类型&gt;  [文章名称]</li></ul><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new post post1 <span class="comment">#在source/_posts/路径下生成post1.md和post1/</span></span><br><span class="line">$ hexo new post -p Path/post2 <span class="comment">#在source/_post/Path/路径下生成post2.md和post2/</span></span><br><span class="line">$ hexo new page page1 <span class="comment">#在source路径下生成page1/index/和page1/index.md</span></span><br><span class="line">$ hexo new draft draft1 <span class="comment">#在source/_draft下生成test/和test.md</span></span><br></pre></td></tr></table></figure><p>即，<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Usage: hexo new [layout] &lt;title&gt;</span><br><span class="line"></span><br><span class="line">Description:</span><br><span class="line">Create a new post.</span><br><span class="line"></span><br><span class="line">Arguments:</span><br><span class="line"> layout Post layout. Use post, page, draft or whatever you want.</span><br><span class="line"> title Post title. Wrap it with quotations to escape.</span><br><span class="line"></span><br><span class="line">Options:</span><br><span class="line"> -p, --path Post path. Customize the path of the post.</span><br><span class="line"> -r, --replace Replace the current post <span class="keyword">if</span> existed.</span><br><span class="line"> -s, --slug Post slug. Customize the URL of the post.</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Hexo使用命令生成文章&quot;&gt;&lt;a href=&quot;#Hexo使用命令生成文章&quot; class=&quot;headerlink&quot; title=&quot;Hexo使用命令生成文章&quot;&gt;&lt;/a&gt;Hexo使用命令生成文章&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;hexo new &amp;lt;文章类型&amp;gt;  [
+      
+    
+    </summary>
+    
+    
+      <category term="Other" scheme="http://blog.jammelee.top/categories/Other/"/>
+    
+    
+      <category term="Hexo" scheme="http://blog.jammelee.top/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo文件夹名称大小写问题</title>
+    <link href="http://blog.jammelee.top/2020/05/20/Other/Hexo%E6%96%87%E4%BB%B6%E5%A4%B9%E5%90%8D%E7%A7%B0%E5%A4%A7%E5%B0%8F%E5%86%99%E9%97%AE%E9%A2%98/"/>
+    <id>http://blog.jammelee.top/2020/05/20/Other/Hexo%E6%96%87%E4%BB%B6%E5%A4%B9%E5%90%8D%E7%A7%B0%E5%A4%A7%E5%B0%8F%E5%86%99%E9%97%AE%E9%A2%98/</id>
+    <published>2020-05-19T17:43:49.000Z</published>
+    <updated>2020-05-19T18:02:39.098Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Hexo文件夹名称大小写问题"><a href="#Hexo文件夹名称大小写问题" class="headerlink" title="Hexo文件夹名称大小写问题"></a>Hexo文件夹名称大小写问题</h3><p>因为更换了主题，所以修改了About和Tags文件夹的名称，把首写字母改成了小写，但是因为Git不区分大小写，所以导致修改后，执行如下命令时报错。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo d</span><br><span class="line">INFO  Deploying: git</span><br><span class="line">INFO  Clearing .deploy_git folder...</span><br><span class="line">INFO  Copying files from public folder...</span><br><span class="line">INFO  Copying files from extend <span class="built_in">dirs</span>...</span><br><span class="line">fatal: will not add file <span class="built_in">alias</span> <span class="string">'About/index.html'</span> (<span class="string">'about/index.html'</span> already exists <span class="keyword">in</span> index)</span><br><span class="line">FATAL Something<span class="string">'s wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span></span><br><span class="line"><span class="string">Error: Spawn failed</span></span><br><span class="line"><span class="string">    at ChildProcess.task.on.code (/Users/jamme/Documents/WorkSpace/GitHub/MyBlog/JammeLee.github.blog/node_modules/hexo-deployer-git/node_modules/hexo-util/lib/spawn.js:51:21)</span></span><br><span class="line"><span class="string">    at ChildProcess.emit (events.js:182:13)</span></span><br><span class="line"><span class="string">    at Process.ChildProcess._handle.onexit (internal/child_process.js:240:12)</span></span><br></pre></td></tr></table></figure></p><p>随后，做出了如下尝试，虽然不报错了，但是GitHub pages仓库里出现了两个首写字母分别为大写和小写的文件夹：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> .deploy_git/ <span class="comment">#从blog的工作路径下切入</span></span><br><span class="line">$ git config --<span class="built_in">local</span> core.ignorecase <span class="literal">false</span> <span class="comment">#取消忽略大小写</span></span><br></pre></td></tr></table></figure><p>这种情况下可以做如下修改：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ rm -rf about/</span><br><span class="line">$ rm -rf tags/</span><br><span class="line">$ git add -u</span><br><span class="line">$ git commit -m<span class="string">'Remove'</span></span><br><span class="line">$ git push</span><br></pre></td></tr></table></figure><p>然后重新切回blog工作路径，执行<code>hexo clean</code>和<code>hexo g</code>，这个时候再次执行<code>hexo d</code>时，就OK了。<br>注：也可从Finder中直接找到<code>.deploy_git/.git</code>文件夹，然后修改其中的<code>config</code>文件。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;Hexo文件夹名称大小写问题&quot;&gt;&lt;a href=&quot;#Hexo文件夹名称大小写问题&quot; class=&quot;headerlink&quot; title=&quot;Hexo文件夹名称大小写问题&quot;&gt;&lt;/a&gt;Hexo文件夹名称大小写问题&lt;/h3&gt;&lt;p&gt;因为更换了主题，所以修改了About和Tag
+      
+    
+    </summary>
+    
+    
+      <category term="Other" scheme="http://blog.jammelee.top/categories/Other/"/>
+    
+    
+      <category term="Hexo" scheme="http://blog.jammelee.top/tags/Hexo/"/>
+    
+  </entry>
+  
+  <entry>
     <title>V2ray+ws+tls</title>
     <link href="http://blog.jammelee.top/2020/03/20/Other/v2ray/"/>
     <id>http://blog.jammelee.top/2020/03/20/Other/v2ray/</id>
     <published>2020-03-20T15:04:06.000Z</published>
-    <updated>2020-04-20T17:55:44.412Z</updated>
+    <updated>2020-05-19T17:45:59.935Z</updated>
     
     <content type="html"><![CDATA[<h3 id="安装V2Ray"><a href="#安装V2Ray" class="headerlink" title="安装V2Ray"></a>安装V2Ray</h3><p>装机系统版本：CentOs7</p><p>首先，安装V2ray：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash &lt;(curl -L -s https://install.direct/go.sh)</span><br></pre></td></tr></table></figure></p><p>然后，设置开机启动：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> v2ray</span><br></pre></td></tr></table></figure></p><h3 id="安装SSL证书"><a href="#安装SSL证书" class="headerlink" title="安装SSL证书"></a>安装SSL证书</h3><p>安装EPEL：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum -y install epel-release</span><br></pre></td></tr></table></figure></p><p>安装certbot用于签发SSL证书：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum -y install certbot</span><br></pre></td></tr></table></figure><br>我这里在安装certbot时，出现了错误：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Loading mirror speeds from cached hostfile</span><br><span class="line"> * base: repos-lax.psychz.net</span><br><span class="line"> * elrepo-kernel: repos.lax-noc.com</span><br><span class="line"> * extras: repos-lax.psychz.net</span><br><span class="line"> * updates: repos-lax.psychz.net</span><br><span class="line">No package certbot available.</span><br><span class="line">Error: Nothing to <span class="keyword">do</span></span><br></pre></td></tr></table></figure></p><p>需要执行以下几行命令：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum remove epel-release</span><br><span class="line">yum clean all</span><br><span class="line">yum -y install yum-utils</span><br><span class="line">yum -y install epel-release</span><br></pre></td></tr></table></figure></p><p>申请SSL证书：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">certbot certonly --standalone -d example.com</span><br></pre></td></tr></table></figure><br>这里的<em>example.com</em>替换成自己的域名</p><p>如果申请成功，证书和私钥路径如下：</p><blockquote><p>/etc/letsencrypt/live/example.com/fullchain.pem<br>/etc/letsencrypt/live/example.com/privkey.pem</p></blockquote><h3 id="配置Nginx"><a href="#配置Nginx" class="headerlink" title="配置Nginx"></a>配置Nginx</h3><p>添加一个Nginx安装源：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/yum.repos.d/nginx.repo</span><br></pre></td></tr></table></figure></p><p>写入：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[nginx]</span><br><span class="line">name=nginx repo</span><br><span class="line">baseurl=http://nginx.org/packages/centos/7/<span class="variable">$basearch</span>/</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure></p><p>写入完成按ESC，然后输入:wq，回车保存并退出</p><p>安装Nginx：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum -y install nginx</span><br></pre></td></tr></table></figure></p><p>设置开机启动：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> nginx</span><br></pre></td></tr></table></figure></p><p>新建一个Nginx站点配置文件：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/nginx/conf.d/v2ray.conf</span><br></pre></td></tr></table></figure></p><p>写入如下内容：（注意example.com请更换为自己的域名）<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen       443 ssl;</span><br><span class="line">    server_name  example.com;</span><br><span class="line"></span><br><span class="line">    ssl_certificate    /etc/letsencrypt/live/example.com/fullchain.pem;</span><br><span class="line">    ssl_certificate_key    /etc/letsencrypt/live/example.com/privkey.pem;</span><br><span class="line">    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;</span><br><span class="line">    ssl_prefer_server_ciphers on;</span><br><span class="line">    ssl_session_cache shared:SSL:10m;</span><br><span class="line">    ssl_session_timeout 10m;</span><br><span class="line">    error_page 497  https://<span class="variable">$host</span><span class="variable">$request_uri</span>;</span><br><span class="line"></span><br><span class="line">location /ray &#123;</span><br><span class="line">    proxy_pass       http://127.0.0.1:10000;</span><br><span class="line">    proxy_redirect             off;</span><br><span class="line">    proxy_http_version         1.1;</span><br><span class="line">    proxy_set_header Upgrade   <span class="variable">$http_upgrade</span>;</span><br><span class="line">    proxy_set_header Connection <span class="string">"upgrade"</span>;</span><br><span class="line">    proxy_set_header Host      <span class="variable">$http_host</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>其中443是网站端口同时也是V2Ray传输端口，127.0.0.1:10000其中的10000是监听端口，可以自行更改，然后防火墙放行所需端口，或者直接关闭防火墙</p><h3 id="配置V2Ray服务端"><a href="#配置V2Ray服务端" class="headerlink" title="配置V2Ray服务端"></a>配置V2Ray服务端</h3><p>备份一下v2ray的默认配置文件：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cp /etc/v2ray/config.json /etc/v2ray/config.json.bak</span><br></pre></td></tr></table></figure></p><p>清空配置文件的内容：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">""</span> &gt; /etc/v2ray/config.json</span><br></pre></td></tr></table></figure></p><p>编辑配置文件：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/v2ray/config.json</span><br></pre></td></tr></table></figure></p><p>写入如下内容：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">"inbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"port"</span>: 10000,</span><br><span class="line">      <span class="string">"listen"</span>:<span class="string">"127.0.0.1"</span>,</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"vmess"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;</span><br><span class="line">        <span class="string">"clients"</span>: [</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="string">"id"</span>: <span class="string">"你的UUID"</span>,</span><br><span class="line">            <span class="string">"alterId"</span>: 64</span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="string">"streamSettings"</span>: &#123;</span><br><span class="line">        <span class="string">"network"</span>: <span class="string">"ws"</span>,</span><br><span class="line">        <span class="string">"wsSettings"</span>: &#123;</span><br><span class="line">        <span class="string">"path"</span>: <span class="string">"/ray"</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line">  <span class="string">"outbounds"</span>: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"protocol"</span>: <span class="string">"freedom"</span>,</span><br><span class="line">      <span class="string">"settings"</span>: &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>注：<code>port</code>字段要用上方nginx配置文件中<code>proxy_pass</code>字段里的端口号，客户端中的端口号要使用nginx中<code>listen</code>字段填写的端口号。<br>UUID可以用这个网站生成：<a href="https://www.uuidgenerator.net" target="_blank" rel="noopener">https://www.uuidgenerator.net</a><br>全部完成之后，关闭系统防火墙或者自行更改配置：</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br></pre></td></tr></table></figure><p>同时把SELinux也关了：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vi /etc/selinux/config</span><br><span class="line">SELINUX=disabled</span><br><span class="line">setenforce 0</span><br></pre></td></tr></table></figure></p><p>启动v2ray和nginx：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl start v2ray</span><br><span class="line">systemctl start nginx</span><br></pre></td></tr></table></figure></p><p>检查是否运行正常：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">systemctl status v2ray</span><br><span class="line">systemctl status nginx</span><br></pre></td></tr></table></figure></p><p>两个都显示为绿色的active(running)则说明运行成功<br>到此，服务端的配置完成</p><h3 id="CloudFlare"><a href="#CloudFlare" class="headerlink" title="CloudFlare"></a>CloudFlare</h3><p>HTTP ports supported by Cloudflare:</p><ul><li>80</li><li>8080</li><li>8880</li><li>2052</li><li>2082</li><li>2086</li><li><p>2095<br>HTTPS ports supported by Cloudflare:</p></li><li><p>443</p></li><li>2053</li><li>2083</li><li>2087</li><li>2096</li><li>8443</li></ul><p>参考文章：<br><a href="https://www.ecsoe.com/archives/38.html" target="_blank" rel="noopener">https://www.ecsoe.com/archives/38.html</a></p>]]></content>
     
@@ -36,8 +89,10 @@
     </summary>
     
     
+      <category term="Other" scheme="http://blog.jammelee.top/categories/Other/"/>
     
-      <category term="Other" scheme="http://blog.jammelee.top/tags/Other/"/>
+    
+      <category term="V2ray" scheme="http://blog.jammelee.top/tags/V2ray/"/>
     
   </entry>
   
@@ -448,54 +503,6 @@
       
       
         &lt;h3 id=&quot;给文件重命名的简便方法&quot;&gt;&lt;a href=&quot;#给文件重命名的简便方法&quot; class=&quot;headerlink&quot; title=&quot;给文件重命名的简便方法&quot;&gt;&lt;/a&gt;给文件重命名的简便方法&lt;/h3&gt;&lt;h4 id=&quot;通过修改工作区并添加至暂存区的方法重命名&quot;&gt;&lt;a href
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Git" scheme="http://blog.jammelee.top/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>认识Git的工作区和暂存区</title>
-    <link href="http://blog.jammelee.top/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/3.%E8%AE%A4%E8%AF%86Git%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA/"/>
-    <id>http://blog.jammelee.top/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/3.%E8%AE%A4%E8%AF%86Git%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E6%9A%82%E5%AD%98%E5%8C%BA/</id>
-    <published>2019-10-21T15:11:24.000Z</published>
-    <updated>2019-10-21T15:11:14.986Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="认识Git的工作区和暂存区"><a href="#认识Git的工作区和暂存区" class="headerlink" title="认识Git的工作区和暂存区"></a>认识Git的工作区和暂存区</h3><p>工作区，顾名思义，工作的目录下称作工作区。在工作区中，创建或修改的文件可以通过git add files命令添加至暂存区。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ vi a <span class="comment">#在目录下创建一个a文件，并进行编辑</span></span><br><span class="line">$ git status <span class="comment">#查看目录状态</span></span><br><span class="line">On branch master</span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line"></span><br><span class="line">a</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">"git add"</span> to track)</span><br><span class="line">$ git add a <span class="comment">#将a文件添加至暂存区</span></span><br><span class="line">$ git status <span class="comment">#再次查看目录状态</span></span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git reset HEAD &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">new file:   a</span><br><span class="line"></span><br><span class="line">$ vi a <span class="comment">#再次编辑a文件</span></span><br><span class="line">$ git status <span class="comment">#再次查看目录状态，发现a的状态变成已经被修改</span></span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git reset HEAD &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">new file:   a</span><br><span class="line"></span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">modified:   a</span><br><span class="line"></span><br><span class="line">$ git add -u <span class="comment">#把工作区所有已经被git管理的文件一起提交至暂存区 -u代表update</span></span><br><span class="line">$ git status <span class="comment">#再次查看状态</span></span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git reset HEAD &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">new file:   a</span><br></pre></td></tr></table></figure><br>将所有的创建和修改都添加至暂存区后，可以一并使用git commit -m提交至git版本库中。<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git commit -m <span class="string">'学习工作区和暂存区'</span> <span class="comment">#将暂存区的内容一起提交 纳入git的版本库中</span></span><br><span class="line">[master d34df54] 学习工作区和暂存区</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 a</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;认识Git的工作区和暂存区&quot;&gt;&lt;a href=&quot;#认识Git的工作区和暂存区&quot; class=&quot;headerlink&quot; title=&quot;认识Git的工作区和暂存区&quot;&gt;&lt;/a&gt;认识Git的工作区和暂存区&lt;/h3&gt;&lt;p&gt;工作区，顾名思义，工作的目录下称作工作区。在工作区中
-      
-    
-    </summary>
-    
-    
-    
-      <category term="Git" scheme="http://blog.jammelee.top/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>创建Git仓库</title>
-    <link href="http://blog.jammelee.top/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/2.%E5%88%9B%E5%BB%BAGit%E4%BB%93%E5%BA%93/"/>
-    <id>http://blog.jammelee.top/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/2.%E5%88%9B%E5%BB%BAGit%E4%BB%93%E5%BA%93/</id>
-    <published>2019-10-21T15:10:15.000Z</published>
-    <updated>2019-10-21T15:10:35.286Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="创建Git仓库"><a href="#创建Git仓库" class="headerlink" title="创建Git仓库"></a>创建Git仓库</h3><h4 id="两种场景："><a href="#两种场景：" class="headerlink" title="两种场景："></a>两种场景：</h4><p>1.把已有的项目代码纳入Git管理</p><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> 项目代码所在的文件夹</span><br><span class="line">$ git init</span><br></pre></td></tr></table></figure><p>2.新建的项目直接用Git管理<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> 某个文件夹</span><br><span class="line">$ git init your_project <span class="comment">#会在当前路径下创建和项目名称同名的文件夹</span></span><br><span class="line">$ <span class="built_in">cd</span> your_project</span><br></pre></td></tr></table></figure></p><h4 id="创建一个仓库，设置local配置"><a href="#创建一个仓库，设置local配置" class="headerlink" title="创建一个仓库，设置local配置"></a>创建一个仓库，设置local配置</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git init LocalTest</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> /Users/jamme/Documents/WorkSpace/GitTest/LocalTest/.git/</span><br><span class="line">$ ls</span><br><span class="line">LocalTest</span><br><span class="line">$ <span class="built_in">cd</span> LocalTest/</span><br><span class="line">$ git config --<span class="built_in">local</span> user.name <span class="string">'xxx'</span></span><br><span class="line">$ git config --<span class="built_in">local</span> user.email <span class="string">'xxx@xxx.com'</span></span><br><span class="line">$ git config --<span class="built_in">local</span> --list</span><br><span class="line">core.repositoryformatversion=0</span><br><span class="line">core.filemode=<span class="literal">true</span></span><br><span class="line">core.bare=<span class="literal">false</span></span><br><span class="line">core.logallrefupdates=<span class="literal">true</span></span><br><span class="line">core.ignorecase=<span class="literal">true</span></span><br><span class="line">core.precomposeunicode=<span class="literal">true</span></span><br><span class="line">user.name=xxx</span><br><span class="line">user.email=xxx@xxx.com</span><br></pre></td></tr></table></figure><h4 id="提交一个文件，并查看状态及日志"><a href="#提交一个文件，并查看状态及日志" class="headerlink" title="提交一个文件，并查看状态及日志"></a>提交一个文件，并查看状态及日志</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ cp ../readme . <span class="comment">#拷贝事先创建好的readme文件到当前目录</span></span><br><span class="line">$ git add readme <span class="comment">#先add readme文件</span></span><br><span class="line">$ git status <span class="comment">#查看当前路径的状态</span></span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git rm --cached &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">new file:   readme</span><br><span class="line"></span><br><span class="line">$ git commit -m<span class="string">'Add readme'</span> <span class="comment">#提交readme文件，并在-m后添加提交信息</span></span><br><span class="line">[master (root-commit) 33f7ae4] Add readme</span><br><span class="line"> 1 file changed, 0 insertions(+), 0 deletions(-)</span><br><span class="line"> create mode 100644 readme</span><br><span class="line">$ git <span class="built_in">log</span> <span class="comment">#查看git日志</span></span><br><span class="line">commit 33f7ae4c4d4da85453ed0077670e242b71d0a621 (HEAD -&gt; master)</span><br><span class="line">Author: xxx &lt;xxx@xxx.com&gt;</span><br><span class="line">Date:   Sun Apr 28 22:19:09 2019 +0800</span><br><span class="line"></span><br><span class="line">    Add readme</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;创建Git仓库&quot;&gt;&lt;a href=&quot;#创建Git仓库&quot; class=&quot;headerlink&quot; title=&quot;创建Git仓库&quot;&gt;&lt;/a&gt;创建Git仓库&lt;/h3&gt;&lt;h4 id=&quot;两种场景：&quot;&gt;&lt;a href=&quot;#两种场景：&quot; class=&quot;headerlink&quot; ti
       
     
     </summary>
