@@ -30,7 +30,7 @@
     <script async custom-element="amp-auto-ads"
         src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
     </script>
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="loading">
     <span id="config-title" style="display:none">Jamme</span>
@@ -65,13 +65,13 @@
         </div>
         <div class="content markdown">
             <p>&#8194;&#8194;&#8194;&#8194;今天突然觉得大学好像白上了，就像同学说我的那样，“恩，你学费没白交，最起码还有个毕业证。”哈哈哈，真的是应该自嘲一下。虽说引出这个问题的原因是查看了Unity官方教程自动寻路源码，但这也恰恰证明了我的大学基础是多么的不牢固。还是需要花些时间，重新拾起来啊（重头学啊）。</p>
-<p>&#8194;&#8194;&#8194;&#8194;因为上大学的主修专业是Java方向，所以没学习过C#（其实Java也基本全还给老师了）。今天抽空查了一下C#的官方文档，官方文档提供的“~”符号解释为：<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">~ 运算符对操作数执行按位求补运算，其效果相当于反转每一位。按位求补运算符是为 int、uint、long 和 ulong 类型预定义的。</span><br></pre></td></tr></table></figure><br>&#8194;&#8194;&#8194;&#8194;按位取反还记得一些，但是按位求补真的是一点都没有印象了，只知道有补码这个东西，但是知识点、怎么取，当时脑子真的是一片空白。所以找了一些资料重新回头复习了一下。发现补码原来是原码求反再加1。这里要提到几个知识点：</p>
+<p>&#8194;&#8194;&#8194;&#8194;因为上大学的主修专业是Java方向，所以没学习过C#（其实Java也基本全还给老师了）。今天抽空查了一下C#的官方文档，官方文档提供的“~”符号解释为：<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">~ 运算符对操作数执行按位求补运算，其效果相当于反转每一位。按位求补运算符是为 int、uint、long 和 ulong 类型预定义的。</span><br></pre></td></tr></table></figure><br>&#8194;&#8194;&#8194;&#8194;按位取反还记得一些，但是按位求补真的是一点都没有印象了，只知道有补码这个东西，但是知识点、怎么取，当时脑子真的是一片空白。所以找了一些资料重新回头复习了一下。发现补码原来是原码求反再加1。这里要提到几个知识点：</p>
 <ul>
 <li>正数的补码就是原码。</li>
 <li>负数的补码，取对应正数的反码再加1。</li>
 <li>补码的补码是原码。</li>
 </ul>
-<p><img src="/2018/04/03/Unity3d/20180403_001/20180403221137.png" alt="images"></p>
+<p><img src="20180403221137.png" alt="images"></p>
 <p>&#8194;&#8194;&#8194;&#8194;那么问题来了，官方文档明明说的是按位求补，但是后边又说其效果相当于反转每一位，那跟求反有什么区别呢。后来又发现了一个知识点：</p>
 <ul>
 <li>几乎所有的计算机都使用<b>二进制补码</b>表示法来存储位于n位存储单元中的有符号整数。</li>

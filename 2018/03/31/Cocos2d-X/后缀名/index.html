@@ -31,7 +31,7 @@
     <script async custom-element="amp-auto-ads"
         src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js">
     </script>
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="loading">
     <span id="config-title" style="display:none">Jamme</span>
@@ -67,7 +67,7 @@
         <div class="content markdown">
             <!--&#8194;&#8194;&#8194;&#8194;年前遇到一件特别扯淡的事情，因为项目初期的热更新模式没有设计好。采用的是解压方式，下载的热更新压缩包解压之后就留在手机内存卡里了，导致资源直接漏在外边，结果有些安卓手机的相册会把游戏资源图片检索出来，因为图片是加密过的，所以检索到相册中并不能正常显示，结果被一个傻X手机厂商发现了（因为在该手机厂商的应用商店上架了，具体不点名了）。因为游戏中每个功能模块需要的图片资源都是单独放在一个目录下的，而且游戏上线了两年了，模块比较多，导致文件夹也很多，结果相册是按照文件夹检索的，相册里多出了好几个文件夹，渠道技术客服说会把他们的相册搞崩溃（手机是有多垃圾，多了两个文件夹，相册就会崩溃），其实不然，我专门找了他家的手机试了一下，一点问题都没有。我前去询问，结果他们就改口了，说了一堆反正就是必须改，没商量。后来我问把文件夹隐藏掉可以么，并且还找了一个TX的游戏给他们示例，结果他说那款游戏也有问题，还没来得及下架呢，呵呵了。我就知道是故意找茬了，毕竟年底了么，为了KPI。那我改就是了。于是我把所有图片的PNG后缀名全部改了。啰嗦了这么多，切入正题。-->
 <p>&#8194;&#8194;&#8194;&#8194;本以为Cocos是把所有文件转换成二进制数据加载进内存的，所以代码中应该不去管后缀名了，然后我把图片更换png扩展名为metek，加密脚本中添加了新扩展名。CCFileUtils中也添加了新扩展名，用于解密流程中。一切准备就绪，发现安卓设备还是不能识别新扩展名。跟了一下代码，发现CCTextureeCache中computeImageFormatType和addImage方法中，通过eImageFormat变量的赋值为图片类型扩展名的枚举值。然后我在png的if条件中加入了新的扩展名后，发现还是无法解析出图片。于是，我打印了图片文件的头，发现标识头不是PNG格式，这时我开始怀疑是解密流程有问题。但是，因为单独加密的文件替换到iOS包中，是可以解析出图片的。这点可以证明加密流程是没有问题的。应该是android和ios走的读取文件并解密的接口不对。最终发现android走的是CCFileUitlsAndroid文件中的接口，后来在该文件中发现了这个数组。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">char</span> decodeSuffix[][<span class="number">50</span>] = &#123; <span class="string">".lua"</span>, <span class="string">".png"</span> &#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">char</span> decodeSuffix[][<span class="number">50</span>] = &#123; <span class="string">&quot;.lua&quot;</span>, <span class="string">&quot;.png&quot;</span> &#125;;</span><br></pre></td></tr></table></figure>
 <p>&#8194;&#8194;&#8194;&#8194;于是，在数组中添加新扩展名后，解密流程就可以识别并解析metek文件了。</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
