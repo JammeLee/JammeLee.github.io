@@ -128,196 +128,6 @@
       </tags>
   </entry>
   <entry>
-    <title>重建二叉树</title>
-    <url>/2019/03/16/Interview/20190316_001/</url>
-    <content><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><br></p>
-<hr>
-<p>&#8194;&#8194;&#8194;&#8194;输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</p>
-<hr>
-<p><br></p>
-<ul>
-<li>前序遍历的顺序为：根左右</li>
-<li>中序遍历的顺序为：左根右</li>
-</ul>
-<h3 id="主要思路：递归"><a href="#主要思路：递归" class="headerlink" title="主要思路：递归"></a>主要思路：递归</h3><ol>
-<li>根据前序遍历的第一个节点确定根节点</li>
-<li>在中序遍历中找到根节点的位置</li>
-<li>根左边的就是左子树，右边的就是右子树</li>
-<li>构建根和左右子树</li>
-<li>递归的进行1、2、3和4</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for binary tree</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">reConstructBinaryTree</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; pre,vector&lt;<span class="keyword">int</span>&gt; vin)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(pre.<span class="built_in">size</span>() != vin.<span class="built_in">size</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;length not equls&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(pre.<span class="built_in">size</span>() == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;pre length is 0&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> length = pre.<span class="built_in">size</span>();</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;pre length is &quot;</span> &lt;&lt; length &lt;&lt; endl;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//前序遍历的第一个结点是root结点</span></span><br><span class="line">        <span class="keyword">int</span> value = pre[<span class="number">0</span>];</span><br><span class="line">        TreeNode *root = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(value);</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;this root is &quot;</span> &lt;&lt; root-&gt;val &lt;&lt; endl;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//然后再中序遍历中找到根的位置 左边的就是左子树 右边的就是右子树</span></span><br><span class="line">        <span class="keyword">int</span> rootIdx = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(;rootIdx &lt; length; rootIdx ++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(vin[rootIdx] == value)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;the root at &quot;</span> &lt;&lt; rootIdx &lt;&lt; endl;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(rootIdx &gt;= length)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;can&#x27;t find root (value = &quot;</span> &lt;&lt; value &lt;&lt; <span class="string">&quot;) in vin&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//确定左子树的长度 和 右子树的长度</span></span><br><span class="line">        <span class="keyword">int</span> leftLength = rootIdx;</span><br><span class="line">        <span class="keyword">int</span> rightLength = length - rootIdx - <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">preLeft</span><span class="params">(leftLength)</span>, <span class="title">inLeft</span><span class="params">(leftLength)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">preRight</span><span class="params">(rightLength)</span>, <span class="title">inRight</span><span class="params">(rightLength)</span></span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i &lt; rootIdx)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//左子树</span></span><br><span class="line">                <span class="comment">//前序遍历的第一个节点是根结点，因此是i+1</span></span><br><span class="line">                preLeft[i] = pre[i + <span class="number">1</span>];</span><br><span class="line">                inLeft[i] = vin[i];</span><br><span class="line">                cout &lt;&lt; preLeft[i] &lt;&lt; inLeft[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i &gt; rootIdx)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//右子树</span></span><br><span class="line">                preRight[i - rootIdx - <span class="number">1</span>] = pre[i];</span><br><span class="line">                inRight[i - rootIdx - <span class="number">1</span>] = vin[i];</span><br><span class="line">                cout &lt;&lt; preRight[i] &lt;&lt; inRight[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;left tree is&quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; leftLength; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; preLeft[i] &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; inLeft[i] &lt;&lt; endl;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;right tree is&quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rightLength; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; preRight[i] &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; inRight[i] &lt;&lt; endl;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        root-&gt;left = <span class="built_in">reConstructBinaryTree</span>(preLeft, inLeft);</span><br><span class="line">        root-&gt;right = <span class="built_in">reConstructBinaryTree</span>(preRight, inRight);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Interview</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>用两个栈实现队列</title>
-    <url>/2019/03/17/Interview/20190317_001/</url>
-    <content><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><br></p>
-<hr>
-<p>&#8194;&#8194;&#8194;&#8194;用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。</p>
-<hr>
-<p><br></p>
-<h3 id="主要思路："><a href="#主要思路：" class="headerlink" title="主要思路："></a>主要思路：</h3><h4 id="最初思路"><a href="#最初思路" class="headerlink" title="最初思路"></a>最初思路</h4><p>&#8194;&#8194;&#8194;&#8194;因为栈和队列最明显的区别就是，栈是先进后出，而队列是先进先出。所以为了满足这个要求，我最初的思路是用stack1来做入队操作，用stack2来做出队操作。</p>
-<ul>
-<li>入队，将元素压入stack1</li>
-<li>出队，将stack1倒入stack2，弹出栈顶元素，然后再重新倒入stack1</li>
-</ul>
-<h4 id="优化思路"><a href="#优化思路" class="headerlink" title="优化思路"></a>优化思路</h4><p>&#8194;&#8194;&#8194;&#8194;最初思路完全只是为了解决这个问题的思路，丝毫没有考虑优化方面。那么仔细思考一下，发现是不是有可以优化的地方呢。首先，最初思路有个小细节可以优化一下，那就是在出队时，stack1的栈底元素可以不用压入stack2（只倒入stack1.size( )-1个元素），可直接弹出作为出队元素返回，这样就可以少做一次压栈操作。</p>
-<ul>
-<li>如果是入队操作，判断stack1是否为空，如果不为空，那么就直接压栈；如果为空，就把stack2倒入stack1中，然后再压栈。</li>
-<li>如果是出队操作，判断stack2是否为空，如果不为空，那么就直接出栈；如果为空，就把stack1的元素逐个倒入stack2，把最后一个元素弹出并出队。</li>
-</ul>
-<h4 id="最后解决方案"><a href="#最后解决方案" class="headerlink" title="最后解决方案"></a>最后解决方案</h4><p>&#8194;&#8194;&#8194;&#8194;上边的思路都有一个问题，那就是stack1和stack2之间频繁的倒来倒去，效率就显得不是那么好。所以再换一种更好的思路，我们始终用stack1做入队操作，用stack2做出队操作。</p>
-<ul>
-<li>入队，将元素压入stack1</li>
-<li>出队，先判断stack2是否为空，如果不为空，那么弹出stack2的栈顶元素，如果为空，将stack1元素逐个倒入stack2，把最后一个元素弹出并出队。</li>
-</ul>
-<p>&#8194;&#8194;&#8194;&#8194;这个思路避免了反复“倒”栈，仅在需要时才“倒”一次。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span> </span>&#123;</span><br><span class="line">        stack1.<span class="built_in">push</span>(node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> node = <span class="number">-1</span>;</span><br><span class="line">        <span class="comment">//两个栈都为空时，队列为空</span></span><br><span class="line">        <span class="keyword">if</span>(stack1.<span class="built_in">empty</span>() == <span class="literal">true</span> &amp;&amp; stack2.<span class="built_in">empty</span>() == <span class="literal">true</span>)&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;queue is null&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">return</span> node;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(stack2.<span class="built_in">empty</span>() == <span class="literal">true</span>)&#123;</span><br><span class="line">                <span class="comment">//stack2为空 需要把stack1倒入stack2 </span></span><br><span class="line">                <span class="comment">//然后直接把stack1的最后一个元素弹出 可以减少一次压栈操作</span></span><br><span class="line">                <span class="keyword">int</span> size1 = stack1.<span class="built_in">size</span>();</span><br><span class="line">                <span class="keyword">int</span> length = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>(stack1.<span class="built_in">empty</span>() != <span class="literal">true</span> &amp;&amp; length &lt; size1 - <span class="number">1</span>)&#123;</span><br><span class="line">                    node = stack1.<span class="built_in">top</span>();</span><br><span class="line">                    stack1.<span class="built_in">pop</span>();</span><br><span class="line">                    stack2.<span class="built_in">push</span>(node);</span><br><span class="line">                    cout &lt;&lt; <span class="string">&quot;push &quot;</span> &lt;&lt; node &lt;&lt; <span class="string">&quot; in stack2&quot;</span> &lt;&lt; endl;</span><br><span class="line">                    length ++;</span><br><span class="line">                &#125;</span><br><span class="line">                node = stack1.<span class="built_in">top</span>();</span><br><span class="line">                stack1.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                node = stack2.<span class="built_in">top</span>();</span><br><span class="line">                stack2.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; stack1;</span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; stack2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Interview</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>旋转数组的最小数字</title>
-    <url>/2019/03/19/Interview/20190319_001/</url>
-    <content><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><br></p>
-<hr>
-<p>&#8194;&#8194;&#8194;&#8194;把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。</p>
-<hr>
-<p><br></p>
-<p>&#8194;&#8194;&#8194;&#8194;要做这道题，首先要讲一下非减排序数组是什么意思。起初以为只要不是减排序就可以，比如说{1,3,2,5,4}。但实际上并不是这样，找了很多资料都没有详细描述。（这里就要吐槽一下国内的某sdn和辣鸡某度，随便搜一下，全是千篇一律的文章，连标点符号都一字不差。有时候都怀疑，这些人就那么喜欢吃人家嘴里吐出来的东西么。）最后终于凭着自己的猜测和模糊的资料，得知原来非减序数组就是每个元素都大于等于后一个元素。例如，{1,2,3,4,5}，{0,1,1,1,1,1}等。</p>
-<p>&#8194;&#8194;&#8194;&#8194;主要思路：二分查找</p>
-<ul>
-<li>可以把旋转数组看作是前后两个非减排序的子数组</li>
-<li>用两个指针分别指向数组的第一个元素和最后一个元素</li>
-<li>求mid=(low + high) / 2</li>
-<li>如果mid位于后边数组的话，mid应该小于high，那么最小值应该在mid及自身之前，所以把high提到mid</li>
-<li>如果mid位于前边数组的话，mid应该大于low，那么最小值应该在mid及自身之后，所以把low后移到mid</li>
-<li>依次循环找到最小值</li>
-<li>但是上边讲非减排序数组也可以是{0,1,1,1,1,1}，那么它的旋转数组{1,1,1,1,0,1}的low、mid和high是相等的，就出现了问题，此时不知道最小值是再前边数组还是后边数组，所以就只能使用顺序查找来找出最小值了</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minNumberInRotateArray</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; rotateArray)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//可以把旋转数组看作是前后两个非减排序的子数组</span></span><br><span class="line">        <span class="keyword">if</span>(rotateArray.<span class="built_in">size</span>() == <span class="number">0</span>)&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;rotateArray size is 0&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> mid = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high = rotateArray.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(rotateArray[low] &lt; rotateArray[high])&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;rotateArray is not rotated&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(rotateArray[low] &gt;= rotateArray[high])&#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(high - low == <span class="number">1</span>)&#123;</span><br><span class="line">                mid = high;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            mid = (low + high) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(rotateArray[mid] == rotateArray[high] </span><br><span class="line">               &amp;&amp; rotateArray[mid] == rotateArray[low])&#123;</span><br><span class="line">                <span class="comment">//这里无法确定到底是应该取左边子数组 还是取右边子数组 </span></span><br><span class="line">                <span class="comment">//那么就交给顺序查找来做吧</span></span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">minOrder</span>(rotateArray, low, high);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(rotateArray[mid] &lt;= rotateArray[high])&#123;</span><br><span class="line">                <span class="comment">//如果mid位于后边数组的话 mid应该小于high</span></span><br><span class="line">                <span class="comment">//最小值应该在mid及之前 因为mid后边的值一定不小于自身的</span></span><br><span class="line">                <span class="comment">//那么把high提前到mid位置</span></span><br><span class="line">                high = mid;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(rotateArray[mid] &gt;= rotateArray[low])&#123;</span><br><span class="line">                <span class="comment">//如果mid位于前边数组的话 mid应该大于low</span></span><br><span class="line">                <span class="comment">//最小值应该在mid及之后</span></span><br><span class="line">                <span class="comment">//所以把low后移到mid位置</span></span><br><span class="line">                low = mid;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> rotateArray[mid];</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minOrder</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; &amp;num, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> min = num[low];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = low + <span class="number">1</span>; i &lt; high; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(min &gt; num[i])&#123;</span><br><span class="line">                min = num[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> min;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Interview</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>二进制中1的个数</title>
-    <url>/2019/03/25/Interview/20190325_001/</url>
-    <content><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><br></p>
-<hr>
-<p>&#8194;&#8194;&#8194;&#8194;输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。</p>
-<hr>
-<p><br></p>
-<h3 id="通过移位测试每一位"><a href="#通过移位测试每一位" class="headerlink" title="通过移位测试每一位"></a>通过移位测试每一位</h3><p>&#8194;&#8194;&#8194;&#8194;首先，很容易能想到的就是通过移位的方法，挨个判断每一位。<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">NumberOf1</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(n)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(n &amp; <span class="number">1</span> == <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">            n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>&#8194;&#8194;&#8194;&#8194;但是这种方法有个致命的缺陷，我们假设通过移位的方式可以获取到其每一位，但并不总是对的。</p>
-<h3 id="逻辑右移和算数右移"><a href="#逻辑右移和算数右移" class="headerlink" title="逻辑右移和算数右移"></a>逻辑右移和算数右移</h3><p>&#8194;&#8194;&#8194;&#8194;比如说一个有符号位的8位二进制数11001101，逻辑右移就不管符号位，如果移一位就变成01100110。算数右移要管符号位，右移一位变成10100110。</p>
-<ul>
-<li>逻辑左移=算数左移，右边统一添0</li>
-<li>逻辑右移，左边统一添0</li>
-<li>算数右移，左边添加的数和符号有关<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">e.g:1010101010，其中[]位是添加的数字</span><br><span class="line">逻辑左移一位：010101010[0]</span><br><span class="line">算数左移一位：010101010[0]</span><br><span class="line">逻辑右移一位：[0]101010101</span><br><span class="line">算数右移一位：[1]101010101</span><br></pre></td></tr></table></figure>
-&#8194;&#8194;&#8194;&#8194;因此如果输入负数，那么我们的算法简单的判断是不是0来终结，就会进入死循环。</li>
-</ul>
-<h3 id="避免负数移位的死循环"><a href="#避免负数移位的死循环" class="headerlink" title="避免负数移位的死循环"></a>避免负数移位的死循环</h3><p>&#8194;&#8194;&#8194;&#8194;为了负数的时候，避免死循环，我们可以不右移数字n，转而去移动测试位。<br>&#8194;&#8194;&#8194;&#8194;那么思考我们的循环结束条件，flag一直左移（乘以2），当超出表示标识范围的时候，我们就可以终止了，但是这样子的话，最高位的符号没有测试，因此要单独测试，同时由于会溢出，我们的flag需要用long来标识。<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">NumberOf1</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">long</span> flag = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(flag &lt;= INT_MAX)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt;n &lt;&lt;<span class="string">&quot; &amp; &quot;</span> &lt;&lt;flag &lt;&lt;<span class="string">&quot; == &quot;</span>&lt;&lt;(n &amp; flag) &lt;&lt;endl;</span><br><span class="line">            <span class="keyword">if</span>((n &amp; flag) != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">            flag &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//  由于循环终结，我们使用的是flag &lt;= INT_MAX</span></span><br><span class="line">        <span class="comment">//  因此前面的循环只会执行31次</span></span><br><span class="line">        <span class="keyword">if</span>((n &amp; flag) != <span class="number">0</span>)    <span class="comment">//  最后测试符号位</span></span><br><span class="line">        &#123;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>&#8194;&#8194;&#8194;&#8194;继续考虑，会发现循环条件还可以精简一下，如果数据发生溢出的话，会被截断，截断以后就是0。<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">NumberOf1</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> flag = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(flag != <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt;n &lt;&lt;<span class="string">&quot; &amp; &quot;</span> &lt;&lt;flag &lt;&lt;<span class="string">&quot; == &quot;</span>&lt;&lt;(n &amp; flag) &lt;&lt;endl;</span><br><span class="line">            <span class="keyword">if</span>((n &amp; flag) != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">            flag &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt;n &lt;&lt;<span class="string">&quot; &amp; &quot;</span> &lt;&lt;flag &lt;&lt;<span class="string">&quot; == &quot;</span>&lt;&lt;(n &amp; flag) &lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>&#8194;&#8194;&#8194;&#8194;这种方法循环的次数刚好就是二进制的位数，比如32位就循环32次。那么，有没有方法可以做到整数中有多少个1就循环多少次呢。</p>
-<h3 id="整数中有几个1就循环几次——lowbit优化"><a href="#整数中有几个1就循环几次——lowbit优化" class="headerlink" title="整数中有几个1就循环几次——lowbit优化"></a>整数中有几个1就循环几次——lowbit优化</h3><p>&#8194;&#8194;&#8194;&#8194;我们分析n与n-1两个数的差别</p>
-<ul>
-<li>如果n!=0，那么其二进制位中至少有一个1</li>
-<li>如果n的最低位是1（奇数），那么n-1正好把这个最低位的1变成0，其他位不变</li>
-<li>如果n的最低位是0（偶数），那么假设其右起第一个1位于m位，即m位后面全是0，那么n-1的第m位由1变成0，而第m位后面的所有0均变成1，m位之前的所有位保持不变。<br>&#8194;&#8194;&#8194;&#8194;因此通过分析发现：<br>&#8194;&#8194;&#8194;&#8194;把一个整数n减去1，再和原来的整数做与运算，会把该整数最右边一个1变成0，那么该整数有多少个1，就会进行多少次与运算。</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">NumberOf1</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n)</span><br><span class="line">        &#123;</span><br><span class="line">            count++;</span><br><span class="line">            n = n &amp; (n - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="STL-bitset"><a href="#STL-bitset" class="headerlink" title="STL-bitset"></a>STL-bitset</h3><p>&#8194;&#8194;&#8194;&#8194;STL中用bitset来方便地管理一系列的bit位，而不用程序员自己来写代码。<br>&#8194;&#8194;&#8194;&#8194;bitset除了可以访问指定下标的bit位以外，还可以把它们作为一个整数来进行某些统计。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">NumberOf1</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="function">bitset&lt;32&gt; <span class="title">bit</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">return</span> bit.<span class="built_in">count</span>();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Interview</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>斐波那契数列</title>
-    <url>/2019/04/14/Interview/20190414_001/</url>
-    <content><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><br></p>
-<hr>
-<p>&#8194;&#8194;&#8194;&#8194;大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。</p>
-<hr>
-<p><br></p>
-<h3 id="通过递归"><a href="#通过递归" class="headerlink" title="通过递归"></a>通过递归</h3><p>&#8194;&#8194;&#8194;&#8194;首先，很容易就想到了递推公式<script type="math/tex">f(n)=f(n-1)+f(n-2)</script>。因此我们马上就能想到使用递归方法，代码如下：<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">Fibonacci</span>(n - <span class="number">1</span>) + <span class="built_in">Fibonacci</span>(n - <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>&#8194;&#8194;&#8194;&#8194;但实际上递归方法的时间复杂度是以n的指数方式增长的。</p>
-<h3 id="递归展开-迭代方法"><a href="#递归展开-迭代方法" class="headerlink" title="递归展开-迭代方法"></a>递归展开-迭代方法</h3><p>&#8194;&#8194;&#8194;&#8194;因此我们只能用最普通的方法，将递推公式进行展开。<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> one = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">long</span> two = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">long</span> res = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            res = one + two;</span><br><span class="line"></span><br><span class="line">            one = two;</span><br><span class="line">            two = res;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>&#8194;&#8194;&#8194;&#8194;但这还不是最快的方法，下面介绍一种时间复杂度是<script type="math/tex">O(logn)</script>的方法。</p>
-<h3 id="O-logn-求Fibonacci数列"><a href="#O-logn-求Fibonacci数列" class="headerlink" title="$O(logn)$求Fibonacci数列"></a>$O(logn)$求Fibonacci数列</h3><p>&#8194;&#8194;&#8194;&#8194;在介绍此方法前，先介绍一个数学公式：</p>
-<script type="math/tex; mode=display">
-\begin{bmatrix}
-f(n)&f(n-1)\\
-f(n-1)&f(n-2)\\
-\end{bmatrix}
-=
-\begin{bmatrix}
-1&1\\
-1&0\\
-\end{bmatrix}^{n-1}</script><p>&#8194;&#8194;&#8194;&#8194;有了此公式，求<script type="math/tex">f(n)</script>就只要求出矩阵<script type="math/tex">\begin{bmatrix}1&1\\1&0\\\end{bmatrix}</script>的n-1次方，因为矩阵的n-1次方的第一行第一列就是f(n)。这个公式使用数学归纳法不难得出。那么问题又来了，从0开始到n-1，实际上还是需要n次运算，并不比上面的方法快。但是我们可以利用同底数幂法则：</p>
-<script type="math/tex; mode=display">
-a^n = a^{\frac{n} {2}}*a^{\frac{n} {2}}</script><p>或</p>
-<script type="math/tex; mode=display">
-a^n = a^{\frac{n-1} {2}}*a^{\frac{n-1} {2}}</script><p>&#8194;&#8194;&#8194;&#8194;要求n次方，现求出<script type="math/tex">{\frac{n} {2}}</script>次方后，再平方即可。<br>&#8194;&#8194;&#8194;&#8194;用这种方式实现时，首先要定义一个2*2的矩阵。并定义好矩阵的乘法以及幂运算。</p>
-<p>&#8194;&#8194;&#8194;&#8194;接下来再介绍一种推理公式：</p>
-<script type="math/tex; mode=display">
-\begin{align}
-f(n) & =f(n-1)+f(n-2)\\
-& =2*f(n-2)+f(n-3)\\
-& =3*f(n-3)+2*f(n-4)\\
-& =5*f(n-4)+3*f(n-5)\\
-& =···\\
-& =f(k)*f(n-k+1)+f(k-1)*f(n-k)\\
-\end{align}</script><p>&#8194;&#8194;&#8194;&#8194;当n=2k和n=2k-1推理公式以及代码如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> post;<span class="comment">//存Fibonacci(n-1)</span></span><br><span class="line">    <span class="keyword">int</span> pre;<span class="comment">//存Fibonacci(n)</span></span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(n == <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            pre = <span class="number">1</span>;</span><br><span class="line">            post = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> post;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        (1):</span></span><br><span class="line"><span class="comment">        a(n) = a(n-1) + a(n-2)</span></span><br><span class="line"><span class="comment">             = a(n-2) + a(n-3) + a(n-2)</span></span><br><span class="line"><span class="comment">             = 2 * a(n-2) + a(n-3)</span></span><br><span class="line"><span class="comment">             = 3 * a(n-3) + 2 * a(n-4)</span></span><br><span class="line"><span class="comment">             = a(k) * a(n - k + 1) + a(k-1) * a(n-k)</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        奇数情况：</span></span><br><span class="line"><span class="comment">        令n=2k-1;</span></span><br><span class="line"><span class="comment">        由(1)式得：</span></span><br><span class="line"><span class="comment">        a(2k-1) = a(k) * a(k) + a(k-1) * a(k-1)</span></span><br><span class="line"><span class="comment">                = a(k)^2 + a(k-1)^2</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        偶数情况：</span></span><br><span class="line"><span class="comment">        令n=2k;</span></span><br><span class="line"><span class="comment">        由(1)式得：</span></span><br><span class="line"><span class="comment">        a(2k) = a(k) * a(k+1) + a(k-1) * a(k)</span></span><br><span class="line"><span class="comment">                = a(k)^2 + 2 * a(k) * a(k-1)</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//n为奇数，则做减一操作，函数返回时</span></span><br><span class="line">        <span class="comment">//pre: f(n) = f(n-1) + f(n-2)</span></span><br><span class="line">        <span class="comment">//post: f(n-1) = f(n) - f(n-2)</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(n % <span class="number">2</span> == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="built_in">Fibonacci</span>(n<span class="number">-1</span>);</span><br><span class="line">            pre = pre + post;</span><br><span class="line">            post = pre - post;</span><br><span class="line">            <span class="keyword">return</span> pre;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//n为偶数，一直除以2</span></span><br><span class="line">        </span><br><span class="line">        <span class="built_in">Fibonacci</span>(n/<span class="number">2</span>);</span><br><span class="line">        temp = pre;</span><br><span class="line">        pre = pre * pre + <span class="number">2</span> * pre * post;</span><br><span class="line">        post = temp * temp + post * post;</span><br><span class="line">        <span class="keyword">return</span> pre;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <tags>
-        <tag>Interview</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>跳台阶</title>
-    <url>/2019/04/16/Interview/20190416_001/</url>
-    <content><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><br></p>
-<hr>
-<p>&#8194;&#8194;&#8194;&#8194;一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。</p>
-<hr>
-<p><br></p>
-<h3 id="观察分析"><a href="#观察分析" class="headerlink" title="观察分析"></a>观察分析</h3><p>&#8194;&#8194;&#8194;&#8194;小青蛙一次可以跳1级，也可以跳2级。当有n级台阶：</p>
-<ul>
-<li>第一次跳1级时，跳法的数目就等于剩下的n-1级台阶的跳法数目</li>
-<li>第一次跳2级时，跳法数目就等于剩下n-2级台阶的跳法数目。</li>
-</ul>
-<p>&#8194;&#8194;&#8194;&#8194;所以n级台阶的总跳法数目等于第一次跳1级和第一次跳2级的数目的和，即f(n)=f(n-1)+f(n-2)。我们会发现这其实就是斐波那契数列。但是，当n=0时，f(n)=0；当n=1时，f(n)=1；当n=2时，f(n)=2，所以当n&gt;2时，f(n)=f(n-1)+f(n-2)。代码如下：<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jumpFloor</span><span class="params">(<span class="keyword">int</span> number)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(number &lt;= <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> number;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> first = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> second = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= number; i++)&#123;</span><br><span class="line">            res = first + second;</span><br><span class="line">            first = second;</span><br><span class="line">            second = res;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <tags>
-        <tag>Interview</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>变态跳台阶</title>
-    <url>/2019/04/16/Interview/20190416_002/</url>
-    <content><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><br></p>
-<hr>
-<p>&#8194;&#8194;&#8194;&#8194;一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</p>
-<hr>
-<p><br></p>
-<h3 id="观察分析"><a href="#观察分析" class="headerlink" title="观察分析"></a>观察分析</h3><p>&#8194;&#8194;&#8194;&#8194;本题目牵扯到一次跳n级的问题，当有n级台阶，分析如下：</p>
-<ul>
-<li>f(1)=1</li>
-<li>f(2)=f(2-1)+f(2-2)   //f(2-1)代表第一次跳1级，f(2-2)代表第一次跳2级，也就是跳n级</li>
-<li>f(3)=f(3-1)+f(3-2)+f(3-3)</li>
-<li>···</li>
-<li>f(n)=f(n-1)+f(n-2)+···+f(n-(n-1))+f(n-n)</li>
-</ul>
-<p>&#8194;&#8194;&#8194;&#8194;从f(n)=f(n-1)+f(n-2)+···+f(n-(n-1))+f(n-n)可以发现，这就是斐波那契数列求和。那么其实还可以继续化简，将n-1带入f(n)，f(n-1)=f(0)+f(1)+f(2)+···+f(n-2)，f(n)化简得f(n)=f(0)+f(1)+f(2)+···+f(n-2)+f(n-1)，最后得，f(n)=f(n-1)+f(n-1)=2*f(n-1)。代码如下：<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jumpFloorII</span><span class="params">(<span class="keyword">int</span> number)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(number &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(number == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span>*<span class="built_in">jumpFloorII</span>(number<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-]]></content>
-      <tags>
-        <tag>Interview</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Shading</title>
     <url>/2021/05/16/ComputerGraphics/Shading/</url>
     <content><![CDATA[<h3 id="Illumination-amp-Shading"><a href="#Illumination-amp-Shading" class="headerlink" title="Illumination &amp; Shading"></a>Illumination &amp; Shading</h3><h4 id="Shading-Definition"><a href="#Shading-Definition" class="headerlink" title="Shading: Definition"></a>Shading: Definition</h4><ul>
@@ -627,13 +437,13 @@ f(x,y)=lerp(t,u_{0},u_{1})</script><p><img src="https://raw.githubusercontent.co
         <category>Computer Graphics</category>
       </categories>
       <tags>
-        <tag>Derivation</tag>
+        <tag>Games101</tag>
       </tags>
   </entry>
   <entry>
     <title>投影变换的推导</title>
     <url>/2020/05/31/ComputerGraphics/%E6%8A%95%E5%BD%B1%E5%8F%98%E6%8D%A2%E7%9A%84%E6%8E%A8%E5%AF%BC/</url>
-    <content><![CDATA[<h1 id="投影变换推导"><a href="#投影变换推导" class="headerlink" title="投影变换推导"></a>投影变换推导</h1><p>这里我们说到的投影分为两种：</p>
+    <content><![CDATA[<p>这里我们说到的投影分为两种：</p>
 <ul>
 <li>正交投影(Orthographic projection (O))</li>
 <li>透视投影(Perspective projection (P))</li>
@@ -824,7 +634,423 @@ n & 0 & 0 & 0\\
         <category>Computer Graphics</category>
       </categories>
       <tags>
-        <tag>Derivation</tag>
+        <tag>Games101</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Unity的渲染路径（上）</title>
+    <url>/2021/07/28/ComputerGraphics/%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84/</url>
+    <content><![CDATA[<p>在Unity里，<strong>渲染路径（Rendering Path）</strong>决定了光照是如何应用到Unity Shader中的。因此，如果要和光源打交道，我们需要为每个Pass指定它使用的渲染路径，只有这样才能让Unity知道我们想要使用哪种渲染路径，从而把光源和处理后的光照信息都放在一些内置变量中，供我们访问。也就是说，只有为Shader正确地选择和设置了需要的渲染路径，该Shader的光照计算才能被正确执行。</p>
+<p>大多数情况下，一个项目只使用一种渲染路径，因此我们可以为整个项目设置渲染时的渲染路径。通过<code>Edit</code>-&gt;<code>Project Settings</code>-&gt;<code>Graphics</code>-&gt;<code>Tier Settings</code>-&gt;<code>Rendering Path</code>中选择项目所需的渲染路径。默认情况下，该选项为前向渲染路径。如图：</p>
+<p><img src="https://raw.githubusercontent.com/JammeLee/MyPicBed/master/BlogPic/20210726194345.png" alt="img"></p>
+<p>但有时我们希望可以使用多个渲染路径，例如相机A渲染的物体使用前向渲染路径，而相机B渲染的物体使用延迟渲染路径。这时，我们可以通过在每个相机的渲染路径设置中设置该相机使用的渲染路径，来覆盖Graphics Settings中的设置。如图：</p>
+<p><img src="https://raw.githubusercontent.com/JammeLee/MyPicBed/master/BlogPic/20210726194633.png" alt="img"></p>
+<p>上面的设置中，如果选择了Use Graphics Settings，那么这个相机就会使用Graphics Settings中的设置，否则就会覆盖掉Graphics Settings中的设置。需要注意的是，如果当前的显卡并不支持所选的渲染路径，Unity会自动使用更低一级的渲染路径。例如，如果一个GPU不支持延迟渲染，那么Unity就会使用前向渲染。</p>
+<p>完成了上面的设置后，我们就可以在每个Pass中使用标签来指定该Pass使用的渲染路径。这是通过设置Pass的<strong>LightMode</strong>标签实现的。不同类型的渲染路径可能会包含多种标签设置。</p>
+<blockquote>
+<p>Pass{<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tags{ “LightMode” = “ForwardBase”}</p>
+</blockquote>
+<p>上面的代码告诉Unity，该Pass使用前向渲染路径中的<strong>ForwardBase</strong>路径。而前向渲染路径还有一种路径叫做<strong>ForwardAdd</strong>。下表给出了Pass的LightMode标签支持的渲染路径设置选项。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">标签名</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Always</td>
+<td style="text-align:center">不管使用哪种渲染路径，该Pass总是会被渲染，但不会计算任何光照</td>
+</tr>
+<tr>
+<td style="text-align:center">ForwardBase</td>
+<td style="text-align:center">用于<strong>前向渲染</strong>。该Pass会计算环境光、最重要的平行光、逐顶点/SH光源和Lightmaps</td>
+</tr>
+<tr>
+<td style="text-align:center">ForwardAdd</td>
+<td style="text-align:center">用于<strong>前向渲染</strong>。该Pass会计算额外的逐像素光源，每个Pass对应一个光源。</td>
+</tr>
+<tr>
+<td style="text-align:center">Deferred</td>
+<td style="text-align:center">用于<strong>延迟渲染</strong>。该Pass会渲染G缓冲（G-buffer）。</td>
+</tr>
+<tr>
+<td style="text-align:center">ShadowCaster</td>
+<td style="text-align:center">把物体的深度信息渲染到阴影映射纹理（shadowmap）或一张深度纹理中</td>
+</tr>
+<tr>
+<td style="text-align:center">MotionVectors</td>
+<td style="text-align:center">用于计算每个物体的运动响亮</td>
+</tr>
+<tr>
+<td style="text-align:center">PrepassBase</td>
+<td style="text-align:center">用于<strong>遗留的延迟渲染</strong>。该Pass会渲染法线和高光反射的指数部分。</td>
+</tr>
+<tr>
+<td style="text-align:center">PrepassFinal</td>
+<td style="text-align:center">用于<strong>遗留的延迟渲染</strong>。该Pass通过合并纹理、光照和自发光来渲染得到最后的颜色。</td>
+</tr>
+<tr>
+<td style="text-align:center">Vertex</td>
+<td style="text-align:center">用于<strong>遗留的顶点照明渲染</strong>。当物体未烘焙光照贴图时。应用所有顶点光源。</td>
+</tr>
+<tr>
+<td style="text-align:center">VertexLMRGBM</td>
+<td style="text-align:center">用于<strong>遗留的顶点照明渲染</strong>。当物体烘焙光照贴图时，并且在光照贴图采用RGBM编码的平台（PC和控制台）上。</td>
+</tr>
+<tr>
+<td style="text-align:center">VertexLM</td>
+<td style="text-align:center">用于<strong>遗留的顶点照明渲染</strong>。当物体烘焙光照贴图时，并且在光照贴图采用双LDR编码（移动平台）的平台上。</td>
+</tr>
+<tr>
+<td style="text-align:center">Meta</td>
+<td style="text-align:center">此Pass不用于常规渲染，仅用于光照贴图烘焙或实时全局光照。更多有关信息，请参阅<a href="https://docs.unity3d.com/Manual/MetaPass.html">光照贴图和Meta Pass标签</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>如果一个Pass没有指定任何渲染路径会有什么问题么？</p>
+<p>通俗讲，指定渲染路径是我们和Unity的底层渲染引擎的一次重要沟通。例如，如果我们为一个Pass设置了前向渲染路径的标签，就相当于告诉Unity，我们准备使用前向渲染了。那么Unity就会把光照属性按照前向渲染的流程准备好。随后我们可以通过Unity内置的光照变量来访问这些属性值。如果我们没有指定任何的渲染路径（实际上，Unity中如果使用了前向渲染，又没有为Pass指定任何前向渲染适合的标签，就会被当成一个和顶点照明渲染路径相同的Pass），那么一些光照变量很可能不会被正确赋值，我们计算出的效果也就很有可能是错误的。</p>
+<h2 id="前向渲染路径"><a href="#前向渲染路径" class="headerlink" title="前向渲染路径"></a>前向渲染路径</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>每进行一次完整的前向渲染，我们需要渲染该对象的渲染图元，并计算两个缓冲区的信息：一个是颜色缓冲区，一个是深度缓冲区。利用深度缓冲区来决定一个片元是否可见，如果可见，那么就刷新颜色缓冲区中的值。用伪代码来描述一下前向渲染的大概过程：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Pass &#123;</span><br><span class="line">    for (each primitive in this model) &#123;</span><br><span class="line">        if (failed in depth test) &#123;</span><br><span class="line">            //如果没有通过深度测试，说明该片元不可见，并抛弃此片元</span><br><span class="line">            discard;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            //进行光照计算</span><br><span class="line">            float4 color = Shading(materialInfo, pos, normal, lightDir, viewDir);</span><br><span class="line">            //更新帧缓冲</span><br><span class="line">            writeFrameBuffer(fragment, color);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于每个逐像素光源，我们都需要进行上面一次完整的渲染流程。如果一个物体在多个逐像素光源的影响区域内，那么该物体就需要执行多个Pass，每个Pass计算一个逐像素光源的光照结果，然后在帧缓冲中把这些光照结果混合起来，得到最终的颜色值。</p>
+<p>假设场景中有<strong><em>N</em></strong>个物体，每个物体受<strong><em>M</em></strong>个光源影响，那么渲染整个场景一共需要<strong><em>N·M</em></strong>个Pass。所以，如果有大量的逐像素光照，那么需要执行的Pass数量也会很大。因此，渲染引擎通常会限制每个物体的逐像素光照的数目。</p>
+<h3 id="Unity中的前向渲染"><a href="#Unity中的前向渲染" class="headerlink" title="Unity中的前向渲染"></a>Unity中的前向渲染</h3><p>实际上，一个Pass不仅仅可以用来计算逐像素光照，也可以用来计算逐顶点等其他光照。这取决于光照计算所处流水线阶段，以及计算时使用的数学模型。当我们渲染一个物体时，Unity会计算哪些光源照亮了它，以及这些光源照亮该物体的方式。</p>
+<p>在Unity中，前向渲染有三种处理光照的方式：<strong>逐顶点处理</strong>、<strong>逐像素处理</strong>、<strong>球谐函数（Spherical Harmonics，SH）处理</strong>。而决定一个光源使用哪种处理模式取决于它的类型和渲染模式。光源类型指的是该光源是平行光还是其他类型的光源，而光源的渲染模式指的是该光源是否是<strong>重要的（Important）</strong>。如果我们把一个光照的模式设置为Important，意味着我们要告诉Unity，这个光源很重要，需要把它当成一个逐像素光源来处理。我们可以在光源的Light组件中设置这些属性。</p>
+<p><img src="https://raw.githubusercontent.com/JammeLee/MyPicBed/master/BlogPic/20210725171623.png" alt="img"></p>
+<p>在前向渲染中，当我们渲染一个物体时，Unity会根据场景中各个光源的设置以及这些光源对物体的影响程度（如，距离该物体远近、光源强度等）对这些光源进行一个重要程度的排序。其中，一定数量的光源会按逐像素的方式处理，然后最多有4个光源按逐顶点的方式处理（每个顶点最多计算四次点光源），剩下的光源可以按SH方式处理。Unity使用的判断规则如下：</p>
+<ul>
+<li>场景中最亮的平行光总是按逐像素处理。</li>
+<li>渲染模式被设置为<strong>Not Important</strong>的光源，会按逐顶点或者SH处理。</li>
+<li>渲染模式被设置为<strong>Important</strong>的光源，会按逐像素处理。</li>
+<li>如果根据以上规则得到的逐像素光源少于<strong>Quality Setting</strong>中逐像素光源数量（Pixel Light Count），会有更多的光源以逐像素的方式进行渲染，按照亮度递减的方式。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/JammeLee/MyPicBed/master/BlogPic/20210725173351.png" alt="img"></p>
+<p>每个对象的渲染如下：</p>
+<ul>
+<li>Base Pass应用一个逐像素平行光和所有逐顶点/SH光源。</li>
+<li>其他逐像素光源在Additional Pass中渲染，每个光源执行一次Pass。</li>
+</ul>
+<p>光照计算是在Pass中进行。前面提到过，前向渲染有两种Pass：Base Pass和Additional Pass。通常来说，这两种Pass进行的标签和渲染设置以及常规光照计算如图所示。</p>
+<p><img src="https://raw.githubusercontent.com/JammeLee/MyPicBed/master/BlogPic/20210725192818.png" alt=""></p>
+<ul>
+<li>在渲染设置中，我们除了设置了Pass的标签外，还使用了<strong>#pragma multi_compile_fwdbase</strong>这样的编译指令。</li>
+<li>Base Pass旁边的注释给出了Base Pass中支持的一些光照特性。例如在Base Pass中，我们可以访问光照纹理（lightmap）。</li>
+<li>Base Pass中渲染的平行光默认是支持阴影的（如果开启了光源的阴影功能），而Additional Pass中渲染的光源在默认情况下是没有阴影效果的，即便我们在它的Light组件中设置了有阴影的<strong>Shadow Type</strong>。但我们可以在Additional Pass中使用<strong>#pragma multi_compile_fwdadd_fullshadows</strong>替代<strong>#pragma multi_compile_fwdadd</strong>编译指令，为点光源和聚光灯开启阴影效果，但这需要Unity在内部使用更多的Shader变体。</li>
+<li>环境光和自发光也是在Base Pass中计算的。因为对于一个物体来说，环境光和自发光我们只希望计算一次，如果我们在Additional Pass中计算这两种光照，就会造成叠加多次环境光和自发光的情况，这并不是我们想要的。</li>
+<li>在Additional Pass的渲染设置中，我们还开启和设置了混合模式。这是因为，我们希望每个Additional Pass可以与上一次的光照结果在帧缓存中进行叠加，从而得到有多个光照的渲染效果。如果我们没有开启和设置混合模式，那么Additional Pass的渲染结果会覆盖掉之前的渲染结果，看起来就好像物体只受该光源的影响。通常情况下，我们选择的混合模式是Blend One One。</li>
+<li>对于前向渲染来说，一个Unity Shader通常会定义一个Base Pass（Base Pass也可以定义多次，例如需要双面渲染等情况）以及一个Additional Pass。一个Base Pass仅会执行一次（定义了多个Base Pass的情况除外），而一个Additional Pass会根据影响该物体的其他逐像素光源的数目被多次调用，即每个逐像素光源会执行一次Additional Pass。</li>
+</ul>
+<p>上图给出的光照计算是<strong>通常情况</strong>下我们在没种Pass中进行的计算。实际上，渲染路径的设置用于告诉Unity该Pass在前向渲染路径中的位置，然后底层的渲染引擎会进行相关计算并填充一些内置变量（如_LightColor0等），如何使用这些内置变量进行计算完全取决于开发者的选择。例如，我们完全可以利用Unity提供的内置变量在Base Pass中之进行逐顶点光照；同样，我们也完全可以在Additional Pass中按逐顶点的方式进行光照计算，不进行任何逐像素光照计算。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">编译指令</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">multi_compile_fwdbase</td>
+<td style="text-align:center">编译PassType.ForwardBase所需的所有变体。这些变体处理不同的光照贴图类型，以及启用或禁用主平行光的阴影</td>
+</tr>
+<tr>
+<td style="text-align:center">multi_compile_fwdadd</td>
+<td style="text-align:center">编译PassType.ForwardAdd的变体。这会编译变体以处理定向光、聚光灯或点光类型及其带有 cookie 纹理的变体</td>
+</tr>
+<tr>
+<td style="text-align:center">multi_compile_fwdadd_fullshadows</td>
+<td style="text-align:center">与multi_compile_fwdadd相同，但还包括灯光具有实时阴影的能力</td>
+</tr>
+<tr>
+<td style="text-align:center">multi_compile_fog</td>
+<td style="text-align:center">扩展为多个变体，以处理不同的雾类型（off/linear/exp/exp2）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>大多数内置的编译指令会产生许多Shader变体。如果确定项目不需要它们，可以使用<strong>#pragma skip_variants</strong>跳过编译其中的一些变体。例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#pragma multi_compile_fwdadd</span><br><span class="line">#pragma skip_variants POINT POINT_COOKIE</span><br></pre></td></tr></table></figure>
+<p>该指令跳过所有包含<strong>POINT</strong>或<strong>POINT_COOKIE</strong>的变体。</p>
+<h3 id="内置的光照变量和函数"><a href="#内置的光照变量和函数" class="headerlink" title="内置的光照变量和函数"></a>内置的光照变量和函数</h3><p>根据我们使用的渲染路径（即Pass标签中Light Mode的值），Unity会把不同的光照变量传递给Shader。</p>
+<p>对于前向渲染（即Light Mode为ForwardBase或ForwardAdd）来说，下表给出了我们可以在Shader中访问到的光照变量：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">变量名</th>
+<th style="text-align:center">类型</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">_LightColor0（在UnityLightingCommon.cginc中声明）</td>
+<td style="text-align:center">fixed4</td>
+<td style="text-align:center">该Pass处理的逐像素光源的颜色</td>
+</tr>
+<tr>
+<td style="text-align:center">_WorldSpaceLightPos0</td>
+<td style="text-align:center">float4</td>
+<td style="text-align:center">_WorldSpaceLightPos0.xyz是该Pass处理的逐像素光源的位置。如果该光源是平行光，那么_WorldSpaceLightPos0.w是0（因为平行光是向量，不需要矩阵的偏移部分），其他光源类型w值为1</td>
+</tr>
+<tr>
+<td style="text-align:center">unity_WorldToLight（在AutoLight.cginc中声明）</td>
+<td style="text-align:center">float4x4</td>
+<td style="text-align:center">从世界空间到光源空间的变换矩阵。可以用于采样cookie和光强衰减（attenuation）纹理</td>
+</tr>
+<tr>
+<td style="text-align:center">unity_4LightPosX0, unity_4LightPosY0, unity_4LightPosZ0</td>
+<td style="text-align:center">float4</td>
+<td style="text-align:center">仅用于ForwardBase Pass。前4个非重要的点光源在世界空间中的位置</td>
+</tr>
+<tr>
+<td style="text-align:center">unity_4LightAtten0</td>
+<td style="text-align:center">float4</td>
+<td style="text-align:center">仅用于ForwardBase Pass。前四个非重要点光源的衰减因子</td>
+</tr>
+<tr>
+<td style="text-align:center">unity_LightColor</td>
+<td style="text-align:center">half4[4]</td>
+<td style="text-align:center">仅用于ForwardBase Pass。前四个非重要点光源的颜色。</td>
+</tr>
+<tr>
+<td style="text-align:center">unity_WorldToShadow</td>
+<td style="text-align:center">float4x4[4]</td>
+<td style="text-align:center">世界空间到阴影空间（World-to-shadow）的矩阵。一个用于聚光灯的矩阵，最多四个用于平行光级联。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>仅可以在前向渲染中使用的内置光照函数：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">函数名</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">float3 WorldSpaceLightDir(float4 v)</td>
+<td style="text-align:center">给定模型空间的顶点位置，返回世界空间中从该点到光源的光照方向。未被归一化。</td>
+</tr>
+<tr>
+<td style="text-align:center">float3 ObjSpaceLightDir(float4 v)</td>
+<td style="text-align:center">给定模型空间的顶点位置，返回模型空间中从该点到光源的光照方向。未被归一化。</td>
+</tr>
+<tr>
+<td style="text-align:center">float3 Shade4PointLights(…)</td>
+<td style="text-align:center">计算四个点光源的光照，它的参数是已经打包进矢量的光照数据。通常就是上表中的内置变量，如unity_4LightPosX0, unity_4LightPosY0, unity_4LightPosZ0、unity_LightColor、unity_4LightAtten0等。前向渲染通常会使用此函数来计算逐顶点光照。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>参考文献：</p>
+<ul>
+<li>《Unity Shader入门经验》</li>
+<li>Unity官方手册</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Computer Graphics</category>
+      </categories>
+      <tags>
+        <tag>Unity Shader</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>重建二叉树</title>
+    <url>/2019/03/16/Interview/20190316_001/</url>
+    <content><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><br></p>
+<hr>
+<p>&#8194;&#8194;&#8194;&#8194;输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</p>
+<hr>
+<p><br></p>
+<ul>
+<li>前序遍历的顺序为：根左右</li>
+<li>中序遍历的顺序为：左根右</li>
+</ul>
+<h3 id="主要思路：递归"><a href="#主要思路：递归" class="headerlink" title="主要思路：递归"></a>主要思路：递归</h3><ol>
+<li>根据前序遍历的第一个节点确定根节点</li>
+<li>在中序遍历中找到根节点的位置</li>
+<li>根左边的就是左子树，右边的就是右子树</li>
+<li>构建根和左右子树</li>
+<li>递归的进行1、2、3和4</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for binary tree</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">reConstructBinaryTree</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; pre,vector&lt;<span class="keyword">int</span>&gt; vin)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(pre.<span class="built_in">size</span>() != vin.<span class="built_in">size</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;length not equls&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(pre.<span class="built_in">size</span>() == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;pre length is 0&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> length = pre.<span class="built_in">size</span>();</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;pre length is &quot;</span> &lt;&lt; length &lt;&lt; endl;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//前序遍历的第一个结点是root结点</span></span><br><span class="line">        <span class="keyword">int</span> value = pre[<span class="number">0</span>];</span><br><span class="line">        TreeNode *root = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(value);</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;this root is &quot;</span> &lt;&lt; root-&gt;val &lt;&lt; endl;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//然后再中序遍历中找到根的位置 左边的就是左子树 右边的就是右子树</span></span><br><span class="line">        <span class="keyword">int</span> rootIdx = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(;rootIdx &lt; length; rootIdx ++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(vin[rootIdx] == value)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;the root at &quot;</span> &lt;&lt; rootIdx &lt;&lt; endl;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(rootIdx &gt;= length)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;can&#x27;t find root (value = &quot;</span> &lt;&lt; value &lt;&lt; <span class="string">&quot;) in vin&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//确定左子树的长度 和 右子树的长度</span></span><br><span class="line">        <span class="keyword">int</span> leftLength = rootIdx;</span><br><span class="line">        <span class="keyword">int</span> rightLength = length - rootIdx - <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">preLeft</span><span class="params">(leftLength)</span>, <span class="title">inLeft</span><span class="params">(leftLength)</span></span>;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">preRight</span><span class="params">(rightLength)</span>, <span class="title">inRight</span><span class="params">(rightLength)</span></span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i &lt; rootIdx)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//左子树</span></span><br><span class="line">                <span class="comment">//前序遍历的第一个节点是根结点，因此是i+1</span></span><br><span class="line">                preLeft[i] = pre[i + <span class="number">1</span>];</span><br><span class="line">                inLeft[i] = vin[i];</span><br><span class="line">                cout &lt;&lt; preLeft[i] &lt;&lt; inLeft[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i &gt; rootIdx)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">//右子树</span></span><br><span class="line">                preRight[i - rootIdx - <span class="number">1</span>] = pre[i];</span><br><span class="line">                inRight[i - rootIdx - <span class="number">1</span>] = vin[i];</span><br><span class="line">                cout &lt;&lt; preRight[i] &lt;&lt; inRight[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;left tree is&quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; leftLength; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; preLeft[i] &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; inLeft[i] &lt;&lt; endl;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;right tree is&quot;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; rightLength; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; preRight[i] &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; inRight[i] &lt;&lt; endl;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        root-&gt;left = <span class="built_in">reConstructBinaryTree</span>(preLeft, inLeft);</span><br><span class="line">        root-&gt;right = <span class="built_in">reConstructBinaryTree</span>(preRight, inRight);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Interview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>用两个栈实现队列</title>
+    <url>/2019/03/17/Interview/20190317_001/</url>
+    <content><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><br></p>
+<hr>
+<p>&#8194;&#8194;&#8194;&#8194;用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。</p>
+<hr>
+<p><br></p>
+<h3 id="主要思路："><a href="#主要思路：" class="headerlink" title="主要思路："></a>主要思路：</h3><h4 id="最初思路"><a href="#最初思路" class="headerlink" title="最初思路"></a>最初思路</h4><p>&#8194;&#8194;&#8194;&#8194;因为栈和队列最明显的区别就是，栈是先进后出，而队列是先进先出。所以为了满足这个要求，我最初的思路是用stack1来做入队操作，用stack2来做出队操作。</p>
+<ul>
+<li>入队，将元素压入stack1</li>
+<li>出队，将stack1倒入stack2，弹出栈顶元素，然后再重新倒入stack1</li>
+</ul>
+<h4 id="优化思路"><a href="#优化思路" class="headerlink" title="优化思路"></a>优化思路</h4><p>&#8194;&#8194;&#8194;&#8194;最初思路完全只是为了解决这个问题的思路，丝毫没有考虑优化方面。那么仔细思考一下，发现是不是有可以优化的地方呢。首先，最初思路有个小细节可以优化一下，那就是在出队时，stack1的栈底元素可以不用压入stack2（只倒入stack1.size( )-1个元素），可直接弹出作为出队元素返回，这样就可以少做一次压栈操作。</p>
+<ul>
+<li>如果是入队操作，判断stack1是否为空，如果不为空，那么就直接压栈；如果为空，就把stack2倒入stack1中，然后再压栈。</li>
+<li>如果是出队操作，判断stack2是否为空，如果不为空，那么就直接出栈；如果为空，就把stack1的元素逐个倒入stack2，把最后一个元素弹出并出队。</li>
+</ul>
+<h4 id="最后解决方案"><a href="#最后解决方案" class="headerlink" title="最后解决方案"></a>最后解决方案</h4><p>&#8194;&#8194;&#8194;&#8194;上边的思路都有一个问题，那就是stack1和stack2之间频繁的倒来倒去，效率就显得不是那么好。所以再换一种更好的思路，我们始终用stack1做入队操作，用stack2做出队操作。</p>
+<ul>
+<li>入队，将元素压入stack1</li>
+<li>出队，先判断stack2是否为空，如果不为空，那么弹出stack2的栈顶元素，如果为空，将stack1元素逐个倒入stack2，把最后一个元素弹出并出队。</li>
+</ul>
+<p>&#8194;&#8194;&#8194;&#8194;这个思路避免了反复“倒”栈，仅在需要时才“倒”一次。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> node)</span> </span>&#123;</span><br><span class="line">        stack1.<span class="built_in">push</span>(node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> node = <span class="number">-1</span>;</span><br><span class="line">        <span class="comment">//两个栈都为空时，队列为空</span></span><br><span class="line">        <span class="keyword">if</span>(stack1.<span class="built_in">empty</span>() == <span class="literal">true</span> &amp;&amp; stack2.<span class="built_in">empty</span>() == <span class="literal">true</span>)&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;queue is null&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">return</span> node;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(stack2.<span class="built_in">empty</span>() == <span class="literal">true</span>)&#123;</span><br><span class="line">                <span class="comment">//stack2为空 需要把stack1倒入stack2 </span></span><br><span class="line">                <span class="comment">//然后直接把stack1的最后一个元素弹出 可以减少一次压栈操作</span></span><br><span class="line">                <span class="keyword">int</span> size1 = stack1.<span class="built_in">size</span>();</span><br><span class="line">                <span class="keyword">int</span> length = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">while</span>(stack1.<span class="built_in">empty</span>() != <span class="literal">true</span> &amp;&amp; length &lt; size1 - <span class="number">1</span>)&#123;</span><br><span class="line">                    node = stack1.<span class="built_in">top</span>();</span><br><span class="line">                    stack1.<span class="built_in">pop</span>();</span><br><span class="line">                    stack2.<span class="built_in">push</span>(node);</span><br><span class="line">                    cout &lt;&lt; <span class="string">&quot;push &quot;</span> &lt;&lt; node &lt;&lt; <span class="string">&quot; in stack2&quot;</span> &lt;&lt; endl;</span><br><span class="line">                    length ++;</span><br><span class="line">                &#125;</span><br><span class="line">                node = stack1.<span class="built_in">top</span>();</span><br><span class="line">                stack1.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                node = stack2.<span class="built_in">top</span>();</span><br><span class="line">                stack2.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; stack1;</span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; stack2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Interview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>旋转数组的最小数字</title>
+    <url>/2019/03/19/Interview/20190319_001/</url>
+    <content><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><br></p>
+<hr>
+<p>&#8194;&#8194;&#8194;&#8194;把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。</p>
+<hr>
+<p><br></p>
+<p>&#8194;&#8194;&#8194;&#8194;要做这道题，首先要讲一下非减排序数组是什么意思。起初以为只要不是减排序就可以，比如说{1,3,2,5,4}。但实际上并不是这样，找了很多资料都没有详细描述。（这里就要吐槽一下国内的某sdn和辣鸡某度，随便搜一下，全是千篇一律的文章，连标点符号都一字不差。有时候都怀疑，这些人就那么喜欢吃人家嘴里吐出来的东西么。）最后终于凭着自己的猜测和模糊的资料，得知原来非减序数组就是每个元素都大于等于后一个元素。例如，{1,2,3,4,5}，{0,1,1,1,1,1}等。</p>
+<p>&#8194;&#8194;&#8194;&#8194;主要思路：二分查找</p>
+<ul>
+<li>可以把旋转数组看作是前后两个非减排序的子数组</li>
+<li>用两个指针分别指向数组的第一个元素和最后一个元素</li>
+<li>求mid=(low + high) / 2</li>
+<li>如果mid位于后边数组的话，mid应该小于high，那么最小值应该在mid及自身之前，所以把high提到mid</li>
+<li>如果mid位于前边数组的话，mid应该大于low，那么最小值应该在mid及自身之后，所以把low后移到mid</li>
+<li>依次循环找到最小值</li>
+<li>但是上边讲非减排序数组也可以是{0,1,1,1,1,1}，那么它的旋转数组{1,1,1,1,0,1}的low、mid和high是相等的，就出现了问题，此时不知道最小值是再前边数组还是后边数组，所以就只能使用顺序查找来找出最小值了</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minNumberInRotateArray</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; rotateArray)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//可以把旋转数组看作是前后两个非减排序的子数组</span></span><br><span class="line">        <span class="keyword">if</span>(rotateArray.<span class="built_in">size</span>() == <span class="number">0</span>)&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;rotateArray size is 0&quot;</span> &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> mid = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high = rotateArray.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(rotateArray[low] &lt; rotateArray[high])&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;rotateArray is not rotated&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(rotateArray[low] &gt;= rotateArray[high])&#123;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span>(high - low == <span class="number">1</span>)&#123;</span><br><span class="line">                mid = high;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            mid = (low + high) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(rotateArray[mid] == rotateArray[high] </span><br><span class="line">               &amp;&amp; rotateArray[mid] == rotateArray[low])&#123;</span><br><span class="line">                <span class="comment">//这里无法确定到底是应该取左边子数组 还是取右边子数组 </span></span><br><span class="line">                <span class="comment">//那么就交给顺序查找来做吧</span></span><br><span class="line">                <span class="keyword">return</span> <span class="built_in">minOrder</span>(rotateArray, low, high);</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(rotateArray[mid] &lt;= rotateArray[high])&#123;</span><br><span class="line">                <span class="comment">//如果mid位于后边数组的话 mid应该小于high</span></span><br><span class="line">                <span class="comment">//最小值应该在mid及之前 因为mid后边的值一定不小于自身的</span></span><br><span class="line">                <span class="comment">//那么把high提前到mid位置</span></span><br><span class="line">                high = mid;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(rotateArray[mid] &gt;= rotateArray[low])&#123;</span><br><span class="line">                <span class="comment">//如果mid位于前边数组的话 mid应该大于low</span></span><br><span class="line">                <span class="comment">//最小值应该在mid及之后</span></span><br><span class="line">                <span class="comment">//所以把low后移到mid位置</span></span><br><span class="line">                low = mid;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> rotateArray[mid];</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minOrder</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt; &amp;num, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> min = num[low];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = low + <span class="number">1</span>; i &lt; high; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(min &gt; num[i])&#123;</span><br><span class="line">                min = num[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> min;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Interview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>二进制中1的个数</title>
+    <url>/2019/03/25/Interview/20190325_001/</url>
+    <content><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><br></p>
+<hr>
+<p>&#8194;&#8194;&#8194;&#8194;输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。</p>
+<hr>
+<p><br></p>
+<h3 id="通过移位测试每一位"><a href="#通过移位测试每一位" class="headerlink" title="通过移位测试每一位"></a>通过移位测试每一位</h3><p>&#8194;&#8194;&#8194;&#8194;首先，很容易能想到的就是通过移位的方法，挨个判断每一位。<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">NumberOf1</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(n)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(n &amp; <span class="number">1</span> == <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">            n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>&#8194;&#8194;&#8194;&#8194;但是这种方法有个致命的缺陷，我们假设通过移位的方式可以获取到其每一位，但并不总是对的。</p>
+<h3 id="逻辑右移和算数右移"><a href="#逻辑右移和算数右移" class="headerlink" title="逻辑右移和算数右移"></a>逻辑右移和算数右移</h3><p>&#8194;&#8194;&#8194;&#8194;比如说一个有符号位的8位二进制数11001101，逻辑右移就不管符号位，如果移一位就变成01100110。算数右移要管符号位，右移一位变成10100110。</p>
+<ul>
+<li>逻辑左移=算数左移，右边统一添0</li>
+<li>逻辑右移，左边统一添0</li>
+<li>算数右移，左边添加的数和符号有关<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">e.g:1010101010，其中[]位是添加的数字</span><br><span class="line">逻辑左移一位：010101010[0]</span><br><span class="line">算数左移一位：010101010[0]</span><br><span class="line">逻辑右移一位：[0]101010101</span><br><span class="line">算数右移一位：[1]101010101</span><br></pre></td></tr></table></figure>
+&#8194;&#8194;&#8194;&#8194;因此如果输入负数，那么我们的算法简单的判断是不是0来终结，就会进入死循环。</li>
+</ul>
+<h3 id="避免负数移位的死循环"><a href="#避免负数移位的死循环" class="headerlink" title="避免负数移位的死循环"></a>避免负数移位的死循环</h3><p>&#8194;&#8194;&#8194;&#8194;为了负数的时候，避免死循环，我们可以不右移数字n，转而去移动测试位。<br>&#8194;&#8194;&#8194;&#8194;那么思考我们的循环结束条件，flag一直左移（乘以2），当超出表示标识范围的时候，我们就可以终止了，但是这样子的话，最高位的符号没有测试，因此要单独测试，同时由于会溢出，我们的flag需要用long来标识。<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">NumberOf1</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">long</span> flag = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(flag &lt;= INT_MAX)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt;n &lt;&lt;<span class="string">&quot; &amp; &quot;</span> &lt;&lt;flag &lt;&lt;<span class="string">&quot; == &quot;</span>&lt;&lt;(n &amp; flag) &lt;&lt;endl;</span><br><span class="line">            <span class="keyword">if</span>((n &amp; flag) != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">            flag &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//  由于循环终结，我们使用的是flag &lt;= INT_MAX</span></span><br><span class="line">        <span class="comment">//  因此前面的循环只会执行31次</span></span><br><span class="line">        <span class="keyword">if</span>((n &amp; flag) != <span class="number">0</span>)    <span class="comment">//  最后测试符号位</span></span><br><span class="line">        &#123;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>&#8194;&#8194;&#8194;&#8194;继续考虑，会发现循环条件还可以精简一下，如果数据发生溢出的话，会被截断，截断以后就是0。<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">NumberOf1</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> flag = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(flag != <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt;n &lt;&lt;<span class="string">&quot; &amp; &quot;</span> &lt;&lt;flag &lt;&lt;<span class="string">&quot; == &quot;</span>&lt;&lt;(n &amp; flag) &lt;&lt;endl;</span><br><span class="line">            <span class="keyword">if</span>((n &amp; flag) != <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">            flag &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        cout &lt;&lt;n &lt;&lt;<span class="string">&quot; &amp; &quot;</span> &lt;&lt;flag &lt;&lt;<span class="string">&quot; == &quot;</span>&lt;&lt;(n &amp; flag) &lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>&#8194;&#8194;&#8194;&#8194;这种方法循环的次数刚好就是二进制的位数，比如32位就循环32次。那么，有没有方法可以做到整数中有多少个1就循环多少次呢。</p>
+<h3 id="整数中有几个1就循环几次——lowbit优化"><a href="#整数中有几个1就循环几次——lowbit优化" class="headerlink" title="整数中有几个1就循环几次——lowbit优化"></a>整数中有几个1就循环几次——lowbit优化</h3><p>&#8194;&#8194;&#8194;&#8194;我们分析n与n-1两个数的差别</p>
+<ul>
+<li>如果n!=0，那么其二进制位中至少有一个1</li>
+<li>如果n的最低位是1（奇数），那么n-1正好把这个最低位的1变成0，其他位不变</li>
+<li>如果n的最低位是0（偶数），那么假设其右起第一个1位于m位，即m位后面全是0，那么n-1的第m位由1变成0，而第m位后面的所有0均变成1，m位之前的所有位保持不变。<br>&#8194;&#8194;&#8194;&#8194;因此通过分析发现：<br>&#8194;&#8194;&#8194;&#8194;把一个整数n减去1，再和原来的整数做与运算，会把该整数最右边一个1变成0，那么该整数有多少个1，就会进行多少次与运算。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">NumberOf1</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n)</span><br><span class="line">        &#123;</span><br><span class="line">            count++;</span><br><span class="line">            n = n &amp; (n - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="STL-bitset"><a href="#STL-bitset" class="headerlink" title="STL-bitset"></a>STL-bitset</h3><p>&#8194;&#8194;&#8194;&#8194;STL中用bitset来方便地管理一系列的bit位，而不用程序员自己来写代码。<br>&#8194;&#8194;&#8194;&#8194;bitset除了可以访问指定下标的bit位以外，还可以把它们作为一个整数来进行某些统计。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">NumberOf1</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="function">bitset&lt;32&gt; <span class="title">bit</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">return</span> bit.<span class="built_in">count</span>();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Interview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>斐波那契数列</title>
+    <url>/2019/04/14/Interview/20190414_001/</url>
+    <content><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><br></p>
+<hr>
+<p>&#8194;&#8194;&#8194;&#8194;大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。</p>
+<hr>
+<p><br></p>
+<h3 id="通过递归"><a href="#通过递归" class="headerlink" title="通过递归"></a>通过递归</h3><p>&#8194;&#8194;&#8194;&#8194;首先，很容易就想到了递推公式<script type="math/tex">f(n)=f(n-1)+f(n-2)</script>。因此我们马上就能想到使用递归方法，代码如下：<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">Fibonacci</span>(n - <span class="number">1</span>) + <span class="built_in">Fibonacci</span>(n - <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>&#8194;&#8194;&#8194;&#8194;但实际上递归方法的时间复杂度是以n的指数方式增长的。</p>
+<h3 id="递归展开-迭代方法"><a href="#递归展开-迭代方法" class="headerlink" title="递归展开-迭代方法"></a>递归展开-迭代方法</h3><p>&#8194;&#8194;&#8194;&#8194;因此我们只能用最普通的方法，将递推公式进行展开。<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> one = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">long</span> two = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">long</span> res = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            res = one + two;</span><br><span class="line"></span><br><span class="line">            one = two;</span><br><span class="line">            two = res;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>&#8194;&#8194;&#8194;&#8194;但这还不是最快的方法，下面介绍一种时间复杂度是<script type="math/tex">O(logn)</script>的方法。</p>
+<h3 id="O-logn-求Fibonacci数列"><a href="#O-logn-求Fibonacci数列" class="headerlink" title="$O(logn)$求Fibonacci数列"></a>$O(logn)$求Fibonacci数列</h3><p>&#8194;&#8194;&#8194;&#8194;在介绍此方法前，先介绍一个数学公式：</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+f(n)&f(n-1)\\
+f(n-1)&f(n-2)\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+1&1\\
+1&0\\
+\end{bmatrix}^{n-1}</script><p>&#8194;&#8194;&#8194;&#8194;有了此公式，求<script type="math/tex">f(n)</script>就只要求出矩阵<script type="math/tex">\begin{bmatrix}1&1\\1&0\\\end{bmatrix}</script>的n-1次方，因为矩阵的n-1次方的第一行第一列就是f(n)。这个公式使用数学归纳法不难得出。那么问题又来了，从0开始到n-1，实际上还是需要n次运算，并不比上面的方法快。但是我们可以利用同底数幂法则：</p>
+<script type="math/tex; mode=display">
+a^n = a^{\frac{n} {2}}*a^{\frac{n} {2}}</script><p>或</p>
+<script type="math/tex; mode=display">
+a^n = a^{\frac{n-1} {2}}*a^{\frac{n-1} {2}}</script><p>&#8194;&#8194;&#8194;&#8194;要求n次方，现求出<script type="math/tex">{\frac{n} {2}}</script>次方后，再平方即可。<br>&#8194;&#8194;&#8194;&#8194;用这种方式实现时，首先要定义一个2*2的矩阵。并定义好矩阵的乘法以及幂运算。</p>
+<p>&#8194;&#8194;&#8194;&#8194;接下来再介绍一种推理公式：</p>
+<script type="math/tex; mode=display">
+\begin{align}
+f(n) & =f(n-1)+f(n-2)\\
+& =2*f(n-2)+f(n-3)\\
+& =3*f(n-3)+2*f(n-4)\\
+& =5*f(n-4)+3*f(n-5)\\
+& =···\\
+& =f(k)*f(n-k+1)+f(k-1)*f(n-k)\\
+\end{align}</script><p>&#8194;&#8194;&#8194;&#8194;当n=2k和n=2k-1推理公式以及代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> post;<span class="comment">//存Fibonacci(n-1)</span></span><br><span class="line">    <span class="keyword">int</span> pre;<span class="comment">//存Fibonacci(n)</span></span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n &lt;= <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(n == <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            pre = <span class="number">1</span>;</span><br><span class="line">            post = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> post;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        (1):</span></span><br><span class="line"><span class="comment">        a(n) = a(n-1) + a(n-2)</span></span><br><span class="line"><span class="comment">             = a(n-2) + a(n-3) + a(n-2)</span></span><br><span class="line"><span class="comment">             = 2 * a(n-2) + a(n-3)</span></span><br><span class="line"><span class="comment">             = 3 * a(n-3) + 2 * a(n-4)</span></span><br><span class="line"><span class="comment">             = a(k) * a(n - k + 1) + a(k-1) * a(n-k)</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        奇数情况：</span></span><br><span class="line"><span class="comment">        令n=2k-1;</span></span><br><span class="line"><span class="comment">        由(1)式得：</span></span><br><span class="line"><span class="comment">        a(2k-1) = a(k) * a(k) + a(k-1) * a(k-1)</span></span><br><span class="line"><span class="comment">                = a(k)^2 + a(k-1)^2</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        偶数情况：</span></span><br><span class="line"><span class="comment">        令n=2k;</span></span><br><span class="line"><span class="comment">        由(1)式得：</span></span><br><span class="line"><span class="comment">        a(2k) = a(k) * a(k+1) + a(k-1) * a(k)</span></span><br><span class="line"><span class="comment">                = a(k)^2 + 2 * a(k) * a(k-1)</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">//n为奇数，则做减一操作，函数返回时</span></span><br><span class="line">        <span class="comment">//pre: f(n) = f(n-1) + f(n-2)</span></span><br><span class="line">        <span class="comment">//post: f(n-1) = f(n) - f(n-2)</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(n % <span class="number">2</span> == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="built_in">Fibonacci</span>(n<span class="number">-1</span>);</span><br><span class="line">            pre = pre + post;</span><br><span class="line">            post = pre - post;</span><br><span class="line">            <span class="keyword">return</span> pre;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//n为偶数，一直除以2</span></span><br><span class="line">        </span><br><span class="line">        <span class="built_in">Fibonacci</span>(n/<span class="number">2</span>);</span><br><span class="line">        temp = pre;</span><br><span class="line">        pre = pre * pre + <span class="number">2</span> * pre * post;</span><br><span class="line">        post = temp * temp + post * post;</span><br><span class="line">        <span class="keyword">return</span> pre;</span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>Interview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>跳台阶</title>
+    <url>/2019/04/16/Interview/20190416_001/</url>
+    <content><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><br></p>
+<hr>
+<p>&#8194;&#8194;&#8194;&#8194;一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。</p>
+<hr>
+<p><br></p>
+<h3 id="观察分析"><a href="#观察分析" class="headerlink" title="观察分析"></a>观察分析</h3><p>&#8194;&#8194;&#8194;&#8194;小青蛙一次可以跳1级，也可以跳2级。当有n级台阶：</p>
+<ul>
+<li>第一次跳1级时，跳法的数目就等于剩下的n-1级台阶的跳法数目</li>
+<li>第一次跳2级时，跳法数目就等于剩下n-2级台阶的跳法数目。</li>
+</ul>
+<p>&#8194;&#8194;&#8194;&#8194;所以n级台阶的总跳法数目等于第一次跳1级和第一次跳2级的数目的和，即f(n)=f(n-1)+f(n-2)。我们会发现这其实就是斐波那契数列。但是，当n=0时，f(n)=0；当n=1时，f(n)=1；当n=2时，f(n)=2，所以当n&gt;2时，f(n)=f(n-1)+f(n-2)。代码如下：<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jumpFloor</span><span class="params">(<span class="keyword">int</span> number)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(number &lt;= <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> number;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> first = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> second = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= number; i++)&#123;</span><br><span class="line">            res = first + second;</span><br><span class="line">            first = second;</span><br><span class="line">            second = res;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <tags>
+        <tag>Interview</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>变态跳台阶</title>
+    <url>/2019/04/16/Interview/20190416_002/</url>
+    <content><![CDATA[<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><br></p>
+<hr>
+<p>&#8194;&#8194;&#8194;&#8194;一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</p>
+<hr>
+<p><br></p>
+<h3 id="观察分析"><a href="#观察分析" class="headerlink" title="观察分析"></a>观察分析</h3><p>&#8194;&#8194;&#8194;&#8194;本题目牵扯到一次跳n级的问题，当有n级台阶，分析如下：</p>
+<ul>
+<li>f(1)=1</li>
+<li>f(2)=f(2-1)+f(2-2)   //f(2-1)代表第一次跳1级，f(2-2)代表第一次跳2级，也就是跳n级</li>
+<li>f(3)=f(3-1)+f(3-2)+f(3-3)</li>
+<li>···</li>
+<li>f(n)=f(n-1)+f(n-2)+···+f(n-(n-1))+f(n-n)</li>
+</ul>
+<p>&#8194;&#8194;&#8194;&#8194;从f(n)=f(n-1)+f(n-2)+···+f(n-(n-1))+f(n-n)可以发现，这就是斐波那契数列求和。那么其实还可以继续化简，将n-1带入f(n)，f(n-1)=f(0)+f(1)+f(2)+···+f(n-2)，f(n)化简得f(n)=f(0)+f(1)+f(2)+···+f(n-2)+f(n-1)，最后得，f(n)=f(n-1)+f(n-1)=2*f(n-1)。代码如下：<br><figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">jumpFloorII</span><span class="params">(<span class="keyword">int</span> number)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(number &lt;= <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(number == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">2</span>*<span class="built_in">jumpFloorII</span>(number<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+      <tags>
+        <tag>Interview</tag>
       </tags>
   </entry>
   <entry>
@@ -882,88 +1108,6 @@ O(n)</script><p>&#8194;&#8194;&#8194;&#8194; 所需的额外空间取决于哈�
 ]]></content>
       <tags>
         <tag>LeetCode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C#中的&quot;~&quot;符号</title>
-    <url>/2018/04/03/Unity3d/20180403_001/</url>
-    <content><![CDATA[<p>&#8194;&#8194;&#8194;&#8194;今天突然觉得大学好像白上了，就像同学说我的那样，“恩，你学费没白交，最起码还有个毕业证。”哈哈哈，真的是应该自嘲一下。虽说引出这个问题的原因是查看了Unity官方教程自动寻路源码，但这也恰恰证明了我的大学基础是多么的不牢固。还是需要花些时间，重新拾起来啊（重头学啊）。</p>
-<p>&#8194;&#8194;&#8194;&#8194;因为上大学的主修专业是Java方向，所以没学习过C#（其实Java也基本全还给老师了）。今天抽空查了一下C#的官方文档，官方文档提供的“~”符号解释为：<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">~ 运算符对操作数执行按位求补运算，其效果相当于反转每一位。按位求补运算符是为 int、uint、long 和 ulong 类型预定义的。</span><br></pre></td></tr></table></figure><br>&#8194;&#8194;&#8194;&#8194;按位取反还记得一些，但是按位求补真的是一点都没有印象了，只知道有补码这个东西，但是知识点、怎么取，当时脑子真的是一片空白。所以找了一些资料重新回头复习了一下。发现补码原来是原码求反再加1。这里要提到几个知识点：</p>
-<ul>
-<li>正数的补码就是原码。</li>
-<li>负数的补码，取对应正数的反码再加1。</li>
-<li>补码的补码是原码。</li>
-</ul>
-<p><img src="20180403221137.png" alt="images"></p>
-<p>&#8194;&#8194;&#8194;&#8194;那么问题来了，官方文档明明说的是按位求补，但是后边又说其效果相当于反转每一位，那跟求反有什么区别呢。后来又发现了一个知识点：</p>
-<ul>
-<li>几乎所有的计算机都使用<b>二进制补码</b>表示法来存储位于n位存储单元中的有符号整数。</li>
-</ul>
-<p>&#8194;&#8194;&#8194;&#8194;也就是说“~”符号取的是计算机中补码的反码，那么正数存在存储单元中的就是本身，求反之后符号位变为1，就变成了负数。这时取反之后的结果还是存在计算机存储单元的<b>补码</b>，要转化为原码还需再求一次补码运算。</p>
-<p>&#8194;&#8194;&#8194;&#8194;同理，负数存在存储单元中的应该是自身的补码，也就是对应正数的反码加1。求反之后符号位变为0，就变成了正数，虽然这时取反之后的结果还是存在计算机存储单元的<b>补码</b>，需要再求一次补码才能转换为原码，但是正数的补码就是自身啊。</p>
-<p>&#8194;&#8194;&#8194;&#8194;到这里基本就结束了，通过这次的问题，看到了自己上大学时候对学习的一种懈怠，需要努力的地方还有很多。每一次发现自身问题和总结都是进步。</p>
-]]></content>
-      <tags>
-        <tag>Unity3D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>向量的运算</title>
-    <url>/2018/04/14/Unity3d/20180414_001/</url>
-    <content><![CDATA[<p>&#8194;&#8194;&#8194;&#8194;今天来总结一下Unity中的向量运算。</p>
-<p>&#8194;&#8194;&#8194;&#8194;向量运算分为四种：加减、数乘、点乘和叉乘。下面依次介绍。</p>
-<ul>
-<li>加减：向量的加法（减法）为各分量分别相加（相减）。在物理上可以用来计算两个力的合力，或者几个速度分量的叠加。</li>
-<li>数乘：向量与一个标量相乘称为数乘。数乘可以对向量的长度进行缩放，如果标量大于0，那么向量的方向不变，若标量小于0，则向量的方向会变为反方向。</li>
-<li>点乘：两个向量点乘得到一个标量，数值等于两个向量长度相乘后再乘以二者夹角的余弦。通过两个向量点乘结果的符号可以快速的判断两个向量的夹角情况：<ul>
-<li>若u·v=0，则向量u、v相互垂直；</li>
-<li>若u·v&gt;0，则向量u、v夹角小于90度；</li>
-<li>若u·v&lt;0，则向量u、v夹角大于90度。</li>
-</ul>
-</li>
-<li>叉乘：两个向量的叉乘得到一个新的向量，新向量垂直于原来的两个向量（也就是垂直于原来两个向量构成的平面），并且长度等于原向量长度相乘后再乘夹角的正弦值。</li>
-</ul>
-<p>&#8194;&#8194;&#8194;&#8194;在数学中，叉乘得到的新向量的方向要用“右手法则”判断，如a·b，应用右手的四指先表示向量a的方向，然后掌心方向指向向量B的方向，大拇指所指的方向就是叉乘结果的方向。但是，因为Unity里用的是左手坐标系，所以应用左手的拇指朝向向量a的方向，食指指向向量b的方向，则中指指向的方向为叉乘结果的方向。</p>
-<p>&#8194;&#8194;&#8194;&#8194;<font color = red><b>注意：</b>叉乘不满足交换律。</font></p>
-]]></content>
-      <tags>
-        <tag>Unity3D</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>编译添加云风pbc插件的Tolua.dll</title>
-    <url>/2019/03/01/Unity3d/20190301_001/</url>
-    <content><![CDATA[<p>&#8194;&#8194;&#8194;&#8194;好久没有更新过blog了，最近这两天在搞pbc的相关东西。在此总结记录一下。</p>
-<p>&#8194;&#8194;&#8194;&#8194;当初云风写pbc的初衷就是想可以方便的 binding 到动态语言中去用的。这里可以看一下<a href="https://blog.codingnow.com/2011/12/pbc_lua_binding.html">云风blog</a>中对pbc的介绍。</p>
-<p>&#8194;&#8194;&#8194;&#8194;在开始之前，需要做一些准备工作。</p>
-<ul>
-<li>下载tolua_runtime工程：<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/topameng/tolua_runtime</span><br></pre></td></tr></table></figure></li>
-<li>下载pbc工程：<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/cloudwu/pbc</span><br></pre></td></tr></table></figure>
-tolua_runtime工程目录结构如下：<br><img src="20190301223738.png" alt="images"><br>pbc工程目录结构如下：<br><img src="20190301223901.png" alt="images"></li>
-</ul>
-<p>&#8194;&#8194;&#8194;&#8194;准备工作完成之后，把pbc整个工程拷贝到tolua_runtime工程中。如果在Windows平台编译，需要先下载<a href="http://msys2.github.io/ ">Msys2</a>（<a href="http://repo.msys2.org/distrib/x86_64/msys2-x86_64-20150916.exe"> 64位</a>）</p>
-<ul>
-<li>NDK 版本:android-ndk-r10e 默认安装到 D:/android-ndk-r10e<br><a href="https://dl.google.com/android/repository/android-ndk-r10e-windows-x86_64.zip">https://dl.google.com/android/repository/android-ndk-r10e-windows-x86_64.zip</a></li>
-<li>Msys2配置说明<br><a href="https://github.com/topameng/tolua_runtime/wiki">https://github.com/topameng/tolua_runtime/wiki</a></li>
-<li>配置好的Msys2下载<br><a href="https://pan.baidu.com/s/1c2JzvDQ">https://pan.baidu.com/s/1c2JzvDQ</a><br>备用地址：链接: <a href="https://pan.baidu.com/s/1To5Vft2h8TpM-gdD-KuPbw">https://pan.baidu.com/s/1To5Vft2h8TpM-gdD-KuPbw</a> 提取码: qfzj</li>
-</ul>
-<p>&#8194;&#8194;&#8194;&#8194;直接下载配置好的Msys解压在C盘，根据自己要编译的32或64位版本，配置环境变量，我这里使用64位，所以配置C:\msys64\mingw64\bin。编译32位请运行mingw32_shell.bat，64位运行mingw64_shell.bat。<br><img src="20190301231625.png" alt="images"><br>&#8194;&#8194;&#8194;&#8194;修改build_win64.sh脚本。</p>
-<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 64 Bit Version</span></span><br><span class="line">mkdir -p window/x86_64</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> luajit-2.1</span><br><span class="line">mingw32-make clean</span><br><span class="line"></span><br><span class="line">mingw32-make BUILDMODE=static CC=<span class="string">&quot;gcc -m64 -O2&quot;</span> XCFLAGS=-DLUAJIT_ENABLE_GC64</span><br><span class="line">cp src/libluajit.a ../window/x86_64/libluajit.a</span><br><span class="line">mingw32-make clean</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"></span><br><span class="line"><span class="comment">#build protobuf yunfeng ban pbc from https://github.com/cloudwu/pbc</span></span><br><span class="line"><span class="built_in">cd</span> pbc</span><br><span class="line">mingw32-make BUILDMODE=static CC=<span class="string">&quot;gcc -m64 -O2&quot;</span> XCFLAGS=-DLUAJIT_ENABLE_GC64</span><br><span class="line">cp build/libpbc.a ../window/x86_64/libpbc.a</span><br><span class="line">mingw32-make clean</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"></span><br><span class="line">gcc -m64 -O2 -std=gnu99 -shared \</span><br><span class="line"> tolua.c \</span><br><span class="line"> int64.c \</span><br><span class="line"> uint64.c \</span><br><span class="line"> pb.c \</span><br><span class="line"> lpeg.c \</span><br><span class="line"> struct.c \</span><br><span class="line"> cjson/strbuf.c \</span><br><span class="line"> cjson/lua_cjson.c \</span><br><span class="line"> cjson/fpconv.c \</span><br><span class="line"> luasocket/auxiliar.c \</span><br><span class="line"> luasocket/buffer.c \</span><br><span class="line"> luasocket/except.c \</span><br><span class="line"> luasocket/inet.c \</span><br><span class="line"> luasocket/io.c \</span><br><span class="line"> luasocket/luasocket.c \</span><br><span class="line"> luasocket/mime.c \</span><br><span class="line"> luasocket/options.c \</span><br><span class="line"> luasocket/select.c \</span><br><span class="line"> luasocket/tcp.c \</span><br><span class="line"> luasocket/timeout.c \</span><br><span class="line"> luasocket/udp.c \</span><br><span class="line"> luasocket/wsocket.c \</span><br><span class="line"> pbc/binding/lua/pbc-lua.c \</span><br><span class="line"> -o Plugins/x86_64/tolua.dll \</span><br><span class="line"> -I./ \</span><br><span class="line"> -Iluajit-2.1/src \</span><br><span class="line"> -Iluasocket \</span><br><span class="line"> -Ipbc \</span><br><span class="line"> -Ipbc/src \</span><br><span class="line"> -lws2_32 \</span><br><span class="line"> -Wl,--whole-archive window/x86_64/libluajit.a window/x86_64/libpbc.a -Wl,--no-whole-archive -static-libgcc -static-libstdc++</span><br></pre></td></tr></table></figure>
-<p>&#8194;&#8194;&#8194;&#8194;然后执行脚本进行编译，32位同理修改。编译成功后，将Plugins/x86_64文件夹下的tolua.dll拷贝到游戏工程中Plugins文件夹对应的位置。<br><img src="20190301233519.png" alt="images"><br>&#8194;&#8194;&#8194;&#8194;如果到这里就以为结束了，那就大错特错了。此时如果直接运行游戏工程，在require “protobuf.lua”时，会出现找不到”protobuf.c”的错误。还有以下两步：</p>
-<ul>
-<li>在LuaDLL.cs添加接口<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="built_in">int</span> <span class="title">luaopen_protobuf_c</span>(<span class="params">IntPtr L</span>)</span>;</span><br></pre></td></tr></table></figure></li>
-<li>在LuaClient.cs中注册pbc<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OpenLibs</span>(<span class="params"></span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	luaState.OpenLibs(LuaDLL.luaopen_pb);</span><br><span class="line">	luaState.OpenLibs(LuaDLL.luaopen_struct);</span><br><span class="line">	luaState.OpenLibs(LuaDLL.luaopen_lpeg);</span><br><span class="line">	luaState.OpenLibs(LuaDLL.luaopen_protobuf_c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>&#8194;&#8194;&#8194;&#8194;到这里，将pbc插件编译进tolua.dll基本就完成了。</p>
-<p>参考文献：</p>
-<ul>
-<li><a href="https://blog.codingnow.com/2011/12/pbc_lua_binding.html">https://blog.codingnow.com/2011/12/pbc_lua_binding.html</a></li>
-<li><a href="https://my.oschina.net/chaloongjir/blog/755954">https://my.oschina.net/chaloongjir/blog/755954</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Unity3D</tag>
       </tags>
   </entry>
   <entry>
@@ -1059,6 +1203,88 @@ tolua_runtime工程目录结构如下：<br><img src="20190301223738.png" alt="i
       </tags>
   </entry>
   <entry>
+    <title>C#中的&quot;~&quot;符号</title>
+    <url>/2018/04/03/Unity3d/20180403_001/</url>
+    <content><![CDATA[<p>&#8194;&#8194;&#8194;&#8194;今天突然觉得大学好像白上了，就像同学说我的那样，“恩，你学费没白交，最起码还有个毕业证。”哈哈哈，真的是应该自嘲一下。虽说引出这个问题的原因是查看了Unity官方教程自动寻路源码，但这也恰恰证明了我的大学基础是多么的不牢固。还是需要花些时间，重新拾起来啊（重头学啊）。</p>
+<p>&#8194;&#8194;&#8194;&#8194;因为上大学的主修专业是Java方向，所以没学习过C#（其实Java也基本全还给老师了）。今天抽空查了一下C#的官方文档，官方文档提供的“~”符号解释为：<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">~ 运算符对操作数执行按位求补运算，其效果相当于反转每一位。按位求补运算符是为 int、uint、long 和 ulong 类型预定义的。</span><br></pre></td></tr></table></figure><br>&#8194;&#8194;&#8194;&#8194;按位取反还记得一些，但是按位求补真的是一点都没有印象了，只知道有补码这个东西，但是知识点、怎么取，当时脑子真的是一片空白。所以找了一些资料重新回头复习了一下。发现补码原来是原码求反再加1。这里要提到几个知识点：</p>
+<ul>
+<li>正数的补码就是原码。</li>
+<li>负数的补码，取对应正数的反码再加1。</li>
+<li>补码的补码是原码。</li>
+</ul>
+<p><img src="20180403221137.png" alt="images"></p>
+<p>&#8194;&#8194;&#8194;&#8194;那么问题来了，官方文档明明说的是按位求补，但是后边又说其效果相当于反转每一位，那跟求反有什么区别呢。后来又发现了一个知识点：</p>
+<ul>
+<li>几乎所有的计算机都使用<b>二进制补码</b>表示法来存储位于n位存储单元中的有符号整数。</li>
+</ul>
+<p>&#8194;&#8194;&#8194;&#8194;也就是说“~”符号取的是计算机中补码的反码，那么正数存在存储单元中的就是本身，求反之后符号位变为1，就变成了负数。这时取反之后的结果还是存在计算机存储单元的<b>补码</b>，要转化为原码还需再求一次补码运算。</p>
+<p>&#8194;&#8194;&#8194;&#8194;同理，负数存在存储单元中的应该是自身的补码，也就是对应正数的反码加1。求反之后符号位变为0，就变成了正数，虽然这时取反之后的结果还是存在计算机存储单元的<b>补码</b>，需要再求一次补码才能转换为原码，但是正数的补码就是自身啊。</p>
+<p>&#8194;&#8194;&#8194;&#8194;到这里基本就结束了，通过这次的问题，看到了自己上大学时候对学习的一种懈怠，需要努力的地方还有很多。每一次发现自身问题和总结都是进步。</p>
+]]></content>
+      <tags>
+        <tag>Unity3D</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>向量的运算</title>
+    <url>/2018/04/14/Unity3d/20180414_001/</url>
+    <content><![CDATA[<p>&#8194;&#8194;&#8194;&#8194;今天来总结一下Unity中的向量运算。</p>
+<p>&#8194;&#8194;&#8194;&#8194;向量运算分为四种：加减、数乘、点乘和叉乘。下面依次介绍。</p>
+<ul>
+<li>加减：向量的加法（减法）为各分量分别相加（相减）。在物理上可以用来计算两个力的合力，或者几个速度分量的叠加。</li>
+<li>数乘：向量与一个标量相乘称为数乘。数乘可以对向量的长度进行缩放，如果标量大于0，那么向量的方向不变，若标量小于0，则向量的方向会变为反方向。</li>
+<li>点乘：两个向量点乘得到一个标量，数值等于两个向量长度相乘后再乘以二者夹角的余弦。通过两个向量点乘结果的符号可以快速的判断两个向量的夹角情况：<ul>
+<li>若u·v=0，则向量u、v相互垂直；</li>
+<li>若u·v&gt;0，则向量u、v夹角小于90度；</li>
+<li>若u·v&lt;0，则向量u、v夹角大于90度。</li>
+</ul>
+</li>
+<li>叉乘：两个向量的叉乘得到一个新的向量，新向量垂直于原来的两个向量（也就是垂直于原来两个向量构成的平面），并且长度等于原向量长度相乘后再乘夹角的正弦值。</li>
+</ul>
+<p>&#8194;&#8194;&#8194;&#8194;在数学中，叉乘得到的新向量的方向要用“右手法则”判断，如a·b，应用右手的四指先表示向量a的方向，然后掌心方向指向向量B的方向，大拇指所指的方向就是叉乘结果的方向。但是，因为Unity里用的是左手坐标系，所以应用左手的拇指朝向向量a的方向，食指指向向量b的方向，则中指指向的方向为叉乘结果的方向。</p>
+<p>&#8194;&#8194;&#8194;&#8194;<font color = red><b>注意：</b>叉乘不满足交换律。</font></p>
+]]></content>
+      <tags>
+        <tag>Unity3D</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>编译添加云风pbc插件的Tolua.dll</title>
+    <url>/2019/03/01/Unity3d/20190301_001/</url>
+    <content><![CDATA[<p>&#8194;&#8194;&#8194;&#8194;好久没有更新过blog了，最近这两天在搞pbc的相关东西。在此总结记录一下。</p>
+<p>&#8194;&#8194;&#8194;&#8194;当初云风写pbc的初衷就是想可以方便的 binding 到动态语言中去用的。这里可以看一下<a href="https://blog.codingnow.com/2011/12/pbc_lua_binding.html">云风blog</a>中对pbc的介绍。</p>
+<p>&#8194;&#8194;&#8194;&#8194;在开始之前，需要做一些准备工作。</p>
+<ul>
+<li>下载tolua_runtime工程：<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/topameng/tolua_runtime</span><br></pre></td></tr></table></figure></li>
+<li>下载pbc工程：<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/cloudwu/pbc</span><br></pre></td></tr></table></figure>
+tolua_runtime工程目录结构如下：<br><img src="20190301223738.png" alt="images"><br>pbc工程目录结构如下：<br><img src="20190301223901.png" alt="images"></li>
+</ul>
+<p>&#8194;&#8194;&#8194;&#8194;准备工作完成之后，把pbc整个工程拷贝到tolua_runtime工程中。如果在Windows平台编译，需要先下载<a href="http://msys2.github.io/ ">Msys2</a>（<a href="http://repo.msys2.org/distrib/x86_64/msys2-x86_64-20150916.exe"> 64位</a>）</p>
+<ul>
+<li>NDK 版本:android-ndk-r10e 默认安装到 D:/android-ndk-r10e<br><a href="https://dl.google.com/android/repository/android-ndk-r10e-windows-x86_64.zip">https://dl.google.com/android/repository/android-ndk-r10e-windows-x86_64.zip</a></li>
+<li>Msys2配置说明<br><a href="https://github.com/topameng/tolua_runtime/wiki">https://github.com/topameng/tolua_runtime/wiki</a></li>
+<li>配置好的Msys2下载<br><a href="https://pan.baidu.com/s/1c2JzvDQ">https://pan.baidu.com/s/1c2JzvDQ</a><br>备用地址：链接: <a href="https://pan.baidu.com/s/1To5Vft2h8TpM-gdD-KuPbw">https://pan.baidu.com/s/1To5Vft2h8TpM-gdD-KuPbw</a> 提取码: qfzj</li>
+</ul>
+<p>&#8194;&#8194;&#8194;&#8194;直接下载配置好的Msys解压在C盘，根据自己要编译的32或64位版本，配置环境变量，我这里使用64位，所以配置C:\msys64\mingw64\bin。编译32位请运行mingw32_shell.bat，64位运行mingw64_shell.bat。<br><img src="20190301231625.png" alt="images"><br>&#8194;&#8194;&#8194;&#8194;修改build_win64.sh脚本。</p>
+<figure class="highlight sh"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 64 Bit Version</span></span><br><span class="line">mkdir -p window/x86_64</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> luajit-2.1</span><br><span class="line">mingw32-make clean</span><br><span class="line"></span><br><span class="line">mingw32-make BUILDMODE=static CC=<span class="string">&quot;gcc -m64 -O2&quot;</span> XCFLAGS=-DLUAJIT_ENABLE_GC64</span><br><span class="line">cp src/libluajit.a ../window/x86_64/libluajit.a</span><br><span class="line">mingw32-make clean</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"></span><br><span class="line"><span class="comment">#build protobuf yunfeng ban pbc from https://github.com/cloudwu/pbc</span></span><br><span class="line"><span class="built_in">cd</span> pbc</span><br><span class="line">mingw32-make BUILDMODE=static CC=<span class="string">&quot;gcc -m64 -O2&quot;</span> XCFLAGS=-DLUAJIT_ENABLE_GC64</span><br><span class="line">cp build/libpbc.a ../window/x86_64/libpbc.a</span><br><span class="line">mingw32-make clean</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"></span><br><span class="line">gcc -m64 -O2 -std=gnu99 -shared \</span><br><span class="line"> tolua.c \</span><br><span class="line"> int64.c \</span><br><span class="line"> uint64.c \</span><br><span class="line"> pb.c \</span><br><span class="line"> lpeg.c \</span><br><span class="line"> struct.c \</span><br><span class="line"> cjson/strbuf.c \</span><br><span class="line"> cjson/lua_cjson.c \</span><br><span class="line"> cjson/fpconv.c \</span><br><span class="line"> luasocket/auxiliar.c \</span><br><span class="line"> luasocket/buffer.c \</span><br><span class="line"> luasocket/except.c \</span><br><span class="line"> luasocket/inet.c \</span><br><span class="line"> luasocket/io.c \</span><br><span class="line"> luasocket/luasocket.c \</span><br><span class="line"> luasocket/mime.c \</span><br><span class="line"> luasocket/options.c \</span><br><span class="line"> luasocket/select.c \</span><br><span class="line"> luasocket/tcp.c \</span><br><span class="line"> luasocket/timeout.c \</span><br><span class="line"> luasocket/udp.c \</span><br><span class="line"> luasocket/wsocket.c \</span><br><span class="line"> pbc/binding/lua/pbc-lua.c \</span><br><span class="line"> -o Plugins/x86_64/tolua.dll \</span><br><span class="line"> -I./ \</span><br><span class="line"> -Iluajit-2.1/src \</span><br><span class="line"> -Iluasocket \</span><br><span class="line"> -Ipbc \</span><br><span class="line"> -Ipbc/src \</span><br><span class="line"> -lws2_32 \</span><br><span class="line"> -Wl,--whole-archive window/x86_64/libluajit.a window/x86_64/libpbc.a -Wl,--no-whole-archive -static-libgcc -static-libstdc++</span><br></pre></td></tr></table></figure>
+<p>&#8194;&#8194;&#8194;&#8194;然后执行脚本进行编译，32位同理修改。编译成功后，将Plugins/x86_64文件夹下的tolua.dll拷贝到游戏工程中Plugins文件夹对应的位置。<br><img src="20190301233519.png" alt="images"><br>&#8194;&#8194;&#8194;&#8194;如果到这里就以为结束了，那就大错特错了。此时如果直接运行游戏工程，在require “protobuf.lua”时，会出现找不到”protobuf.c”的错误。还有以下两步：</p>
+<ul>
+<li>在LuaDLL.cs添加接口<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">DllImport(LUADLL, CallingConvention = CallingConvention.Cdecl)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">extern</span> <span class="built_in">int</span> <span class="title">luaopen_protobuf_c</span>(<span class="params">IntPtr L</span>)</span>;</span><br></pre></td></tr></table></figure></li>
+<li>在LuaClient.cs中注册pbc<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">OpenLibs</span>(<span class="params"></span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	luaState.OpenLibs(LuaDLL.luaopen_pb);</span><br><span class="line">	luaState.OpenLibs(LuaDLL.luaopen_struct);</span><br><span class="line">	luaState.OpenLibs(LuaDLL.luaopen_lpeg);</span><br><span class="line">	luaState.OpenLibs(LuaDLL.luaopen_protobuf_c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&#8194;&#8194;&#8194;&#8194;到这里，将pbc插件编译进tolua.dll基本就完成了。</p>
+<p>参考文献：</p>
+<ul>
+<li><a href="https://blog.codingnow.com/2011/12/pbc_lua_binding.html">https://blog.codingnow.com/2011/12/pbc_lua_binding.html</a></li>
+<li><a href="https://my.oschina.net/chaloongjir/blog/755954">https://my.oschina.net/chaloongjir/blog/755954</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Unity3D</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git配置</title>
     <url>/2019/10/21/Git/%E7%AC%AC%E4%B8%80%E7%AB%A0/1.Git%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h3 id="Git配置"><a href="#Git配置" class="headerlink" title="Git配置"></a>Git配置</h3><h4 id="Git的三个作用域"><a href="#Git的三个作用域" class="headerlink" title="Git的三个作用域"></a>Git的三个作用域</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git config --<span class="built_in">local</span> <span class="comment">#缺省等同于local</span></span><br><span class="line">$ git config --global</span><br><span class="line">$ git config --system</span><br></pre></td></tr></table></figure>
@@ -1149,19 +1375,6 @@ tolua_runtime工程目录结构如下：<br><img src="20190301223738.png" alt="i
       </tags>
   </entry>
   <entry>
-    <title>指定不需要Git管理的文件</title>
-    <url>/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/11.%E6%8C%87%E5%AE%9A%E4%B8%8D%E9%9C%80%E8%A6%81Git%E7%AE%A1%E7%90%86%E7%9A%84%E6%96%87%E4%BB%B6/</url>
-    <content><![CDATA[<h3 id="指定不需要Git管理的文件"><a href="#指定不需要Git管理的文件" class="headerlink" title="指定不需要Git管理的文件"></a>指定不需要Git管理的文件</h3><ul>
-<li>.gitignore文件</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ mkdir doc #创建一个doc文件夹</span><br><span class="line">$ echo &#x27;hi&#x27; &gt; doc/ignoret #在doc文件夹下创建一个文件</span><br><span class="line">$ git status #查看状态 提示doc目录未被追踪 需要add</span><br><span class="line">On branch temp</span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	doc/</span><br><span class="line">$ vi .gitignore #在工程根目录创建.gitignore文件 写入doc 保存退出</span><br><span class="line">$ git status #查看状态 doc目录不会再被提示未被追踪 说明Git不再管理doc目录</span><br><span class="line">On branch temp</span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	.gitignore</span><br><span class="line"></span><br><span class="line">$ vi .gitignore #在把doc修改为doc/</span><br><span class="line">$ git status #查看状态 doc目录依然不被Git所管理</span><br><span class="line">On branch temp</span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	.gitignore</span><br><span class="line"></span><br><span class="line">$ rm -rf doc #删除doc文件夹</span><br><span class="line">$ echo &#x27;This is file.&#x27; &gt; doc #创建doc文件</span><br><span class="line">$ cat .gitignore</span><br><span class="line">doc/</span><br><span class="line">$ git status #doc文件还是会被Git管理的</span><br><span class="line">On branch temp</span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	.gitignore</span><br><span class="line">	doc</span><br><span class="line"></span><br><span class="line">$ vi .gitignore #如果也不想让Git管理doc文件，那么把doc改成doc/就可以了</span><br><span class="line">$ git status</span><br><span class="line">On branch temp</span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	.gitignore</span><br><span class="line"></span><br><span class="line">$ mv .gitignore doc.gitignore #将.gitignore文件名修改为doc.gitignore</span><br><span class="line">$ git status #查看状态 doc就会重新被Git管理 所以文件名必须要是.gitignore</span><br><span class="line">On branch temp</span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	doc</span><br><span class="line">	doc.gitignore</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>还有许多编程语言通用的ignore，GitHub官方都给出了文件示例，可在<a href="https://github.com/github/gitignore">GitHub</a>上查看。</p>
-]]></content>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>开发中临时加塞了紧急任务应当如何处理</title>
     <url>/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/10.%E5%BC%80%E5%8F%91%E4%B8%AD%E4%B8%B4%E6%97%B6%E5%8A%A0%E5%A1%9E%E4%BA%86%E7%B4%A7%E6%80%A5%E4%BB%BB%E5%8A%A1%E5%BA%94%E5%BD%93%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86/</url>
     <content><![CDATA[<h3 id="开发中临时加塞了紧急任务应当如何处理"><a href="#开发中临时加塞了紧急任务应当如何处理" class="headerlink" title="开发中临时加塞了紧急任务应当如何处理"></a>开发中临时加塞了紧急任务应当如何处理</h3><ul>
@@ -1183,6 +1396,19 @@ tolua_runtime工程目录结构如下：<br><img src="20190301223738.png" alt="i
 </li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git stash pop <span class="comment">#弹出stash 发现最后一行显示丢掉stash@&#123;0&#125;的记录</span></span><br><span class="line">On branch temp</span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">	modified:   commit3</span><br><span class="line"></span><br><span class="line">no changes added to commit (use <span class="string">&quot;git add&quot;</span> and/or <span class="string">&quot;git commit -a&quot;</span>)</span><br><span class="line">Dropped refs/stash@&#123;0&#125; (12397d0ad85cd29f39b1551753533aada85d3d42)</span><br><span class="line">$ git stash list <span class="comment">#再次查看stash列表 已经没有stash记录了</span></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>指定不需要Git管理的文件</title>
+    <url>/2019/10/21/Git/%E7%AC%AC%E4%BA%8C%E7%AB%A0/11.%E6%8C%87%E5%AE%9A%E4%B8%8D%E9%9C%80%E8%A6%81Git%E7%AE%A1%E7%90%86%E7%9A%84%E6%96%87%E4%BB%B6/</url>
+    <content><![CDATA[<h3 id="指定不需要Git管理的文件"><a href="#指定不需要Git管理的文件" class="headerlink" title="指定不需要Git管理的文件"></a>指定不需要Git管理的文件</h3><ul>
+<li>.gitignore文件</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ mkdir doc #创建一个doc文件夹</span><br><span class="line">$ echo &#x27;hi&#x27; &gt; doc/ignoret #在doc文件夹下创建一个文件</span><br><span class="line">$ git status #查看状态 提示doc目录未被追踪 需要add</span><br><span class="line">On branch temp</span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	doc/</span><br><span class="line">$ vi .gitignore #在工程根目录创建.gitignore文件 写入doc 保存退出</span><br><span class="line">$ git status #查看状态 doc目录不会再被提示未被追踪 说明Git不再管理doc目录</span><br><span class="line">On branch temp</span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	.gitignore</span><br><span class="line"></span><br><span class="line">$ vi .gitignore #在把doc修改为doc/</span><br><span class="line">$ git status #查看状态 doc目录依然不被Git所管理</span><br><span class="line">On branch temp</span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	.gitignore</span><br><span class="line"></span><br><span class="line">$ rm -rf doc #删除doc文件夹</span><br><span class="line">$ echo &#x27;This is file.&#x27; &gt; doc #创建doc文件</span><br><span class="line">$ cat .gitignore</span><br><span class="line">doc/</span><br><span class="line">$ git status #doc文件还是会被Git管理的</span><br><span class="line">On branch temp</span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	.gitignore</span><br><span class="line">	doc</span><br><span class="line"></span><br><span class="line">$ vi .gitignore #如果也不想让Git管理doc文件，那么把doc改成doc/就可以了</span><br><span class="line">$ git status</span><br><span class="line">On branch temp</span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	.gitignore</span><br><span class="line"></span><br><span class="line">$ mv .gitignore doc.gitignore #将.gitignore文件名修改为doc.gitignore</span><br><span class="line">$ git status #查看状态 doc就会重新被Git管理 所以文件名必须要是.gitignore</span><br><span class="line">On branch temp</span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	doc</span><br><span class="line">	doc.gitignore</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>还有许多编程语言通用的ignore，GitHub官方都给出了文件示例，可在<a href="https://github.com/github/gitignore">GitHub</a>上查看。</p>
+]]></content>
       <tags>
         <tag>Git</tag>
       </tags>
